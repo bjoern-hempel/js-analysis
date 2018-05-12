@@ -98,10 +98,22 @@ class Matrix {
         });
     }
 
+    /**
+     * Returns the current matrix.
+     *
+     * @returns {Array|*}
+     */
     get value () {
         return this.matrix;
     }
 
+    /**
+     * get the cell of matrix.
+     *
+     * @param x
+     * @param y
+     * @returns {*}
+     */
     getCell (x, y) {
         return this.matrix[x][y];
     }
