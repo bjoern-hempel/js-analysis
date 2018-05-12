@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-matrix</title>
+    <script src="js/matrix.js"></script>
+    <script src="js/matrixText.js"></script>
+</head>
+<body>
+    <script>
+
+        /* define the global test container */
+        var testContainer = {
+            allTestsOK: true,
+            counterTests: 0
+        };
+
+
+        /* start given rows are not an array (1) */
+        var matrixTest1 = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_ROWS_IS_NO_ARRAY,
+            function () {
+                var matrix = new Matrix('test');
+                console.log(matrix.value);
+                return false;
+            },
+            function (err) {
+                return (err instanceof MatrixException) && (err.code === this.code);
+            }
+        );
+        matrixTest1.start();
+
+
+        /* start given rows are not higher than 0 (2) */
+        var matrixTest2 = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG,
+            function () {
+                var matrix = new Matrix([]);
+                console.log(matrix.value);
+                return false;
+            },
+            function (err) {
+                return (err instanceof MatrixException) && (err.code === this.code);
+            }
+        );
+        matrixTest2.start();
+
+
+        /* given cols are not an array (3) */
+        var matrixTest3 = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_COLS_IS_NO_ARRAY,
+            function () {
+                var matrix = new Matrix(['string']);
+                console.log(matrix.value);
+                return false;
+            },
+            function (err) {
+                return (err instanceof MatrixException) && (err.code === this.code);
+            }
+        );
+        matrixTest3.start();
+
+
+        /* given cols are not an array (4) */
+        var matrixTest4 = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
+            function () {
+                var matrix = new Matrix([[], []]);
+                console.log(matrix.value);
+                return false;
+            },
+            function (err) {
+                return (err instanceof MatrixException) && (err.code === this.code);
+            }
+        );
+        matrixTest4.start();
+
+
+        /* start wrong col number test (5) */
+        var matrixTest5 = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_WRONG_COL_NUMBER,
+            function () {
+                var matrix = new Matrix([[1, 2], [2]]);
+                console.log(matrix.value);
+                return false;
+            },
+            function (err) {
+                return (err instanceof MatrixException) && (err.code === this.code);
+            }
+        );
+        matrixTest5.start();
+
+
+        /* start wrong col number test (5) */
+        var matrixTest6 = new MatrixTest(
+            testContainer,
+            Matrix.SUCCESS_CELL,
+            function () {
+                var matrix = new Matrix([[1, 2], [2, 3]]);
+                return (
+                    matrix.getCell(0, 0) === 1 &&
+                    matrix.getCell(0, 1) === 2 &&
+                    matrix.getCell(1, 0) === 2 &&
+                    matrix.getCell(1, 1) === 3
+                );
+            },
+            function (err) {
+                return (err instanceof MatrixException) && (err.code === this.code);
+            }
+        );
+        matrixTest6.start();
+
+
+        /* prints out the test result */
+        MatrixTest.resultTest(testContainer);
+
+    </script>
+</body>
+</html>
