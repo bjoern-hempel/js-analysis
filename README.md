@@ -2,9 +2,11 @@
 
 This javascript library provides some functions to do some analysis stuff.
 
-1. Matrices
+## 1. Matrices
 
-1.1 Create a matrix
+Here are some calculations with matrices:
+
+### 1.1 Create a matrix
 
 ```javascript
 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
