@@ -45,9 +45,14 @@ class MatrixTest {
      */
     start () {
         this.testContainer.counterTests++;
-        console.log(String('%counter) Running test "%message".').
+
+
+
+        console.log(String('%counter) Running %status test "%message" (Code: %code).').
             replace(/%counter/, this.testContainer.counterTests).
-            replace(/%message/, this.message)
+            replace(/%status/, this.code >= 200 ? 'success' : 'error').
+            replace(/%message/, this.message).
+            replace(/%code/, this.code)
         );
 
         try {
