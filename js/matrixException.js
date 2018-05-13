@@ -2,7 +2,7 @@
  * Own matrix exception.
  *
  * @author  Björn Hempel <bjoern@hempel.li>
- * @version 1.0 (2018-05-08)
+ * @version 1.0 (2018-05-13)
  */
 function MatrixException (code, message) {
     this.code = code;

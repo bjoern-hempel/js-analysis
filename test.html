@@ -137,7 +137,7 @@
         matrixTest.start();
 
 
-        /* start initial test */
+        /* start addition test (correct) */
         var matrixTest = new MatrixTest(
             testContainer,
             Matrix.SUCCESS_ADDITION_TEST,
@@ -161,6 +161,59 @@
             }
         );
         matrixTest.start();
+
+
+        /* start scalar multiplication test (no scalar) */
+        var matrixTest = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_NO_SCALAR,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
+
+                var matrix3 = matrix1.scalarMultiplication(matrix2);
+
+                return (
+                    matrix3 instanceof Matrix &&
+                    matrix3.getCell(0, 0) === 3 &&
+                    matrix3.getCell(0, 1) === 6 &&
+                    matrix3.getCell(0, 2) === 9 &&
+                    matrix3.getCell(1, 0) === 12 &&
+                    matrix3.getCell(1, 1) === 15 &&
+                    matrix3.getCell(1, 2) === 18 &&
+                    matrix3.numberCols === matrix1.numberCols &&
+                    matrix3.numberRows === matrix1.numberRows
+                );
+            }
+        );
+        matrixTest.start();
+
+
+        /* start scalar multiplication test */
+        var matrixTest = new MatrixTest(
+            testContainer,
+            Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var scalar  = 2.5;
+
+                var matrix2 = matrix1.scalarMultiplication(scalar);
+
+                return (
+                    matrix2 instanceof Matrix &&
+                    matrix2.getCell(0, 0) === 2.5 &&
+                    matrix2.getCell(0, 1) === 5 &&
+                    matrix2.getCell(0, 2) === 7.5 &&
+                    matrix2.getCell(1, 0) === 10 &&
+                    matrix2.getCell(1, 1) === 12.5 &&
+                    matrix2.getCell(1, 2) === 15 &&
+                    matrix2.numberCols === matrix1.numberCols &&
+                    matrix2.numberRows === matrix1.numberRows
+                );
+            }
+        );
+        matrixTest.start();
+
 
 
         /* prints out the test result */

@@ -33,7 +33,7 @@ class MatrixTest {
      */
     errFunc (err) {
         /* This is a success test -> an exception should never be thrown. */
-        if (this.code >= 100) {
+        if (this.code >= 200) {
             return false;
         }
 

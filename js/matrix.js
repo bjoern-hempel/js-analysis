@@ -2,21 +2,22 @@
  * A class to create and calculates matrices
  *
  * @author  Björn Hempel <bjoern@hempel.li>
- * @version 1.0 (2018-05-08)
+ * @version 1.0 (2018-05-13)
  */
 class Matrix {
 
-    static get ERROR_ROWS_IS_NO_ARRAY() { return [1, 'rows are not an array']; }
-    static get ERROR_ROWS_COUNT_ARRAY_WRONG() { return [2, 'count rows is wrong']; }
-    static get ERROR_COLS_IS_NO_ARRAY() { return [3, 'cols are not an array']; }
-    static get ERROR_COLS_COUNT_ARRAY_WRONG() { return [4, 'count cols is wrong']; }
-    static get ERROR_WRONG_COL_NUMBER() { return [5, 'wrong col number test']; }
-    static get ERROR_WRONG_MATRIX_TYPE() { return [6, 'wrong given matrix type']; }
-    static get ERROR_WRONG_MATRIX_DIMENSIONS() { return [7, 'two given matrices with different dimensions']; }
+    static get ERROR_ROWS_IS_NO_ARRAY()             { return [101, 'rows are not an array']; }
+    static get ERROR_ROWS_COUNT_ARRAY_WRONG()       { return [102, 'count rows is wrong']; }
+    static get ERROR_COLS_IS_NO_ARRAY()             { return [103, 'cols are not an array']; }
+    static get ERROR_COLS_COUNT_ARRAY_WRONG()       { return [104, 'count cols is wrong']; }
+    static get ERROR_WRONG_COL_NUMBER()             { return [105, 'wrong col number test']; }
+    static get ERROR_WRONG_MATRIX_TYPE()            { return [106, 'wrong given matrix type']; }
+    static get ERROR_WRONG_MATRIX_DIMENSIONS()      { return [107, 'two given matrices with different dimensions']; }
+    static get ERROR_NO_SCALAR()                    { return [108, 'given parameter is not a scalar']; }
 
-
-    static get SUCCESS_INITIALIZE_MATRIX() { return [101, 'initialize matrix']; }
-    static get SUCCESS_ADDITION_TEST() { return [102, 'successful addition test']; }
+    static get SUCCESS_INITIALIZE_MATRIX()          { return [201, 'initialize matrix']; }
+    static get SUCCESS_ADDITION_TEST()              { return [202, 'successful addition test']; }
+    static get SUCCESS_SCALAR_MULTIPLICATION_TEST() { return [203, 'successful scalar multiplication test']; }
 
     /**
      * The constructor of the meshHolder.
@@ -134,8 +135,12 @@ class Matrix {
         return this.cols;
     }
 
-
-
+    /**
+     * Returns the matrix addition from this matrix with the given matrix.
+     *
+     * @param matrix
+     * @returns {Matrix}
+     */
     addition(matrix) {
         if (!(matrix instanceof Matrix)) {
             throw new MatrixException(
@@ -158,6 +163,35 @@ class Matrix {
 
             row.map(function (col, colIndex) {
                 currentRow.push(col + matrix.getCell(rowIndex, colIndex));
+            });
+
+            value.push(currentRow);
+        });
+
+        return new Matrix(value);
+    }
+
+    /**
+     * Does a scalar multiplication.
+     *
+     * @param scalar
+     * @returns {Matrix}
+     */
+    scalarMultiplication(scalar) {
+        if (isNaN(scalar)) {
+            throw new MatrixException(
+                Matrix.ERROR_NO_SCALAR[0],
+                'matrix.scalarMultiplication: The given parameter scalar must be a number (real, float, integer, ..).'
+            );
+        }
+
+        var value = [];
+
+        this.matrix.map(function (row) {
+            var currentRow = [];
+
+            row.map(function (col) {
+                currentRow.push(scalar * col);
             });
 
             value.push(currentRow);
