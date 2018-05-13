@@ -16,7 +16,7 @@
             Matrix.ERROR_ROWS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix('test');
-                console.log(matrix.value);
+                console.log(matrix.array);
                 return false;
             }
         );
@@ -27,7 +27,7 @@
             Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([]);
-                console.log(matrix.value);
+                console.log(matrix.array);
                 return false;
             }
         );
@@ -38,7 +38,7 @@
             Matrix.ERROR_COLS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix(['string']);
-                console.log(matrix.value);
+                console.log(matrix.array);
                 return false;
             }
         );
@@ -49,7 +49,7 @@
             Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([[], []]);
-                console.log(matrix.value);
+                console.log(matrix.array);
                 return false;
             }
         );
@@ -60,7 +60,7 @@
             Matrix.ERROR_WRONG_COL_NUMBER,
             function () {
                 var matrix = new Matrix([[1, 2], [2]]);
-                console.log(matrix.value);
+                console.log(matrix.array);
                 return false;
             }
         );
@@ -90,7 +90,8 @@
             Matrix.ERROR_WRONG_MATRIX_TYPE,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-                var matrix2 = 1; /* this is not a matrix */
+                var matrix2 = 1;
+                /* this is not a matrix */
 
                 var matrix3 = matrix1.add(matrix2);
 
@@ -105,7 +106,8 @@
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-                var matrix2 = new Matrix([[2, 4], [8, 10]]); /* this matrix has the wrong dimensions */
+                var matrix2 = new Matrix([[2, 4], [8, 10]]);
+                /* this matrix has the wrong dimensions */
 
                 var matrix3 = matrix1.add(matrix2);
 
@@ -168,7 +170,7 @@
             Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-                var scalar  = 2.5;
+                var scalar = 2.5;
 
                 var matrix2 = matrix1.scalarMultiplication(scalar);
 
@@ -191,7 +193,7 @@
         new MatrixTest(
             Matrix.SUCCESS_TRANSPOSE_TEST,
             function () {
-                var matrix1 = new Matrix([[1, 2, 3],[4, 5, 6]]);
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var matrix2 = matrix1.transpose();
 
                 return (
@@ -213,8 +215,8 @@
         new MatrixTest(
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
-                var matrix1 = new Matrix([[1, 2, 3],[4, 5, 6]]);
-                var matrix2 = new Matrix([[1],[2]]);
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = new Matrix([[1], [2]]);
                 var matrix3 = matrix1.multiply(matrix2);
 
                 /* the method add should throw an exception */
@@ -227,8 +229,8 @@
         new MatrixTest(
             Matrix.SUCCESS_MULTIPLICATION_TEST,
             function () {
-                var matrix1 = new Matrix([[1, 2, 3],[4, 5, 6]]);
-                var matrix2 = new Matrix([[1],[2],[3]]);
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = new Matrix([[1], [2], [3]]);
                 var matrix3 = matrix1.multiply(matrix2);
 
                 return (

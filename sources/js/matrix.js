@@ -6,25 +6,62 @@
  */
 class Matrix {
 
-    static get ERROR_ROWS_IS_NO_ARRAY()             { return [101, 'rows are not an array']; }
-    static get ERROR_ROWS_COUNT_ARRAY_WRONG()       { return [102, 'count rows is wrong']; }
-    static get ERROR_COLS_IS_NO_ARRAY()             { return [103, 'cols are not an array']; }
-    static get ERROR_COLS_COUNT_ARRAY_WRONG()       { return [104, 'count cols is wrong']; }
-    static get ERROR_WRONG_COL_NUMBER()             { return [105, 'wrong col number test']; }
-    static get ERROR_WRONG_MATRIX_TYPE()            { return [106, 'wrong given matrix type']; }
-    static get ERROR_WRONG_MATRIX_DIMENSIONS()      { return [107, 'two given matrices with different dimensions']; }
-    static get ERROR_NO_SCALAR()                    { return [108, 'given parameter is not a scalar']; }
+    static get ERROR_ROWS_IS_NO_ARRAY() {
+        return [101, 'rows are not an array'];
+    }
 
-    static get SUCCESS_INITIALIZE_MATRIX()          { return [201, 'initialize matrix']; }
-    static get SUCCESS_ADDITION_TEST()              { return [202, 'successful add test']; }
-    static get SUCCESS_SCALAR_MULTIPLICATION_TEST() { return [203, 'successful scalar multiplication test']; }
-    static get SUCCESS_TRANSPOSE_TEST()             { return [204, 'successful transpose test']; }
-    static get SUCCESS_MULTIPLICATION_TEST()        { return [205, 'successful multiplication test']; }
+    static get ERROR_ROWS_COUNT_ARRAY_WRONG() {
+        return [102, 'count rows is wrong'];
+    }
+
+    static get ERROR_COLS_IS_NO_ARRAY() {
+        return [103, 'cols are not an array'];
+    }
+
+    static get ERROR_COLS_COUNT_ARRAY_WRONG() {
+        return [104, 'count cols is wrong'];
+    }
+
+    static get ERROR_WRONG_COL_NUMBER() {
+        return [105, 'wrong col number test'];
+    }
+
+    static get ERROR_WRONG_MATRIX_TYPE() {
+        return [106, 'wrong given matrix type'];
+    }
+
+    static get ERROR_WRONG_MATRIX_DIMENSIONS() {
+        return [107, 'two given matrices with different dimensions'];
+    }
+
+    static get ERROR_NO_SCALAR() {
+        return [108, 'given parameter is not a scalar'];
+    }
+
+    static get SUCCESS_INITIALIZE_MATRIX() {
+        return [201, 'initialize matrix'];
+    }
+
+    static get SUCCESS_ADDITION_TEST() {
+        return [202, 'successful add test'];
+    }
+
+    static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
+        return [203, 'successful scalar multiplication test'];
+    }
+
+    static get SUCCESS_TRANSPOSE_TEST() {
+        return [204, 'successful transpose test'];
+    }
+
+    static get SUCCESS_MULTIPLICATION_TEST() {
+        return [205, 'successful multiplication test'];
+    }
 
     /**
      * The constructor of the meshHolder.
      */
-    constructor (matrix) {
+    constructor(matrix) {
 
         this.name = 'Matrix';
 
@@ -43,8 +80,8 @@ class Matrix {
             );
         }
 
-        this.rows   = matrix.length;
-        this.cols   = 0;
+        this.rows = matrix.length;
+        this.cols = 0;
         this.matrix = matrix;
 
         var self = this;
@@ -54,16 +91,14 @@ class Matrix {
             if (!(row instanceof Array)) {
                 throw new MatrixException(
                     Matrix.ERROR_COLS_IS_NO_ARRAY[0],
-                    String('Row %row of given parameter elements must be an instance of Array.').
-                        replace(/%row/, rowNumber + 1)
+                    String('Row %row of given parameter elements must be an instance of Array.').replace(/%row/, rowNumber + 1)
                 );
             }
 
             if (row.length <= 0) {
                 throw new MatrixException(
                     Matrix.ERROR_COLS_COUNT_ARRAY_WRONG[0],
-                    String('The number of cols in row %row from given parameter matrix must greater than 0.').
-                        replace(/%row/, rowNumber)
+                    String('The number of cols in row %row from given parameter matrix must greater than 0.').replace(/%row/, rowNumber)
                 );
             }
 
@@ -73,10 +108,7 @@ class Matrix {
                 if (self.cols !== row.length) {
                     throw new MatrixException(
                         Matrix.ERROR_WRONG_COL_NUMBER[0],
-                        String('The number of cols in row %row from given parameter matrix must equal to %col.').
-                            replace(/%row/, rowNumber + 1).
-                            replace(/%col/, self.cols)
-
+                        String('The number of cols in row %row from given parameter matrix must equal to %col.').replace(/%row/, rowNumber + 1).replace(/%col/, self.cols)
                     );
                 }
             }
@@ -84,9 +116,7 @@ class Matrix {
             row.map(function (col, colNumber) {
                 if (isNaN(col)) {
                     throw new Error(
-                        String('Cell %col in row %row of given parameter elements must be a number.').
-                            replace(/%col/, colNumber + 1).
-                            replace(/%row/, rowNumber + 1)
+                        String('Cell %col in row %row of given parameter elements must be a number.').replace(/%col/, colNumber + 1).replace(/%row/, rowNumber + 1)
                     );
                 }
 
@@ -102,7 +132,7 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    getCell (row, col) {
+    getCell(row, col) {
         return this.matrix[row][col];
     }
 
@@ -111,7 +141,7 @@ class Matrix {
      *
      * @returns {Array|*}
      */
-    get value () {
+    get array() {
         return this.matrix;
     }
 
@@ -122,7 +152,7 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    get numberRows () {
+    get numberRows() {
         return this.rows;
     }
 
@@ -133,7 +163,7 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    get numberCols () {
+    get numberCols() {
         return this.cols;
     }
 
@@ -143,7 +173,7 @@ class Matrix {
      * @param matrix
      * @returns {Matrix}
      */
-    add (matrix) {
+    add(matrix) {
         if (!(matrix instanceof Matrix)) {
             throw new MatrixException(
                 Matrix.ERROR_WRONG_MATRIX_TYPE[0],
@@ -179,7 +209,7 @@ class Matrix {
      * @param scalar
      * @returns {Matrix}
      */
-    scalarMultiplication (scalar) {
+    scalarMultiplication(scalar) {
         if (isNaN(scalar)) {
             throw new MatrixException(
                 Matrix.ERROR_NO_SCALAR[0],
@@ -207,7 +237,7 @@ class Matrix {
      *
      * @returns {Matrix}
      */
-    transpose () {
+    transpose() {
         return new Matrix(this.helperTranspose(this.matrix));
     }
 
@@ -217,7 +247,7 @@ class Matrix {
      * @param matrix
      * @returns {Matrix}
      */
-    multiply (matrix) {
+    multiply(matrix) {
         if (!(matrix instanceof Matrix)) {
             throw new MatrixException(
                 Matrix.ERROR_WRONG_MATRIX_TYPE[0],
@@ -232,8 +262,8 @@ class Matrix {
             );
         }
 
-        var array = this.matrix.map(function(vector1) {
-            return this.helperTranspose(matrix.value).map(function(vector2) {
+        var array = this.matrix.map(function (vector1) {
+            return this.helperTranspose(matrix.array).map(function (vector2) {
                 return this.helperDotProduct(vector1, vector2);
             }, this);
         }, this);
@@ -247,9 +277,9 @@ class Matrix {
      * @param matrix
      * @returns {Array}
      */
-    helperTranspose (matrix) {
-        var transposedMatrix = matrix[0].map(function(col, colIndex) {
-            return matrix.map(function(row) {
+    helperTranspose(matrix) {
+        var transposedMatrix = matrix[0].map(function (col, colIndex) {
+            return matrix.map(function (row) {
                 return row[colIndex];
             });
         });
@@ -264,9 +294,11 @@ class Matrix {
      * @param vector2
      * @returns {Number}
      */
-    helperDotProduct (vector1, vector2) {
-        return vector1.map(function(cell, cellIndex) {
+    helperDotProduct(vector1, vector2) {
+        return vector1.map(function (cell, cellIndex) {
             return vector1[cellIndex] * vector2[cellIndex];
-        }).reduce(function(number1, number2) { return number1 + number2; });
+        }).reduce(function (number1, number2) {
+            return number1 + number2;
+        });
     }
 }

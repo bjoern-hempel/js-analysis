@@ -4,7 +4,7 @@
  * @author  Björn Hempel <bjoern@hempel.li>
  * @version 1.0 (2018-05-13)
  */
-function MatrixException (code, message) {
+function MatrixException(code, message) {
     this.code = code;
     this.message = message;
 

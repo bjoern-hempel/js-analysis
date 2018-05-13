@@ -14,7 +14,7 @@ class MatrixTest {
      * @param testFunction
      * @param errorFunction
      */
-    constructor (messageCode, testFunction, errorFunction) {
+    constructor(messageCode, testFunction, errorFunction) {
         this.message = messageCode[1];
         this.code = messageCode[0];
         this.testFunction = testFunction;
@@ -31,7 +31,7 @@ class MatrixTest {
      * @param err
      * @returns {boolean}
      */
-    errFunc (err) {
+    errFunc(err) {
         /* This is a success test -> an exception should never be thrown. */
         if (this.code >= 200) {
             return false;
@@ -43,14 +43,10 @@ class MatrixTest {
     /**
      * The function to start the test.
      */
-    start () {
+    start() {
         MatrixTest.increaseTestCounter();
 
-        console.log(String('%counter) Running %status test "%message" (Code: %code).').
-            replace(/%counter/, MatrixTest.getTestCounter()).
-            replace(/%status/, this.code >= 200 ? 'success' : 'error').
-            replace(/%message/, this.message).
-            replace(/%code/, this.code)
+        console.log(String('%counter) Running %status test "%message" (Code: %code).').replace(/%counter/, MatrixTest.getTestCounter()).replace(/%status/, this.code >= 200 ? 'success' : 'error').replace(/%message/, this.message).replace(/%code/, this.code)
         );
 
         try {
