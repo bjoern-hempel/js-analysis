@@ -99,14 +99,18 @@
         /* start right cell (6) */
         var matrixTest6 = new MatrixTest(
             testContainer,
-            Matrix.SUCCESS_CELL,
+            Matrix.SUCCESS_INITIALIZE_MATRIX,
             function () {
-                var matrix = new Matrix([[1, 2], [2, 3]]);
+                var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 return (
                     matrix.getCell(0, 0) === 1 &&
                     matrix.getCell(0, 1) === 2 &&
-                    matrix.getCell(1, 0) === 2 &&
-                    matrix.getCell(1, 1) === 3
+                    matrix.getCell(0, 2) === 3 &&
+                    matrix.getCell(1, 0) === 4 &&
+                    matrix.getCell(1, 1) === 5 &&
+                    matrix.getCell(1, 2) === 6 &&
+                    matrix.numberCols === 3 &&
+                    matrix.numberRows === 2
                 );
             },
             function (err) {

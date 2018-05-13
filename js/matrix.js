@@ -22,7 +22,7 @@ class Matrix {
     static get ERROR_COLS_IS_NO_ARRAY() { return [3, 'cols are not an array']; }
     static get ERROR_COLS_COUNT_ARRAY_WRONG() { return [4, 'count cols is wrong']; }
     static get ERROR_WRONG_COL_NUMBER() { return [5, 'wrong col number test']; }
-    static get SUCCESS_CELL() { return [6, 'right cell']; }
+    static get SUCCESS_INITIALIZE_MATRIX() { return [6, 'initialize matrix']; }
 
     /**
      * The constructor of the meshHolder.
@@ -99,11 +99,22 @@ class Matrix {
     }
 
     /**
+     * get the cell of matrix.
+     *
+     * @param x
+     * @param y
+     * @returns {*}
+     */
+    getCell(x, y) {
+        return this.matrix[x][y];
+    }
+
+    /**
      * Returns the current matrix.
      *
      * @returns {Array|*}
      */
-    get value () {
+    get value() {
         return this.matrix;
     }
 
@@ -114,7 +125,18 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    getCell (x, y) {
-        return this.matrix[x][y];
+    get numberRows() {
+        return this.rows;
+    }
+
+    /**
+     * get the cell of matrix.
+     *
+     * @param x
+     * @param y
+     * @returns {*}
+     */
+    get numberCols() {
+        return this.cols;
     }
 }
