@@ -9,15 +9,12 @@ class MatrixTest {
     /**
      * The constructor of MatrixTest.
      *
-     * @param testContainer
      * @param message
      * @param code
      * @param testFunction
      * @param errorFunction
      */
-    constructor(testContainer, messageCode, testFunction, errorFunction) {
-
-        this.testContainer = testContainer;
+    constructor (messageCode, testFunction, errorFunction) {
         this.message = messageCode[1];
         this.code = messageCode[0];
         this.testFunction = testFunction;
@@ -47,12 +44,10 @@ class MatrixTest {
      * The function to start the test.
      */
     start () {
-        this.testContainer.counterTests++;
-
-
+        MatrixTest.increaseTestCounter();
 
         console.log(String('%counter) Running %status test "%message" (Code: %code).').
-            replace(/%counter/, this.testContainer.counterTests).
+            replace(/%counter/, MatrixTest.getTestCounter()).
             replace(/%status/, this.code >= 200 ? 'success' : 'error').
             replace(/%message/, this.message).
             replace(/%code/, this.code)
@@ -68,17 +63,62 @@ class MatrixTest {
         }
 
         this.testOK ? console.info('   Test succeeded.') : console.error('   Test failed.');
-        this.testContainer.allTestsOK = this.testOK ? this.testContainer.allTestsOK : false;
+
+        if (!this.testOK) {
+            MatrixTest.increaseErrorCounter();
+        }
+    }
+
+    /**
+     * Increases the test counter.
+     */
+    static increaseTestCounter() {
+        if (typeof this.testCounter === 'undefined') {
+            this.testCounter = 0;
+        }
+
+        this.testCounter++;
+    }
+
+    /**
+     * Returns the number of tests.
+     *
+     * @returns {number}
+     */
+    static getTestCounter() {
+        return typeof this.testCounter === 'undefined' ? 0 : this.testCounter;
+    }
+
+    /**
+     * Increases the error counter.
+     */
+    static increaseErrorCounter() {
+        if (typeof this.errorCounter === 'undefined') {
+            this.errorCounter = 0;
+        }
+
+        this.errorCounter++;
+    }
+
+    /**
+     * Returns the number of errors.
+     *
+     * @returns {number}
+     */
+    static getErrorCounter() {
+        return typeof this.errorCounter === 'undefined' ? 0 : this.errorCounter;
     }
 
     /**
      * A static method to prints out the result of all tests.
      *
-     * @param testContainer
      */
-    static resultTest(testContainer) {
+    static resultTest() {
         console.log('');
         console.log('RESULT');
-        testContainer.allTestsOK ? console.info('-> All test succeeded.') : console.error('-> At least on test failed.');
+
+        MatrixTest.getErrorCounter() <= 0 ?
+            console.info('-> All test succeeded.') :
+            console.error('-> At least on test failed.');
     }
 }

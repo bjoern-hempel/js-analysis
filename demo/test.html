@@ -10,16 +10,9 @@
 <body>
     <script>
 
-        /* define the global test container */
-        var testContainer = {
-            allTestsOK: true,
-            counterTests: 0
-        };
-
 
         /* start given rows are not an array */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_ROWS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix('test');
@@ -31,7 +24,6 @@
 
         /* start given rows are not higher than 0 */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([]);
@@ -43,7 +35,6 @@
 
         /* given cols are not an array */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_COLS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix(['string']);
@@ -55,7 +46,6 @@
 
         /* given cols are not an array */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([[], []]);
@@ -67,7 +57,6 @@
 
         /* start wrong col number test */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_WRONG_COL_NUMBER,
             function () {
                 var matrix = new Matrix([[1, 2], [2]]);
@@ -79,7 +68,6 @@
 
         /* start initial test */
         new MatrixTest(
-            testContainer,
             Matrix.SUCCESS_INITIALIZE_MATRIX,
             function () {
                 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -99,7 +87,6 @@
 
         /* start addition test (wrong matrix type) */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_WRONG_MATRIX_TYPE,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -115,7 +102,6 @@
 
         /* start addition test (wrong matrix dimension) */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -131,7 +117,6 @@
 
         /* start addition test (correct) */
         new MatrixTest(
-            testContainer,
             Matrix.SUCCESS_ADDITION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -156,7 +141,6 @@
 
         /* start scalar multiplication test (no scalar) */
         new MatrixTest(
-            testContainer,
             Matrix.ERROR_NO_SCALAR,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -181,7 +165,6 @@
 
         /* start scalar multiplication test */
         new MatrixTest(
-            testContainer,
             Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -206,7 +189,6 @@
 
         /* start transpose test */
         new MatrixTest(
-            testContainer,
             Matrix.SUCCESS_TRANSPOSE_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3],[4, 5, 6]]);
@@ -228,7 +210,7 @@
 
 
         /* prints out the test result */
-        MatrixTest.resultTest(testContainer);
+        MatrixTest.resultTest();
 
     </script>
 </body>
