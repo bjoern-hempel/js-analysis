@@ -18,7 +18,7 @@
 
 
         /* start given rows are not an array */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_ROWS_IS_NO_ARRAY,
             function () {
@@ -27,11 +27,10 @@
                 return false;
             }
         );
-        matrixTest.start();
 
 
         /* start given rows are not higher than 0 */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG,
             function () {
@@ -40,11 +39,10 @@
                 return false;
             }
         );
-        matrixTest.start();
 
 
         /* given cols are not an array */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_COLS_IS_NO_ARRAY,
             function () {
@@ -53,11 +51,10 @@
                 return false;
             }
         );
-        matrixTest.start();
 
 
         /* given cols are not an array */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
             function () {
@@ -66,11 +63,10 @@
                 return false;
             }
         );
-        matrixTest.start();
 
 
         /* start wrong col number test */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_WRONG_COL_NUMBER,
             function () {
@@ -79,11 +75,10 @@
                 return false;
             }
         );
-        matrixTest.start();
 
 
         /* start initial test */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.SUCCESS_INITIALIZE_MATRIX,
             function () {
@@ -100,11 +95,10 @@
                 );
             }
         );
-        matrixTest.start();
 
 
         /* start addition test (wrong matrix type) */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_WRONG_MATRIX_TYPE,
             function () {
@@ -117,11 +111,10 @@
                 return false;
             }
         );
-        matrixTest.start();
 
 
         /* start addition test (wrong matrix dimension) */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
@@ -134,11 +127,10 @@
                 return false;
             }
         );
-        matrixTest.start();
 
 
         /* start addition test (correct) */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.SUCCESS_ADDITION_TEST,
             function () {
@@ -160,11 +152,10 @@
                 );
             }
         );
-        matrixTest.start();
 
 
         /* start scalar multiplication test (no scalar) */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.ERROR_NO_SCALAR,
             function () {
@@ -186,11 +177,10 @@
                 );
             }
         );
-        matrixTest.start();
 
 
         /* start scalar multiplication test */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST,
             function () {
@@ -212,11 +202,10 @@
                 );
             }
         );
-        matrixTest.start();
 
 
         /* start transpose test */
-        var matrixTest = new MatrixTest(
+        new MatrixTest(
             testContainer,
             Matrix.SUCCESS_TRANSPOSE_TEST,
             function () {
@@ -236,7 +225,6 @@
                 );
             }
         );
-        matrixTest.start();
 
 
         /* prints out the test result */

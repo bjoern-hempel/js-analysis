@@ -23,6 +23,9 @@ class MatrixTest {
         this.testFunction = testFunction;
         this.errorFunction = typeof errorFunction === 'function' ? errorFunction : this.errFunc;
         this.testOK = false;
+
+        /* start the test */
+        this.start();
     }
 
     /**
