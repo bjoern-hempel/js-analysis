@@ -85,44 +85,44 @@
         );
 
 
-        /* start addition test (wrong matrix type) */
+        /* start add test (wrong matrix type) */
         new MatrixTest(
             Matrix.ERROR_WRONG_MATRIX_TYPE,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var matrix2 = 1; /* this is not a matrix */
 
-                var matrix3 = matrix1.addition(matrix2);
+                var matrix3 = matrix1.add(matrix2);
 
-                /* the method addition should throw an exception */
+                /* the method add should throw an exception */
                 return false;
             }
         );
 
 
-        /* start addition test (wrong matrix dimension) */
+        /* start add test (wrong matrix dimension) */
         new MatrixTest(
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var matrix2 = new Matrix([[2, 4], [8, 10]]); /* this matrix has the wrong dimensions */
 
-                var matrix3 = matrix1.addition(matrix2);
+                var matrix3 = matrix1.add(matrix2);
 
-                /* the method addition should throw an exception */
+                /* the method add should throw an exception */
                 return false;
             }
         );
 
 
-        /* start addition test (correct) */
+        /* start add test (correct) */
         new MatrixTest(
             Matrix.SUCCESS_ADDITION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
 
-                var matrix3 = matrix1.addition(matrix2);
+                var matrix3 = matrix1.add(matrix2);
 
                 return (
                     matrix3 instanceof Matrix &&
@@ -204,6 +204,39 @@
                     matrix2.getCell(2, 1) === 6 &&
                     matrix2.numberCols === matrix1.numberRows &&
                     matrix2.numberRows === matrix1.numberCols
+                );
+            }
+        );
+
+
+        /* start matrix multiplication test (wrong matrix dimension) */
+        new MatrixTest(
+            Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3],[4, 5, 6]]);
+                var matrix2 = new Matrix([[1],[2]]);
+                var matrix3 = matrix1.multiply(matrix2);
+
+                /* the method add should throw an exception */
+                return false;
+            }
+        );
+
+
+        /* start matrix multiplication test */
+        new MatrixTest(
+            Matrix.SUCCESS_MULTIPLICATION_TEST,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3],[4, 5, 6]]);
+                var matrix2 = new Matrix([[1],[2],[3]]);
+                var matrix3 = matrix1.multiply(matrix2);
+
+                return (
+                    matrix3 instanceof Matrix &&
+                    matrix3.getCell(0, 0) === 14 &&
+                    matrix3.getCell(1, 0) === 32 &&
+                    matrix3.numberCols === 1 &&
+                    matrix3.numberRows === 2
                 );
             }
         );

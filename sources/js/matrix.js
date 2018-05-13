@@ -16,14 +16,15 @@ class Matrix {
     static get ERROR_NO_SCALAR()                    { return [108, 'given parameter is not a scalar']; }
 
     static get SUCCESS_INITIALIZE_MATRIX()          { return [201, 'initialize matrix']; }
-    static get SUCCESS_ADDITION_TEST()              { return [202, 'successful addition test']; }
+    static get SUCCESS_ADDITION_TEST()              { return [202, 'successful add test']; }
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() { return [203, 'successful scalar multiplication test']; }
     static get SUCCESS_TRANSPOSE_TEST()             { return [204, 'successful transpose test']; }
+    static get SUCCESS_MULTIPLICATION_TEST()        { return [205, 'successful multiplication test']; }
 
     /**
      * The constructor of the meshHolder.
      */
-    constructor(matrix) {
+    constructor (matrix) {
 
         this.name = 'Matrix';
 
@@ -101,7 +102,7 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    getCell(row, col) {
+    getCell (row, col) {
         return this.matrix[row][col];
     }
 
@@ -110,7 +111,7 @@ class Matrix {
      *
      * @returns {Array|*}
      */
-    get value() {
+    get value () {
         return this.matrix;
     }
 
@@ -121,7 +122,7 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    get numberRows() {
+    get numberRows () {
         return this.rows;
     }
 
@@ -132,28 +133,28 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    get numberCols() {
+    get numberCols () {
         return this.cols;
     }
 
     /**
-     * Returns the matrix addition from this matrix with the given matrix.
+     * Returns the matrix add from this matrix with the given matrix.
      *
      * @param matrix
      * @returns {Matrix}
      */
-    addition(matrix) {
+    add (matrix) {
         if (!(matrix instanceof Matrix)) {
             throw new MatrixException(
                 Matrix.ERROR_WRONG_MATRIX_TYPE[0],
-                'matrix.addition: The given parameter matrix must be an instance of Matrix.'
+                'matrix.add: The given parameter matrix must be an instance of Matrix.'
             );
         }
 
         if (this.cols !== matrix.numberCols || this.rows !== matrix.numberRows) {
             throw new MatrixException(
                 Matrix.ERROR_WRONG_MATRIX_DIMENSIONS[0],
-                'matrix.addition: The given matrix does not fit to this matrix.'
+                'matrix.add: The given matrix does not fit to this matrix.'
             );
         }
 
@@ -178,7 +179,7 @@ class Matrix {
      * @param scalar
      * @returns {Matrix}
      */
-    scalarMultiplication(scalar) {
+    scalarMultiplication (scalar) {
         if (isNaN(scalar)) {
             throw new MatrixException(
                 Matrix.ERROR_NO_SCALAR[0],
@@ -206,22 +207,66 @@ class Matrix {
      *
      * @returns {Matrix}
      */
-    transpose() {
+    transpose () {
         return new Matrix(this.helperTranspose(this.matrix));
+    }
+
+    /**
+     * Calculate the matrix multiplication from this matrix and the given matrix.
+     *
+     * @param matrix
+     * @returns {Matrix}
+     */
+    multiply (matrix) {
+        if (!(matrix instanceof Matrix)) {
+            throw new MatrixException(
+                Matrix.ERROR_WRONG_MATRIX_TYPE[0],
+                'matrix.add: The given parameter matrix must be an instance of Matrix.'
+            );
+        }
+
+        if (this.cols !== matrix.numberRows) {
+            throw new MatrixException(
+                Matrix.ERROR_WRONG_MATRIX_DIMENSIONS[0],
+                'matrix.multiplication: The given matrix does not fit to this matrix.'
+            );
+        }
+
+        var array = this.matrix.map(function(vector1) {
+            return this.helperTranspose(matrix.value).map(function(vector2) {
+                return this.helperDotProduct(vector1, vector2);
+            }, this);
+        }, this);
+
+        return new Matrix(array);
     }
 
     /**
      * Helper function to calculate the transposed matrix from this matrix.
      *
-     * @returns {Matrix}
+     * @param matrix
+     * @returns {Array}
      */
-    helperTranspose(matrix) {
+    helperTranspose (matrix) {
         var transposedMatrix = matrix[0].map(function(col, colIndex) {
-            return this.matrix.map(function(row) {
+            return matrix.map(function(row) {
                 return row[colIndex];
             });
-        }, this);
+        });
 
         return transposedMatrix;
+    }
+
+    /**
+     * Helper function to calculate the dot product from given two vectors.
+     *
+     * @param vector1
+     * @param vector2
+     * @returns {Number}
+     */
+    helperDotProduct (vector1, vector2) {
+        return vector1.map(function(cell, cellIndex) {
+            return vector1[cellIndex] * vector2[cellIndex];
+        }).reduce(function(number1, number2) { return number1 + number2; });
     }
 }
