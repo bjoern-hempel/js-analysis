@@ -207,12 +207,21 @@ class Matrix {
      * @returns {Matrix}
      */
     transpose() {
-        var transposedMatrix = this.matrix[0].map(function(col, colIndex) {
+        return new Matrix(this.helperTranspose(this.matrix));
+    }
+
+    /**
+     * Helper function to calculate the transposed matrix from this matrix.
+     *
+     * @returns {Matrix}
+     */
+    helperTranspose(matrix) {
+        var transposedMatrix = matrix[0].map(function(col, colIndex) {
             return this.matrix.map(function(row) {
                 return row[colIndex];
             });
         }, this);
 
-        return new Matrix(transposedMatrix);
+        return transposedMatrix;
     }
 }
