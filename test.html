@@ -17,88 +17,73 @@
         };
 
 
-        /* start given rows are not an array (1) */
-        var matrixTest1 = new MatrixTest(
+        /* start given rows are not an array */
+        var matrixTest = new MatrixTest(
             testContainer,
             Matrix.ERROR_ROWS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix('test');
                 console.log(matrix.value);
                 return false;
-            },
-            function (err) {
-                return (err instanceof MatrixException) && (err.code === this.code);
             }
         );
-        matrixTest1.start();
+        matrixTest.start();
 
 
-        /* start given rows are not higher than 0 (2) */
-        var matrixTest2 = new MatrixTest(
+        /* start given rows are not higher than 0 */
+        var matrixTest = new MatrixTest(
             testContainer,
             Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([]);
                 console.log(matrix.value);
                 return false;
-            },
-            function (err) {
-                return (err instanceof MatrixException) && (err.code === this.code);
             }
         );
-        matrixTest2.start();
+        matrixTest.start();
 
 
-        /* given cols are not an array (3) */
-        var matrixTest3 = new MatrixTest(
+        /* given cols are not an array */
+        var matrixTest = new MatrixTest(
             testContainer,
             Matrix.ERROR_COLS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix(['string']);
                 console.log(matrix.value);
                 return false;
-            },
-            function (err) {
-                return (err instanceof MatrixException) && (err.code === this.code);
             }
         );
-        matrixTest3.start();
+        matrixTest.start();
 
 
-        /* given cols are not an array (4) */
-        var matrixTest4 = new MatrixTest(
+        /* given cols are not an array */
+        var matrixTest = new MatrixTest(
             testContainer,
             Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([[], []]);
                 console.log(matrix.value);
                 return false;
-            },
-            function (err) {
-                return (err instanceof MatrixException) && (err.code === this.code);
             }
         );
-        matrixTest4.start();
+        matrixTest.start();
 
 
-        /* start wrong col number test (5) */
-        var matrixTest5 = new MatrixTest(
+        /* start wrong col number test */
+        var matrixTest = new MatrixTest(
             testContainer,
             Matrix.ERROR_WRONG_COL_NUMBER,
             function () {
                 var matrix = new Matrix([[1, 2], [2]]);
                 console.log(matrix.value);
                 return false;
-            },
-            function (err) {
-                return (err instanceof MatrixException) && (err.code === this.code);
             }
         );
-        matrixTest5.start();
+        matrixTest.start();
 
 
-        /* start right cell (6) */
-        var matrixTest6 = new MatrixTest(
+        /* start initial test */
+        var matrixTest = new MatrixTest(
             testContainer,
             Matrix.SUCCESS_INITIALIZE_MATRIX,
             function () {
@@ -113,12 +98,69 @@
                     matrix.numberCols === 3 &&
                     matrix.numberRows === 2
                 );
-            },
-            function (err) {
-                return (err instanceof MatrixException) && (err.code === this.code);
             }
         );
-        matrixTest6.start();
+        matrixTest.start();
+
+
+        /* start addition test (wrong matrix type) */
+        var matrixTest = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_WRONG_MATRIX_TYPE,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = 1; /* this is not a matrix */
+
+                var matrix3 = matrix1.addition(matrix2);
+
+                /* the method addition should throw an exception */
+                return false;
+            }
+        );
+        matrixTest.start();
+
+
+        /* start addition test (wrong matrix dimension) */
+        var matrixTest = new MatrixTest(
+            testContainer,
+            Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = new Matrix([[2, 4], [8, 10]]); /* this matrix has the wrong dimensions */
+
+                var matrix3 = matrix1.addition(matrix2);
+
+                /* the method addition should throw an exception */
+                return false;
+            }
+        );
+        matrixTest.start();
+
+
+        /* start initial test */
+        var matrixTest = new MatrixTest(
+            testContainer,
+            Matrix.SUCCESS_ADDITION_TEST,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
+
+                var matrix3 = matrix1.addition(matrix2);
+
+                return (
+                    matrix3 instanceof Matrix &&
+                    matrix3.getCell(0, 0) === 3 &&
+                    matrix3.getCell(0, 1) === 6 &&
+                    matrix3.getCell(0, 2) === 9 &&
+                    matrix3.getCell(1, 0) === 12 &&
+                    matrix3.getCell(1, 1) === 15 &&
+                    matrix3.getCell(1, 2) === 18 &&
+                    matrix3.numberCols === matrix1.numberCols &&
+                    matrix3.numberRows === matrix1.numberRows
+                );
+            }
+        );
+        matrixTest.start();
 
 
         /* prints out the test result */

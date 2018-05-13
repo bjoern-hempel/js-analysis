@@ -11,7 +11,12 @@ class Matrix {
     static get ERROR_COLS_IS_NO_ARRAY() { return [3, 'cols are not an array']; }
     static get ERROR_COLS_COUNT_ARRAY_WRONG() { return [4, 'count cols is wrong']; }
     static get ERROR_WRONG_COL_NUMBER() { return [5, 'wrong col number test']; }
-    static get SUCCESS_INITIALIZE_MATRIX() { return [6, 'initialize matrix']; }
+    static get ERROR_WRONG_MATRIX_TYPE() { return [6, 'wrong given matrix type']; }
+    static get ERROR_WRONG_MATRIX_DIMENSIONS() { return [7, 'two given matrices with different dimensions']; }
+
+
+    static get SUCCESS_INITIALIZE_MATRIX() { return [101, 'initialize matrix']; }
+    static get SUCCESS_ADDITION_TEST() { return [102, 'successful addition test']; }
 
     /**
      * The constructor of the meshHolder.
@@ -94,8 +99,8 @@ class Matrix {
      * @param y
      * @returns {*}
      */
-    getCell(x, y) {
-        return this.matrix[x][y];
+    getCell(row, col) {
+        return this.matrix[row][col];
     }
 
     /**
@@ -127,5 +132,37 @@ class Matrix {
      */
     get numberCols() {
         return this.cols;
+    }
+
+
+
+    addition(matrix) {
+        if (!(matrix instanceof Matrix)) {
+            throw new MatrixException(
+                Matrix.ERROR_WRONG_MATRIX_TYPE[0],
+                'matrix.addition: The given parameter matrix must be an instance of Matrix.'
+            );
+        }
+
+        if (this.cols !== matrix.numberCols || this.rows !== matrix.numberRows) {
+            throw new MatrixException(
+                Matrix.ERROR_WRONG_MATRIX_DIMENSIONS[0],
+                'matrix.addition: The given matrix does not fit to this matrix.'
+            );
+        }
+
+        var value = [];
+
+        this.matrix.map(function (row, rowIndex) {
+            var currentRow = [];
+
+            row.map(function (col, colIndex) {
+                currentRow.push(col + matrix.getCell(rowIndex, colIndex));
+            });
+
+            value.push(currentRow);
+        });
+
+        return new Matrix(value);
     }
 }
