@@ -1,14 +1,3 @@
-function MatrixException (code, message) {
-    this.code = code;
-    this.message = message;
-
-    this.name = 'MatrixException';
-}
-
-MatrixException.prototype.toString = function () {
-    return this.name + ': "' + this.message + '"';
-}
-
 /**
  * A class to create and calculates matrices
  *
