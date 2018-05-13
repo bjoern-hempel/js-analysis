@@ -18,6 +18,7 @@ class Matrix {
     static get SUCCESS_INITIALIZE_MATRIX()          { return [201, 'initialize matrix']; }
     static get SUCCESS_ADDITION_TEST()              { return [202, 'successful addition test']; }
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() { return [203, 'successful scalar multiplication test']; }
+    static get SUCCESS_TRANSPOSE_TEST()             { return [204, 'successful transpose test']; }
 
     /**
      * The constructor of the meshHolder.
@@ -198,5 +199,20 @@ class Matrix {
         });
 
         return new Matrix(value);
+    }
+
+    /**
+     * Calculate the transposed matrix from this matrix.
+     *
+     * @returns {Matrix}
+     */
+    transpose() {
+        var transposedMatrix = this.matrix[0].map(function(col, colIndex) {
+            return this.matrix.map(function(row) {
+                return row[colIndex];
+            });
+        }, this);
+
+        return new Matrix(transposedMatrix);
     }
 }
