@@ -4,7 +4,7 @@ This javascript library provides some functions to do some analysis stuff.
 
 ## 1. Matrices
 
-Here are some calculation examples with matrices:
+Here are some calculation examples with matrices with the help of the library `sources/js/matrix.js`:
 
 ### 1.1 Create a matrix
 
