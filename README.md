@@ -62,7 +62,11 @@ Coming soon..
 
 ## 3. Test the libraries
 
-### 3.1 Matrix library
+### 3.1 Vector library
+
+Coming soon..
+
+### 3.2 Matrix library
 
 Call `tests/matrix.html` in your browser. It returns for example something like this:
 
