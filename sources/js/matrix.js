@@ -186,19 +186,13 @@ class Matrix {
             );
         }
 
-        var value = [];
-
-        this.matrix.map(function (row, rowIndex) {
-            var currentRow = [];
-
-            row.map(function (col, colIndex) {
-                currentRow.push(col + matrix.getCell(rowIndex, colIndex));
+        var array = this.matrix.map(function (row, rowIndex) {
+            return row.map(function (col, colIndex) {
+                return col + matrix.getCell(rowIndex, colIndex);
             });
-
-            value.push(currentRow);
         });
 
-        return new Matrix(value);
+        return new Matrix(array);
     }
 
     /**
