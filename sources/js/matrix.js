@@ -146,7 +146,7 @@ class Matrix {
     }
 
     /**
-     * get the cell of matrix.
+     * returns the number of rows of this matrix.
      *
      * @param x
      * @param y
@@ -157,7 +157,7 @@ class Matrix {
     }
 
     /**
-     * get the cell of matrix.
+     * returns the number of cols of this matrix.
      *
      * @param x
      * @param y
