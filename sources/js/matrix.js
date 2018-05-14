@@ -84,8 +84,6 @@ class Matrix {
         this.cols = 0;
         this.matrix = matrix;
 
-        var self = this;
-
         /* check the rows and cols of matrix */
         matrix.map(function (row, rowNumber) {
             if (!(row instanceof Array)) {
@@ -102,13 +100,13 @@ class Matrix {
                 );
             }
 
-            if (self.cols === 0) {
-                self.cols = row.length;
+            if (this.cols === 0) {
+                this.cols = row.length;
             } else {
-                if (self.cols !== row.length) {
+                if (this.cols !== row.length) {
                     throw new MatrixException(
                         Matrix.ERROR_WRONG_COL_NUMBER[0],
-                        String('The number of cols in row %row from given parameter matrix must equal to %col.').replace(/%row/, rowNumber + 1).replace(/%col/, self.cols)
+                        String('The number of cols in row %row from given parameter matrix must equal to %col.').replace(/%row/, rowNumber + 1).replace(/%col/, this.cols)
                     );
                 }
             }
@@ -120,9 +118,9 @@ class Matrix {
                     );
                 }
 
-                self.matrix[rowNumber][colNumber] = Number(col);
-            });
-        });
+                this.matrix[rowNumber][colNumber] = Number(col);
+            }, this);
+        }, this);
     }
 
     /**
