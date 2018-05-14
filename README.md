@@ -4,7 +4,7 @@ This javascript library provides some functions to do some analysis stuff.
 
 ## 1. Vectors
 
-Coming soon..
+Coming soon.. (The first version only supports matrices)
 
 ## 2. Matrices
 
