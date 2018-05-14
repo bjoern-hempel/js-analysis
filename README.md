@@ -13,7 +13,7 @@ var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
 ```
 
-### 1.2 Adds to matrices
+### 1.2 Add two matrices
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -22,21 +22,17 @@ var matrix3 = matrix1.add(matrix2);
 console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 ```
 
-### 1.3 Scalar multiplication
+### 1.3. Subtract two matrices
+
+Coming soon..
+
+### 1.4 Scalar multiplication
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var scalar = 2.5;
 var matrix2 = matrix1.scalarMultiplication(scalar);
 console.log(JSON.stringify(matrix2.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
-```
-
-### 1.4 Transpose a matrix
-
-```javascript
-var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-var matrix2 = matrix1.transpose();
-console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
 ### 1.5 Multiply two matrices
@@ -48,7 +44,15 @@ var matrix3 = matrix1.multiply(matrix2);
 console.log(JSON.stringify(matrix3.array)); // prints [[14],[32]]
 ```
 
-### 1.6 Inverse a matrix
+### 1.6 Transpose a matrix
+
+```javascript
+var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+var matrix2 = matrix1.transpose();
+console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
+```
+
+### 1.7 Inverse a matrix
 
 Coming soon..
 
