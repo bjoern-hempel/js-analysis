@@ -48,6 +48,46 @@ var matrix3 = matrix1.multiply(matrix2);
 console.log(JSON.stringify(matrix3.array)); // prints [[14],[32]]
 ```
 
+## 2. Test the libraries
+
+### 2.1 Matrix library
+
+Call `tests/matrix.html` in your browser. It returns for example something like this:
+
+```text
+1) Running error test "rows are not an array" (Code: 101).
+   Test succeeded.
+2) Running error test "count rows is wrong" (Code: 102).
+   Test succeeded.
+3) Running error test "cols are not an array" (Code: 103).
+   Test succeeded.
+4) Running error test "count cols is wrong" (Code: 104).
+   Test succeeded.
+5) Running error test "wrong col number test" (Code: 105).
+   Test succeeded.
+6) Running success test "initialize matrix" (Code: 201).
+   Test succeeded.
+7) Running error test "wrong given matrix type" (Code: 106).
+   Test succeeded.
+8) Running error test "two given matrices with different dimensions" (Code: 107).
+   Test succeeded.
+9) Running success test "successful add test" (Code: 202).
+   Test succeeded.
+10) Running error test "given parameter is not a scalar" (Code: 108).
+   Test succeeded.
+11) Running success test "successful scalar multiplication test" (Code: 203).
+   Test succeeded.
+12) Running success test "successful transpose test" (Code: 204).
+   Test succeeded.
+13) Running error test "two given matrices with different dimensions" (Code: 107).
+   Test succeeded.
+14) Running success test "successful multiplication test" (Code: 205).
+   Test succeeded.
+
+RESULT
+-> All test succeeded.
+```
+
 ## A. Authors
 
 * Björn Hempel <bjoern@hempel.li> - _Initial work_ - [https://github.com/bjoern-hempel](https://github.com/bjoern-hempel)
