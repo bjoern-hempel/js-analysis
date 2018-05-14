@@ -215,19 +215,13 @@ class Matrix {
             );
         }
 
-        var value = [];
-
-        this.matrix.map(function (row) {
-            var currentRow = [];
-
-            row.map(function (col) {
-                currentRow.push(scalar * col);
+        var array = this.matrix.map(function (row) {
+            return row.map(function (col) {
+                return scalar * col;
             });
-
-            value.push(currentRow);
         });
 
-        return new Matrix(value);
+        return new Matrix(array);
     }
 
     /**
