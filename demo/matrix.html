@@ -19,6 +19,12 @@
         var matrix3 = matrix1.add(matrix2);
         console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 
+        /* add tow matrices */
+        var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+        var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
+        var matrix3 = matrix1.subtract(matrix2);
+        console.log(JSON.stringify(matrix3.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
+
         /* multiply a matrix with a scalar */
         var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
         var scalar = 2.5;

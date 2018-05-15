@@ -46,16 +46,20 @@ class Matrix {
         return [202, 'successful add test'];
     }
 
+    static get SUCCESS_SUBTRACTION_TEST() {
+        return [203, 'successful subtract test'];
+    }
+
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [203, 'successful scalar multiplication test'];
+        return [204, 'successful scalar multiplication test'];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [204, 'successful transpose test'];
+        return [205, 'successful transpose test'];
     }
 
     static get SUCCESS_MULTIPLICATION_TEST() {
-        return [205, 'successful multiplication test'];
+        return [206, 'successful multiplication test'];
     }
 
     /**
@@ -166,7 +170,7 @@ class Matrix {
     }
 
     /**
-     * Returns the matrix add from this matrix with the given matrix.
+     * Returns the result of adding the given matrix with this matrix.
      *
      * @param matrix
      * @returns {Matrix}
@@ -186,13 +190,31 @@ class Matrix {
             );
         }
 
-        var array = this.matrix.map(function (row, rowIndex) {
-            return row.map(function (col, colIndex) {
-                return col + matrix.getCell(rowIndex, colIndex);
-            });
-        });
+        return new Matrix(this.helperAdd(this.array, matrix.array));
+    }
 
-        return new Matrix(array);
+    /**
+     * Returns the result subtracting the given matrix from this matrix.
+     *
+     * @param matrix
+     * @returns {Matrix}
+     */
+    subtract(matrix) {
+        if (!(matrix instanceof Matrix)) {
+            throw new MatrixException(
+                Matrix.ERROR_WRONG_MATRIX_TYPE[0],
+                'matrix.add: The given parameter matrix must be an instance of Matrix.'
+            );
+        }
+
+        if (this.cols !== matrix.numberCols || this.rows !== matrix.numberRows) {
+            throw new MatrixException(
+                Matrix.ERROR_WRONG_MATRIX_DIMENSIONS[0],
+                'matrix.add: The given matrix does not fit to this matrix.'
+            );
+        }
+
+        return new Matrix(this.helperSubtract(this.matrix, matrix.array));
     }
 
     /**
@@ -255,6 +277,40 @@ class Matrix {
         }, this);
 
         return new Matrix(array);
+    }
+
+    /**
+     * Helper function to add to matrices.
+     *
+     * @param matrix1
+     * @param matrix2
+     * @returns {Array}
+     */
+    helperAdd(matrix1, matrix2) {
+        var addedMatrix = matrix1.map(function (row, rowIndex) {
+            return row.map(function (col, colIndex) {
+                return col + matrix2[rowIndex][colIndex];
+            });
+        });
+
+        return addedMatrix;
+    }
+
+    /**
+     * Helper function to add to matrices.
+     *
+     * @param matrix1
+     * @param matrix2
+     * @returns {Array}
+     */
+    helperSubtract(matrix1, matrix2) {
+        var addedMatrix = matrix1.map(function (row, rowIndex) {
+            return row.map(function (col, colIndex) {
+                return col - matrix2[rowIndex][colIndex];
+            });
+        });
+
+        return addedMatrix;
     }
 
     /**
