@@ -27,11 +27,11 @@ class Matrix {
     }
 
     static get ERROR_WRONG_MATRIX_TYPE() {
-        return [106, 'wrong given matrix type'];
+        return [106, 'wrong given matrix type', 'The given parameter matrix must be an instance of Matrix.'];
     }
 
     static get ERROR_WRONG_MATRIX_DIMENSIONS() {
-        return [107, 'two given matrices with different dimensions'];
+        return [107, 'two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'];
     }
 
     static get ERROR_NO_SCALAR() {
@@ -170,25 +170,31 @@ class Matrix {
     }
 
     /**
+     * Check the assertion and throw an exception if the assertion is not satisfied.
+     *
+     * @param assertion
+     * @param functionName
+     * @param errorCode
+     * @param errorText
+     */
+    assertionCheck(assertion, functionName, errorType) {
+        if (!assertion) {
+            throw new MatrixException(
+                errorType[0],
+                String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorType[2])
+            );
+        }
+    }
+
+    /**
      * Returns the result of adding the given matrix with this matrix.
      *
      * @param matrix
      * @returns {Matrix}
      */
     add(matrix) {
-        if (!(matrix instanceof Matrix)) {
-            throw new MatrixException(
-                Matrix.ERROR_WRONG_MATRIX_TYPE[0],
-                'matrix.add: The given parameter matrix must be an instance of Matrix.'
-            );
-        }
-
-        if (this.cols !== matrix.numberCols || this.rows !== matrix.numberRows) {
-            throw new MatrixException(
-                Matrix.ERROR_WRONG_MATRIX_DIMENSIONS[0],
-                'matrix.add: The given matrix does not fit to this matrix.'
-            );
-        }
+        this.assertionCheck(matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assertionCheck(this.cols === matrix.numberCols && this.rows === matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
         return new Matrix(this.helperAdd(this.array, matrix.array));
     }
@@ -246,7 +252,7 @@ class Matrix {
      * @returns {Matrix}
      */
     transpose() {
-        return new Matrix(this.helperTranspose(this.matrix));
+        return new Matrix(this.helperTranspose(this.array));
     }
 
     /**
