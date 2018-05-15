@@ -7,11 +7,11 @@
 class Matrix {
 
     static get ERROR_ROWS_IS_NO_ARRAY() {
-        return [101, 'rows are not an array'];
+        return [101, 'rows are not an array', 'The given parameter matrix must be an instance of Array.'];
     }
 
     static get ERROR_ROWS_COUNT_ARRAY_WRONG() {
-        return [102, 'count rows is wrong'];
+        return [102, 'count rows is wrong', 'The number of rows from given parameter matrix must greater than 0.'];
     }
 
     static get ERROR_COLS_IS_NO_ARRAY() {
@@ -35,7 +35,7 @@ class Matrix {
     }
 
     static get ERROR_NO_SCALAR() {
-        return [108, 'given parameter is not a scalar'];
+        return [108, 'given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
     }
 
     static get SUCCESS_INITIALIZE_MATRIX() {
@@ -69,20 +69,9 @@ class Matrix {
 
         this.name = 'Matrix';
 
-        /* check parameter matrix */
-        if (!(matrix instanceof Array)) {
-            throw new MatrixException(
-                Matrix.ERROR_ROWS_IS_NO_ARRAY[0],
-                'The given parameter matrix must be an instance of Array.'
-            );
-        }
-
-        if (matrix.length <= 0) {
-            throw new MatrixException(
-                Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG[0],
-                'The number of rows from given parameter matrix must greater than 0.'
-            );
-        }
+        /* check assertions of given matrix */
+        this.assertionCheck(matrix instanceof Array, 'matrix.constructor', Matrix.ERROR_ROWS_IS_NO_ARRAY);
+        this.assertionCheck(matrix.length > 0, 'matrix.constructor', Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG);
 
         this.rows = matrix.length;
         this.cols = 0;
@@ -206,19 +195,8 @@ class Matrix {
      * @returns {Matrix}
      */
     subtract(matrix) {
-        if (!(matrix instanceof Matrix)) {
-            throw new MatrixException(
-                Matrix.ERROR_WRONG_MATRIX_TYPE[0],
-                'matrix.add: The given parameter matrix must be an instance of Matrix.'
-            );
-        }
-
-        if (this.cols !== matrix.numberCols || this.rows !== matrix.numberRows) {
-            throw new MatrixException(
-                Matrix.ERROR_WRONG_MATRIX_DIMENSIONS[0],
-                'matrix.add: The given matrix does not fit to this matrix.'
-            );
-        }
+        this.assertionCheck(matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assertionCheck(this.cols === matrix.numberCols && this.rows === matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
         return new Matrix(this.helperSubtract(this.matrix, matrix.array));
     }
@@ -230,20 +208,9 @@ class Matrix {
      * @returns {Matrix}
      */
     scalarMultiplication(scalar) {
-        if (isNaN(scalar)) {
-            throw new MatrixException(
-                Matrix.ERROR_NO_SCALAR[0],
-                'matrix.scalarMultiplication: The given parameter scalar must be a number (real, float, integer, ..).'
-            );
-        }
+        this.assertionCheck(!isNaN(scalar), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
 
-        var array = this.matrix.map(function (row) {
-            return row.map(function (col) {
-                return scalar * col;
-            });
-        });
-
-        return new Matrix(array);
+        return new Matrix(this.helperScalarMultiplication(scalar, this.array));
     }
 
     /**
@@ -262,27 +229,10 @@ class Matrix {
      * @returns {Matrix}
      */
     multiply(matrix) {
-        if (!(matrix instanceof Matrix)) {
-            throw new MatrixException(
-                Matrix.ERROR_WRONG_MATRIX_TYPE[0],
-                'matrix.add: The given parameter matrix must be an instance of Matrix.'
-            );
-        }
+        this.assertionCheck(matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assertionCheck(this.cols === matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
-        if (this.cols !== matrix.numberRows) {
-            throw new MatrixException(
-                Matrix.ERROR_WRONG_MATRIX_DIMENSIONS[0],
-                'matrix.multiplication: The given matrix does not fit to this matrix.'
-            );
-        }
-
-        var array = this.matrix.map(function (vector1) {
-            return this.helperTranspose(matrix.array).map(function (vector2) {
-                return this.helperDotProduct(vector1, vector2);
-            }, this);
-        }, this);
-
-        return new Matrix(array);
+        return new Matrix(this.helperMultiply(this.array, matrix.array));
     }
 
     /**
@@ -317,6 +267,33 @@ class Matrix {
         });
 
         return addedMatrix;
+    }
+
+    /**
+     * Helper function to multiply the given two matrices.
+     *
+     * @param matrix1
+     * @param matrix2
+     * @returns {Array}
+     */
+    helperMultiply(matrix1, matrix2) {
+        var matrix = matrix1.map(function (vector1) {
+            return this.helperTranspose(matrix2 ).map(function (vector2) {
+                return this.helperDotProduct(vector1, vector2);
+            }, this);
+        }, this);
+
+        return matrix;
+    }
+
+    helperScalarMultiplication(scalar, matrix) {
+        var matrix = matrix.map(function (row) {
+            return row.map(function (col) {
+                return scalar * col;
+            });
+        });
+
+        return matrix;
     }
 
     /**
