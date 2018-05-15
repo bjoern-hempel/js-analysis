@@ -28,7 +28,12 @@ console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 
 ### 2.3. Subtract two matrices
 
-Coming soon..
+```javascript
+var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
+var matrix3 = matrix1.substract(matrix2);
+console.log(JSON.stringify(matrix3.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
+```
 
 ### 2.4 Scalar multiplication
 
