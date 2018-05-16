@@ -15,15 +15,15 @@ class Matrix {
     }
 
     static get ERROR_COLS_IS_NO_ARRAY() {
-        return [103, 'cols are not an array'];
+        return [103, 'cols are not an array', 'Row %row of given parameter elements must be an instance of Array.'];
     }
 
     static get ERROR_COLS_COUNT_ARRAY_WRONG() {
-        return [104, 'count cols is wrong'];
+        return [104, 'count cols is wrong', 'The number of cols in row %row from given parameter matrix must greater than 0.'];
     }
 
     static get ERROR_WRONG_COL_NUMBER() {
-        return [105, 'wrong col number test'];
+        return [105, 'wrong col number test', 'The number of cols in row %row from given parameter matrix must equal to %col.'];
     }
 
     static get ERROR_WRONG_MATRIX_TYPE() {
@@ -36,6 +36,10 @@ class Matrix {
 
     static get ERROR_NO_SCALAR() {
         return [108, 'given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
+    }
+
+    static get ERROR_CELL_IS_NO_NUMBER() {
+        return [109, 'cell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
     }
 
     static get SUCCESS_INITIALIZE_MATRIX() {
@@ -79,37 +83,37 @@ class Matrix {
 
         /* check the rows and cols of matrix */
         matrix.map(function (row, rowNumber) {
-            if (!(row instanceof Array)) {
-                throw new MatrixException(
-                    Matrix.ERROR_COLS_IS_NO_ARRAY[0],
-                    String('Row %row of given parameter elements must be an instance of Array.').replace(/%row/, rowNumber + 1)
-                );
-            }
-
-            if (row.length <= 0) {
-                throw new MatrixException(
-                    Matrix.ERROR_COLS_COUNT_ARRAY_WRONG[0],
-                    String('The number of cols in row %row from given parameter matrix must greater than 0.').replace(/%row/, rowNumber)
-                );
-            }
+            this.assertionCheck(
+                row instanceof Array,
+                'matrix.constructor',
+                Matrix.ERROR_COLS_IS_NO_ARRAY,
+                {'row': rowNumber + 1}
+            );
+            this.assertionCheck(
+                row.length > 0,
+                'matrix.constructor',
+                Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
+                {'row': rowNumber}
+            );
 
             if (this.cols === 0) {
                 this.cols = row.length;
             } else {
-                if (this.cols !== row.length) {
-                    throw new MatrixException(
-                        Matrix.ERROR_WRONG_COL_NUMBER[0],
-                        String('The number of cols in row %row from given parameter matrix must equal to %col.').replace(/%row/, rowNumber + 1).replace(/%col/, this.cols)
-                    );
-                }
+                this.assertionCheck(
+                    this.cols === row.length,
+                    'matrix.constructor',
+                    Matrix.ERROR_WRONG_COL_NUMBER,
+                    {'row': rowNumber + 1, 'col': this.cols}
+                );
             }
 
             row.map(function (col, colNumber) {
-                if (isNaN(col)) {
-                    throw new Error(
-                        String('Cell %col in row %row of given parameter elements must be a number.').replace(/%col/, colNumber + 1).replace(/%row/, rowNumber + 1)
-                    );
-                }
+                this.assertionCheck(
+                    !isNaN(col),
+                    'matrix.constructor',
+                    Matrix.ERROR_CELL_IS_NO_NUMBER,
+                    {'col': colNumber + 1, 'row': rowNumber + 1}
+                );
 
                 this.matrix[rowNumber][colNumber] = Number(col);
             }, this);
@@ -166,11 +170,17 @@ class Matrix {
      * @param errorCode
      * @param errorText
      */
-    assertionCheck(assertion, functionName, errorType) {
+    assertionCheck(assertion, functionName, errorType, replace) {
         if (!assertion) {
+            var errorText = errorType[2];
+
+            if (typeof replace === "object") {
+                Object.keys(replace).map(function(key) { errorText = errorText.replace('%' + key, replace[key]); });
+            }
+
             throw new MatrixException(
                 errorType[0],
-                String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorType[2])
+                String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
             );
         }
     }
