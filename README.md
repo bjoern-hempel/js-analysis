@@ -61,7 +61,11 @@ var matrix2 = matrix1.transpose();
 console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
-### 2.7 Inverse a matrix
+### 2.7 calculate the determinant
+
+Coming soon..
+
+### 2.8 Inverse a matrix
 
 Coming soon..
 
