@@ -299,15 +299,56 @@
             }
         );
 
+        /* start matrix determinant calculation test (wrong matrix dimension) */
+        new MatrixTest(
+            Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC,
+            function () {
+                var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var determinant = matrix.determinant();
+
+                /* the method add should throw an exception */
+                return false;
+            }
+        );
+
+        /* start matrix determinant calculation test */
+        new MatrixTest(
+            Matrix.SUCCESS_DETERMINANT_TEST,
+            function () {
+                var matrix = new Matrix([[1]]);
+                var determinant = matrix.determinant();
+
+                /* the method add should throw an exception */
+                return determinant === 1;
+            }
+        );
+
+        /* start matrix determinant calculation test */
+        new MatrixTest(
+            Matrix.SUCCESS_DETERMINANT_TEST,
+            function () {
+                var matrix = new Matrix([[1, 1], [2, 3]]);
+                var determinant = matrix.determinant();
+
+                /* the method add should throw an exception */
+                return determinant === 1;
+            }
+        );
+
+        /* start matrix determinant calculation test */
+        new MatrixTest(
+            Matrix.SUCCESS_DETERMINANT_TEST,
+            function () {
+                var matrix = new Matrix([[1, 2, 3, 4, 0], [5, 6, 7, 8, 7], [9, 1, 2, 3, 8], [4, 5, 9, 7, -1], [7, 8, -2, -5, -3]]);
+                var determinant = matrix.determinant();
+
+                /* the method add should throw an exception */
+                return determinant === -8406;
+            }
+        );
 
         /* prints out the test result */
         MatrixTest.resultTest();
-
-
-
-        var matrix = new Matrix([[1, 2, 3, 4, 0], [5, 6, 7, 8, 7], [9, 1, 2, 3, 8], [4, 5, 9, 7, -1], [7, 8, -2, -5, -3]]);
-        console.log(matrix.determinant());
-
 
     </script>
 </body>

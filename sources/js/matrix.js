@@ -34,12 +34,16 @@ class Matrix {
         return [107, 'two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'];
     }
 
+    static get ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC() {
+        return [108, 'the matrix is not quadratic', 'The matrix is not quadratic.'];
+    }
+
     static get ERROR_NO_SCALAR() {
-        return [108, 'given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
+        return [109, 'given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
     }
 
     static get ERROR_CELL_IS_NO_NUMBER() {
-        return [109, 'cell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
+        return [110, 'cell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
     }
 
     static get SUCCESS_INITIALIZE_MATRIX() {
@@ -64,6 +68,10 @@ class Matrix {
 
     static get SUCCESS_MULTIPLICATION_TEST() {
         return [206, 'successful multiplication test'];
+    }
+
+    static get SUCCESS_DETERMINANT_TEST() {
+        return [207, 'successful determinant test'];
     }
 
     /**
@@ -251,6 +259,8 @@ class Matrix {
      * @returns {Number}
      */
     determinant() {
+        this.assertionCheck(this.cols === this.rows, 'matrix.determinant', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
+
         return this.helperDeterminant(this.array);
     }
 
@@ -362,10 +372,6 @@ class Matrix {
     helperDeterminant(matrix) {
         if (matrix.length == 1) {
             return matrix[0][0];
-        }
-
-        if (matrix.length == 2) {
-            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
         }
 
         var determinant = 0;
