@@ -246,6 +246,15 @@ class Matrix {
     }
 
     /**
+     * Calculate the determinant of this matrix.
+     *
+     * @returns {Number}
+     */
+    determinant() {
+        return this.helperDeterminant(this.array);
+    }
+
+    /**
      * Helper function to add to matrices.
      *
      * @param matrix1
@@ -296,6 +305,13 @@ class Matrix {
         return matrix;
     }
 
+    /**
+     * Helper function to calculate a scalar multiplication.
+     *
+     * @param scalar
+     * @param matrix
+     * @returns {Array}
+     */
     helperScalarMultiplication(scalar, matrix) {
         var matrix = matrix.map(function (row) {
             return row.map(function (col) {
@@ -335,5 +351,57 @@ class Matrix {
         }).reduce(function (number1, number2) {
             return number1 + number2;
         });
+    }
+
+    /**
+     * Helper function to calculate the determinant.
+     *
+     * @param matrix
+     * @returns {Number}
+     */
+    helperDeterminant(matrix) {
+        if (matrix.length == 1) {
+            return matrix[0][0];
+        }
+
+        if (matrix.length == 2) {
+            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+        }
+
+        var determinant = 0;
+
+        for (var i = 0; i < matrix.length; i++) {
+            determinant += Math.pow(-1, i) * matrix[0][i] * this.helperDeterminant(this.helperDeleteRowAndColumn(matrix, 0, i));
+        }
+
+        return determinant;
+    }
+
+    /**
+     * Helper function to remove the given row and column.
+     *
+     * @param matrix
+     * @param row
+     * @param column
+     * @returns {Array}
+     */
+    helperDeleteRowAndColumn(matrix, row, column) {
+        var reducedMatrix = [];
+
+        /* copy the rows from matrix to reducedMatrix */
+        for (var i = 0; i < matrix.length; i++) {
+            if (row === i) {
+                continue;
+            }
+
+            reducedMatrix.push(matrix[i].slice(0));
+        }
+
+        /* remove column from each row */
+        for (var i = 0; i < reducedMatrix.length; i++) {
+            reducedMatrix[i].splice(column, 1);
+        }
+
+        return reducedMatrix;
     }
 }
