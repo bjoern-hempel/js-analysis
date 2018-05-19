@@ -226,7 +226,7 @@ class Matrix {
      * @returns {Matrix}
      */
     scalarMultiplication(scalar) {
-        this.assertionCheck(!isNaN(scalar), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
+        this.assertionCheck(this.helperIsNumber(scalar), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
 
         return new Matrix(this.helperScalarMultiplication(scalar, this.array));
     }
@@ -247,6 +247,10 @@ class Matrix {
      * @returns {Matrix}
      */
     multiply(matrix) {
+        if (this.helperIsNumber(matrix)) {
+            return new Matrix(this.helperScalarMultiplication(matrix, this.array));
+        }
+
         this.assertionCheck(matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assertionCheck(this.cols === matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
@@ -409,5 +413,23 @@ class Matrix {
         }
 
         return reducedMatrix;
+    }
+
+    /**
+     * Check, if given value is a number.
+     *
+     * @param value
+     * @returns {boolean}
+     */
+    helperIsNumber(value) {
+        if (Number(value) === value && value % 1 === 0) {
+            return true;
+        }
+
+        if (Number(value) === value && value % 1 !== 0) {
+            return true;
+        }
+
+        return false;
     }
 }
