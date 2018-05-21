@@ -21,6 +21,18 @@ Coming soon..
 
 Coming soon..
 
+### 3.4 Dot Product
+
+Coming soon..
+
+### 3.5 Cross Product
+
+Coming soon..
+
+### 3.6 Length of the vector
+
+Coming soon..
+
 ## 2. Matrices
 
 Here are some calculation examples with matrices with the help of the library `sources/js/matrix.js`:
