@@ -4,7 +4,22 @@ This javascript library provides some functions to do some analysis stuff.
 
 ## 1. Vectors
 
-Coming soon.. (The first version only supports matrices)
+Here are some calculation examples with vectors with the help of the library `sources/js/vector.js`:
+
+### 2.1 Create a vector
+
+```javascript
+var vector = new Vector([1, 2, 3]);
+console.log(JSON.stringify(vecvtor.array)); // prints [1,2,3]
+```
+
+### 2.2 Add two vectors
+
+Coming soon..
+
+### 2.3 Subtract two vectors
+
+Coming soon..
 
 ## 2. Matrices
 
