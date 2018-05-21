@@ -78,7 +78,11 @@ console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 
 ### 2.7 calculate the determinant
 
-Coming soon..
+```javascript
+var matrix = new Matrix([[1, 2, 3, 4, 0], [5, 6, 7, 8, 7], [9, 1, 2, 3, 8], [4, 5, 9, 7, -1], [7, 8, -2, -5, -3]]);
+var determinant = matrix.determinant();
+console.log(determinant); // prints -8406
+```
 
 ### 2.8 Inverse a matrix
 
