@@ -98,7 +98,21 @@ Coming soon..
 
 ### 3.1 Vector library
 
-Coming soon..
+Call `tests/vector.html` in your browser. It returns for example something like this:
+
+```text
+1) Running error test "Vector: given vector format is not an array" (Code: 101).
+   Test succeeded.
+2) Running error test "Vector: the size of the given vector is wrong" (Code: 102).
+   Test succeeded.
+3) Running error test "Vector: element from vector is no number" (Code: 103).
+   Test succeeded.
+4) Running success test "initialize vector" (Code: 201).
+   Test succeeded.
+
+RESULT
+-> All test succeeded.
+```
 
 ### 3.2 Matrix library
 
