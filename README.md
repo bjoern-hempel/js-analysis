@@ -97,7 +97,7 @@ var matrix2 = matrix1.transpose();
 console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
-### 2.8 calculate the determinant of the matrix
+### 2.8 Calculate the determinant of the matrix
 
 ```javascript
 var matrix = new Matrix([
