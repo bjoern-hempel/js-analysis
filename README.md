@@ -80,7 +80,16 @@ var matrix3 = matrix1.multiply(matrix2);
 console.log(JSON.stringify(matrix3.array)); // prints [[14],[32]]
 ```
 
-### 2.6 Transpose a matrix
+### 2.6 Multiply a matrix with a vector
+
+```javascript
+var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+var vector1 = new Vector([1, 2 ,3]);
+var matrix2 = matrix1.multiply(vector1);
+console.log(JSON.stringify(matrix2.array)); // prints [[14],[32]]
+```
+
+### 2.7 Transpose a matrix
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -88,7 +97,7 @@ var matrix2 = matrix1.transpose();
 console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
-### 2.7 calculate the determinant
+### 2.8 calculate the determinant of the matrix
 
 ```javascript
 var matrix = new Matrix([
@@ -102,7 +111,7 @@ var determinant = matrix.determinant();
 console.log(determinant); // prints -8406
 ```
 
-### 2.8 Inverse a matrix
+### 2.9 Inverse a matrix
 
 Coming soon..
 
