@@ -273,6 +273,17 @@ class Matrix {
     }
 
     /**
+     * Calculate the inverse of this matrix.
+     *
+     * @returns {Matrix}
+     */
+    inverse() {
+        this.assertionCheck(this.cols === this.rows, 'matrix.inverse', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
+
+        return new Matrix(this.helperInverse(this.array));
+    }
+
+    /**
      * Helper function to add to matrices.
      *
      * @param matrix1
@@ -417,6 +428,66 @@ class Matrix {
         }
 
         return reducedMatrix;
+    }
+
+    /**
+     * Helper function to inverse the matrix (Gaussian elimination).
+     *
+     * @param matrix
+     * @returns {*}
+     */
+    helperInverse(matrix) {
+        var temp;
+        var matrixRows = matrix.length;
+        var inversedMatrix = [];
+
+        /* initialise the output matrix */
+        for (var i = 0; i < matrixRows; i++) {
+            inversedMatrix[i] = [];
+        }
+
+        /* create the identity matrix */
+        for (var i = 0; i < matrixRows; i++) {
+            for (var j = 0; j < matrixRows; j++) {
+                inversedMatrix[i][j] = 0;
+                if (i == j) {
+                    inversedMatrix[i][j] = 1;
+                }
+            }
+        }
+
+        /* eliminate from left */
+        for (var k = 0; k < matrixRows; k++) {
+            temp = matrix[k][k];
+
+            for (var j = 0; j < matrixRows; j++) {
+                matrix[k][j] /= temp;
+                inversedMatrix[k][j] /= temp;
+            }
+
+            for (var i = k + 1; i < matrixRows; i++) {
+                temp = matrix[i][k];
+
+                for (var j = 0; j < matrixRows; j++) {
+                    matrix[i][j] -= matrix[k][j] * temp;
+                    inversedMatrix[i][j] -= inversedMatrix[k][j] * temp;
+                }
+            }
+        }
+
+        /* eliminate from right */
+        for (var k = matrixRows - 1; k > 0; k--) {
+            for (var i = k - 1; i >= 0; i--) {
+                temp = matrix[i][k];
+
+                for (var j = 0; j < matrixRows; j++) {
+                    matrix[i][j] -= matrix[k][j] * temp;
+                    inversedMatrix[i][j] -= inversedMatrix[k][j] * temp;
+                }
+            }
+        }
+
+        return inversedMatrix;
     }
 
     /**
