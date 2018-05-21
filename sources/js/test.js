@@ -4,10 +4,10 @@
  * @author  Björn Hempel <bjoern@hempel.li>
  * @version 1.0 (2018-05-13)
  */
-class MatrixTest {
+class Test {
 
     /**
-     * The constructor of MatrixTest.
+     * The constructor of Test.
      *
      * @param message
      * @param code
@@ -37,16 +37,16 @@ class MatrixTest {
             return false;
         }
 
-        return (err instanceof MatrixException) && (err.code === this.code);
+        return (err instanceof MatrixException || err instanceof VectorException) && (err.code === this.code);
     }
 
     /**
      * The function to start the test.
      */
     start() {
-        MatrixTest.increaseTestCounter();
+        Test.increaseTestCounter();
 
-        console.log(String('%counter) Running %status test "%message" (Code: %code).').replace(/%counter/, MatrixTest.getTestCounter()).replace(/%status/, this.code >= 200 ? 'success' : 'error').replace(/%message/, this.message).replace(/%code/, this.code)
+        console.log(String('%counter) Running %status test "%message" (Code: %code).').replace(/%counter/, Test.getTestCounter()).replace(/%status/, this.code >= 200 ? 'success' : 'error').replace(/%message/, this.message).replace(/%code/, this.code)
         );
 
         try {
@@ -61,7 +61,7 @@ class MatrixTest {
         this.testOK ? console.info('   Test succeeded.') : console.error('   Test failed.');
 
         if (!this.testOK) {
-            MatrixTest.increaseErrorCounter();
+            Test.increaseErrorCounter();
         }
     }
 
@@ -113,7 +113,7 @@ class MatrixTest {
         console.log('');
         console.log('RESULT');
 
-        MatrixTest.getErrorCounter() <= 0 ?
+        Test.getErrorCounter() <= 0 ?
             console.info('-> All test succeeded.') :
             console.error('-> At least on test failed.');
     }

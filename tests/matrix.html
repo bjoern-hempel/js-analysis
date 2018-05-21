@@ -3,16 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>js-analysis - Matrix - Test</title>
+    <script src="../sources/js/vector.js"></script>
+    <script src="../sources/js/vectorException.js"></script>
     <script src="../sources/js/matrix.js"></script>
     <script src="../sources/js/matrixException.js"></script>
-    <script src="../sources/js/matrixTest.js"></script>
+    <script src="../sources/js/test.js"></script>
 </head>
 <body>
     <script>
 
 
-        /* start given rows are not an array */
-        new MatrixTest(
+        /* Vector: initialize vector wrong given values */
+        new Test(
+            Vector.ERROR_VECTOR_IS_NO_ARRAY,
+            function () {
+                var vector = new Vector(1);
+                console.log(vector.array);
+                return false;
+            }
+        );
+
+        /* Vector: initialize vector wrong given values */
+        new Test(
+            Vector.ERROR_VECTOR_SIZE_WRONG,
+            function () {
+                var vector = new Vector([]);
+                console.log(vector.array);
+                return false;
+            }
+        );
+
+        /* Vector: initialize vector wrong given values */
+        new Test(
+            Vector.ERROR_ELEMENT_IS_NO_NUMBER,
+            function () {
+                var vector = new Vector([1, [1, 2]]);
+                console.log(vector.array);
+                return false;
+            }
+        );
+
+        /* Vector: start initial test */
+        new Test(
+            Vector.SUCCESS_INITIALIZE_VECTOR,
+            function () {
+                var vector = new Vector([1, 2, 3]);
+                return (
+                    vector.getElement(0) === 1 &&
+                    vector.getElement(1) === 2 &&
+                    vector.getElement(2) === 3 &&
+                    vector.size === 3
+                );
+            }
+        );
+
+
+        /* Matrix: start given rows are not an array */
+        new Test(
             Matrix.ERROR_ROWS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix('test');
@@ -21,9 +68,8 @@
             }
         );
 
-
-        /* start given rows are not higher than 0 */
-        new MatrixTest(
+        /* Matrix: start given rows are not higher than 0 */
+        new Test(
             Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([]);
@@ -32,9 +78,8 @@
             }
         );
 
-
-        /* given cols are not an array */
-        new MatrixTest(
+        /* Matrix: given cols are not an array */
+        new Test(
             Matrix.ERROR_COLS_IS_NO_ARRAY,
             function () {
                 var matrix = new Matrix(['string']);
@@ -43,9 +88,8 @@
             }
         );
 
-
-        /* given cols are not an array */
-        new MatrixTest(
+        /* Matrix: given cols are not an array */
+        new Test(
             Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
             function () {
                 var matrix = new Matrix([[], []]);
@@ -54,9 +98,8 @@
             }
         );
 
-
-        /* start wrong col number test */
-        new MatrixTest(
+        /* Matrix: start wrong col number test */
+        new Test(
             Matrix.ERROR_WRONG_COL_NUMBER,
             function () {
                 var matrix = new Matrix([[1, 2], [2]]);
@@ -65,9 +108,8 @@
             }
         );
 
-
-        /* start initial test */
-        new MatrixTest(
+        /* Matrix: start initial test */
+        new Test(
             Matrix.SUCCESS_INITIALIZE_MATRIX,
             function () {
                 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -84,9 +126,8 @@
             }
         );
 
-
-        /* start add test (wrong matrix type) */
-        new MatrixTest(
+        /* Matrix: start add test (wrong matrix type) */
+        new Test(
             Matrix.ERROR_WRONG_MATRIX_TYPE,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -100,9 +141,8 @@
             }
         );
 
-
-        /* start add test (wrong matrix dimension) */
-        new MatrixTest(
+        /* Matrix: start add test (wrong matrix dimension) */
+        new Test(
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -116,9 +156,8 @@
             }
         );
 
-
-        /* start add test (correct) */
-        new MatrixTest(
+        /* Matrix: start add test (correct) */
+        new Test(
             Matrix.SUCCESS_ADDITION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -140,9 +179,8 @@
             }
         );
 
-
-        /* start add test (wrong matrix type) */
-        new MatrixTest(
+        /* Matrix: start add test (wrong matrix type) */
+        new Test(
             Matrix.ERROR_WRONG_MATRIX_TYPE,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -156,9 +194,8 @@
             }
         );
 
-
-        /* start add test (wrong matrix dimension) */
-        new MatrixTest(
+        /* Matrix: start add test (wrong matrix dimension) */
+        new Test(
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -174,9 +211,8 @@
             }
         );
 
-
-        /* start add test (correct) */
-        new MatrixTest(
+        /* Matrix: start add test (correct) */
+        new Test(
             Matrix.SUCCESS_SUBTRACTION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -198,9 +234,8 @@
             }
         );
 
-
-        /* start scalar multiplication test (no scalar) */
-        new MatrixTest(
+        /* Matrix: start scalar multiplication test (no scalar) */
+        new Test(
             Matrix.ERROR_NO_SCALAR,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -222,9 +257,8 @@
             }
         );
 
-
-        /* start scalar multiplication test */
-        new MatrixTest(
+        /* Matrix: start scalar multiplication test */
+        new Test(
             Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -246,9 +280,8 @@
             }
         );
 
-
-        /* start transpose test */
-        new MatrixTest(
+        /* Matrix: start transpose test */
+        new Test(
             Matrix.SUCCESS_TRANSPOSE_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -268,9 +301,8 @@
             }
         );
 
-
-        /* start matrix multiplication test (wrong matrix dimension) */
-        new MatrixTest(
+        /* Matrix: start matrix multiplication test (wrong matrix dimension) */
+        new Test(
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -282,9 +314,8 @@
             }
         );
 
-
-        /* start matrix multiplication test */
-        new MatrixTest(
+        /* Matrix: start matrix multiplication test */
+        new Test(
             Matrix.SUCCESS_MULTIPLICATION_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -301,8 +332,8 @@
             }
         );
 
-        /* start matrix determinant calculation test (wrong matrix dimension) */
-        new MatrixTest(
+        /* Matrix: start matrix determinant calculation test (wrong matrix dimension) */
+        new Test(
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC,
             function () {
                 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -315,8 +346,8 @@
             }
         );
 
-        /* start matrix determinant calculation test */
-        new MatrixTest(
+        /* Matrix: start matrix determinant calculation test */
+        new Test(
             Matrix.SUCCESS_DETERMINANT_TEST,
             function () {
                 var matrix = new Matrix([[1]]);
@@ -327,8 +358,8 @@
             }
         );
 
-        /* start matrix determinant calculation test */
-        new MatrixTest(
+        /* Matrix: start matrix determinant calculation test */
+        new Test(
             Matrix.SUCCESS_DETERMINANT_TEST,
             function () {
                 var matrix = new Matrix([[1, 1], [2, 3]]);
@@ -339,8 +370,8 @@
             }
         );
 
-        /* start matrix determinant calculation test */
-        new MatrixTest(
+        /* Matrix: start matrix determinant calculation test */
+        new Test(
             Matrix.SUCCESS_DETERMINANT_TEST,
             function () {
                 var matrix = new Matrix([[1, 2, 3, 4, 0], [5, 6, 7, 8, 7], [9, 1, 2, 3, 8], [4, 5, 9, 7, -1], [7, 8, -2, -5, -3]]);
@@ -351,8 +382,9 @@
             }
         );
 
+
         /* prints out the test result */
-        MatrixTest.resultTest();
+        Test.resultTest();
 
     </script>
 </body>

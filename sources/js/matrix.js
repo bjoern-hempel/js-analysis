@@ -7,71 +7,71 @@
 class Matrix {
 
     static get ERROR_ROWS_IS_NO_ARRAY() {
-        return [101, 'rows are not an array', 'The given parameter matrix must be an instance of Array.'];
+        return [101, 'Matrix: rows are not an array', 'The given parameter matrix must be an instance of Array.'];
     }
 
     static get ERROR_ROWS_COUNT_ARRAY_WRONG() {
-        return [102, 'count rows is wrong', 'The number of rows from given parameter matrix must greater than 0.'];
+        return [102, 'Matrix: count rows is wrong', 'The number of rows from given parameter matrix must greater than 0.'];
     }
 
     static get ERROR_COLS_IS_NO_ARRAY() {
-        return [103, 'cols are not an array', 'Row %row of given parameter elements must be an instance of Array.'];
+        return [103, 'Matrix: cols are not an array', 'Row %row of given parameter elements must be an instance of Array.'];
     }
 
     static get ERROR_COLS_COUNT_ARRAY_WRONG() {
-        return [104, 'count cols is wrong', 'The number of cols in row %row from given parameter matrix must greater than 0.'];
+        return [104, 'Matrix: count cols is wrong', 'The number of cols in row %row from given parameter matrix must greater than 0.'];
     }
 
     static get ERROR_WRONG_COL_NUMBER() {
-        return [105, 'wrong col number test', 'The number of cols in row %row from given parameter matrix must equal to %col.'];
+        return [105, 'Matrix: wrong col number test', 'The number of cols in row %row from given parameter matrix must equal to %col.'];
     }
 
     static get ERROR_WRONG_MATRIX_TYPE() {
-        return [106, 'wrong given matrix type', 'The given parameter matrix must be an instance of Matrix.'];
+        return [106, 'Matrix: wrong given matrix type', 'The given parameter matrix must be an instance of Matrix.'];
     }
 
     static get ERROR_WRONG_MATRIX_DIMENSIONS() {
-        return [107, 'two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'];
+        return [107, 'Matrix: two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'];
     }
 
     static get ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC() {
-        return [108, 'the matrix is not quadratic', 'The matrix is not quadratic.'];
+        return [108, 'Matrix: the matrix is not quadratic', 'The matrix is not quadratic.'];
     }
 
     static get ERROR_NO_SCALAR() {
-        return [109, 'given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
+        return [109, 'Matrix: given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
     }
 
     static get ERROR_CELL_IS_NO_NUMBER() {
-        return [110, 'cell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
+        return [110, 'Matrix: cell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
     }
 
     static get SUCCESS_INITIALIZE_MATRIX() {
-        return [201, 'initialize matrix'];
+        return [201, 'Matrix: initialize matrix'];
     }
 
     static get SUCCESS_ADDITION_TEST() {
-        return [202, 'successful add test'];
+        return [202, 'Matrix: successful add test'];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [203, 'successful subtract test'];
+        return [203, 'Matrix: successful subtract test'];
     }
 
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [204, 'successful scalar multiplication test'];
+        return [204, 'Matrix: successful scalar multiplication test'];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [205, 'successful transpose test'];
+        return [205, 'Matrix: successful transpose test'];
     }
 
     static get SUCCESS_MULTIPLICATION_TEST() {
-        return [206, 'successful multiplication test'];
+        return [206, 'Matrix: successful multiplication test'];
     }
 
     static get SUCCESS_DETERMINANT_TEST() {
-        return [207, 'successful determinant test'];
+        return [207, 'Matrix: successful determinant test'];
     }
 
     /**
