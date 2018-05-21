@@ -251,6 +251,10 @@ class Matrix {
             return new Matrix(this.helperScalarMultiplication(matrix, this.array));
         }
 
+        if (matrix instanceof Vector) {
+            return this.multiply(new Matrix([matrix.array]).transpose());
+        }
+
         this.assertionCheck(matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assertionCheck(this.cols === matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 

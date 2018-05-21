@@ -13,51 +13,6 @@
     <script>
 
 
-        /* Vector: initialize vector wrong given values */
-        new Test(
-            Vector.ERROR_VECTOR_IS_NO_ARRAY,
-            function () {
-                var vector = new Vector(1);
-                console.log(vector.array);
-                return false;
-            }
-        );
-
-        /* Vector: initialize vector wrong given values */
-        new Test(
-            Vector.ERROR_VECTOR_SIZE_WRONG,
-            function () {
-                var vector = new Vector([]);
-                console.log(vector.array);
-                return false;
-            }
-        );
-
-        /* Vector: initialize vector wrong given values */
-        new Test(
-            Vector.ERROR_ELEMENT_IS_NO_NUMBER,
-            function () {
-                var vector = new Vector([1, [1, 2]]);
-                console.log(vector.array);
-                return false;
-            }
-        );
-
-        /* Vector: start initial test */
-        new Test(
-            Vector.SUCCESS_INITIALIZE_VECTOR,
-            function () {
-                var vector = new Vector([1, 2, 3]);
-                return (
-                    vector.getElement(0) === 1 &&
-                    vector.getElement(1) === 2 &&
-                    vector.getElement(2) === 3 &&
-                    vector.size === 3
-                );
-            }
-        );
-
-
         /* Matrix: start given rows are not an array */
         new Test(
             Matrix.ERROR_ROWS_IS_NO_ARRAY,
@@ -321,6 +276,24 @@
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var matrix2 = new Matrix([[1], [2], [3]]);
                 var matrix3 = matrix1.multiply(matrix2);
+
+                return (
+                    matrix3 instanceof Matrix &&
+                    matrix3.getCell(0, 0) === 14 &&
+                    matrix3.getCell(1, 0) === 32 &&
+                    matrix3.numberCols === 1 &&
+                    matrix3.numberRows === 2
+                );
+            }
+        );
+
+        /* Matrix: start vector multiplication test */
+        new Test(
+            Matrix.SUCCESS_MULTIPLICATION_TEST,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var vector1 = new Vector([1, 2, 3]);
+                var matrix3 = matrix1.multiply(vector1);
 
                 return (
                     matrix3 instanceof Matrix &&

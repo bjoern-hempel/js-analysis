@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-analysis - Matrix - Test</title>
+    <script src="../sources/js/vector.js"></script>
+    <script src="../sources/js/vectorException.js"></script>
+    <script src="../sources/js/matrix.js"></script>
+    <script src="../sources/js/matrixException.js"></script>
+    <script src="../sources/js/test.js"></script>
+</head>
+<body>
+    <script>
+
+
+        /* Vector: initialize vector wrong given values */
+        new Test(
+            Vector.ERROR_VECTOR_IS_NO_ARRAY,
+            function () {
+                var vector = new Vector(1);
+                console.log(vector.array);
+                return false;
+            }
+        );
+
+        /* Vector: initialize vector wrong given values */
+        new Test(
+            Vector.ERROR_VECTOR_SIZE_WRONG,
+            function () {
+                var vector = new Vector([]);
+                console.log(vector.array);
+                return false;
+            }
+        );
+
+        /* Vector: initialize vector wrong given values */
+        new Test(
+            Vector.ERROR_ELEMENT_IS_NO_NUMBER,
+            function () {
+                var vector = new Vector([1, [1, 2]]);
+                console.log(vector.array);
+                return false;
+            }
+        );
+
+        /* Vector: start initial test */
+        new Test(
+            Vector.SUCCESS_INITIALIZE_VECTOR,
+            function () {
+                var vector = new Vector([1, 2, 3]);
+                return (
+                    vector.getElement(0) === 1 &&
+                    vector.getElement(1) === 2 &&
+                    vector.getElement(2) === 3 &&
+                    vector.size === 3
+                );
+            }
+        );
+
+
+        /* prints out the test result */
+        Test.resultTest();
+
+    </script>
+</body>
+</html>
