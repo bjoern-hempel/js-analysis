@@ -113,7 +113,11 @@ console.log(determinant); // prints -8406
 
 ### 2.9 Inverse a matrix
 
-Coming soon..
+```javascript
+var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
+var matrix2 = matrix1.inverse();
+console.log(JSON.stringify(matrix2.array)); // prints [[0.22727272727272718,-0.0909090909090909,-0.40909090909090906],[0.27272727272727276,0.09090909090909091,-0.09090909090909093],[0.07575757575757576,-0.030303030303030307,0.196969696969697]]
+```
 
 ## 3. Test the libraries
 
