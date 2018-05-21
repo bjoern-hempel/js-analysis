@@ -4,7 +4,34 @@ This javascript library provides some functions to do some analysis stuff.
 
 ## 1. Vectors
 
-Coming soon.. (The first version only supports matrices)
+Here are some calculation examples with vectors with the help of the library `sources/js/vector.js`:
+
+### 2.1 Create a vector
+
+```javascript
+var vector = new Vector([1, 2, 3]);
+console.log(JSON.stringify(vecvtor.array)); // prints [1,2,3]
+```
+
+### 2.2 Add two vectors
+
+Coming soon..
+
+### 2.3 Subtract two vectors
+
+Coming soon..
+
+### 3.4 Dot Product
+
+Coming soon..
+
+### 3.5 Cross Product
+
+Coming soon..
+
+### 3.6 Length of the vector
+
+Coming soon..
 
 ## 2. Matrices
 
@@ -63,7 +90,17 @@ console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 
 ### 2.7 calculate the determinant
 
-Coming soon..
+```javascript
+var matrix = new Matrix([
+    [1, 2, 3, 4, 0],
+    [5, 6, 7, 8, 7],
+    [9, 1, 2, 3, 8],
+    [4, 5, 9, 7, -1],
+    [7, 8, -2, -5, -3]
+]);
+var determinant = matrix.determinant();
+console.log(determinant); // prints -8406
+```
 
 ### 2.8 Inverse a matrix
 
@@ -73,7 +110,21 @@ Coming soon..
 
 ### 3.1 Vector library
 
-Coming soon..
+Call `tests/vector.html` in your browser. It returns for example something like this:
+
+```text
+1) Running error test "Vector: given vector format is not an array" (Code: 101).
+   Test succeeded.
+2) Running error test "Vector: the size of the given vector is wrong" (Code: 102).
+   Test succeeded.
+3) Running error test "Vector: element from vector is no number" (Code: 103).
+   Test succeeded.
+4) Running success test "initialize vector" (Code: 201).
+   Test succeeded.
+
+RESULT
+-> All test succeeded.
+```
 
 ### 3.2 Matrix library
 
