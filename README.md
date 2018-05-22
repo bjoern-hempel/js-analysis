@@ -10,7 +10,7 @@ Here are some calculation examples with vectors with the help of the library `so
 
 ```javascript
 var vector = new Vector([1, 2, 3]);
-console.log(JSON.stringify(vecvtor.array)); // prints [1,2,3]
+console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 ```
 
 ### 2.2 Add two vectors
