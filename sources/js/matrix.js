@@ -244,7 +244,7 @@ class Matrix {
      * Calculate the matrix multiplication from this matrix and the given matrix.
      *
      * @param matrix
-     * @returns {Matrix}
+     * @returns {Matrix|Vector}
      */
     multiply(matrix) {
         if (this.helperIsNumber(matrix)) {
@@ -252,7 +252,7 @@ class Matrix {
         }
 
         if (matrix instanceof Vector) {
-            return this.multiply(new Matrix([matrix.array]).transpose());
+            return new Vector(this.multiply(new Matrix([matrix.array]).transpose()).transpose().array[0]);
         }
 
         this.assertionCheck(matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);

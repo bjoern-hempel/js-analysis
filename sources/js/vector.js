@@ -22,12 +22,30 @@ class Vector {
         return [201, 'initialize vector'];
     }
 
+    static get SUCCESS_CALLBACK() {
+        return [202, 'callback function'];
+    }
+
     /**
      * The constructor of the meshHolder.
+     *
+     * @param vector {Array}
+     * @returns {null}
      */
     constructor(vector) {
 
         this.name = 'Vector';
+
+        return this.initialize(vector);
+    }
+
+    /**
+     * Initialize this class.
+     *
+     * @param vector {Array}
+     * @returns {null}
+     */
+    initialize(vector) {
 
         /* check assertions of given vector */
         this.assertionCheck(vector instanceof Array, 'vector.constructor', Vector.ERROR_VECTOR_IS_NO_ARRAY);
@@ -44,6 +62,8 @@ class Vector {
                 {'element': elementNumber + 1}
             );
         }, this);
+
+        return;
     }
 
     /**
@@ -98,5 +118,15 @@ class Vector {
                 String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
             );
         }
+    }
+
+    /**
+     * Apply the given callback function to this vector.
+     *
+     * @param func
+     * @returns {Vector}
+     */
+    callback(func) {
+        return new Vector(this.array.map(func));
     }
 }

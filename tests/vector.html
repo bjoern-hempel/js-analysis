@@ -57,6 +57,21 @@
             }
         );
 
+        /* Vector: start initial test */
+        new Test(
+            Vector.SUCCESS_CALLBACK,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = vector1.callback(function (element) { return Math.pow(element, 2); });
+                return (
+                    vector2.getElement(0) === 1 &&
+                    vector2.getElement(1) === 4 &&
+                    vector2.getElement(2) === 9 &&
+                    vector2.size === 3
+                );
+            }
+        );
+
 
         /* prints out the test result */
         Test.resultTest();
