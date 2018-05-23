@@ -121,6 +121,17 @@ class Vector {
     }
 
     /**
+     * Unshift a value to the internal vector.
+     *
+     * @param value
+     * @returns {Vector}
+     */
+    unshift(value) {
+        this.vector.unshift(value);
+        return this;
+    }
+
+    /**
      * Apply the given callback function to this vector.
      *
      * @param func
