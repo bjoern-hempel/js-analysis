@@ -70,8 +70,12 @@ class Matrix {
         return [206, 'Matrix: successful multiplication test'];
     }
 
+    static get SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST() {
+        return [207, 'Matrix: successful multiplication test with a vector'];
+    }
+
     static get SUCCESS_DETERMINANT_TEST() {
-        return [207, 'Matrix: successful determinant test'];
+        return [208, 'Matrix: successful determinant test'];
     }
 
     /**

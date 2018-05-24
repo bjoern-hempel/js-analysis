@@ -289,18 +289,17 @@
 
         /* Matrix: start vector multiplication test */
         new Test(
-            Matrix.SUCCESS_MULTIPLICATION_TEST,
+            Matrix.SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var vector1 = new Vector([1, 2, 3]);
-                var matrix3 = matrix1.multiply(vector1);
+                var vector2 = matrix1.multiply(vector1);
 
                 return (
-                    matrix3 instanceof Matrix &&
-                    matrix3.getCell(0, 0) === 14 &&
-                    matrix3.getCell(1, 0) === 32 &&
-                    matrix3.numberCols === 1 &&
-                    matrix3.numberRows === 2
+                    vector2 instanceof Vector &&
+                    vector2.getElement(0) === 14 &&
+                    vector2.getElement(1) === 32 &&
+                    vector2.size === 2
                 );
             }
         );
