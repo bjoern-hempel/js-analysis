@@ -15,6 +15,13 @@ class Test {
      * @param errorFunction
      */
     constructor(messageCode, testFunction, errorFunction) {
+        this.mode = null;
+
+        if (!(messageCode instanceof Array)) {
+            this.mode = messageCode.mode;
+            messageCode = messageCode.config;
+        }
+
         this.message = messageCode[1];
         this.code = messageCode[0];
         this.testFunction = testFunction;
@@ -46,7 +53,12 @@ class Test {
     start() {
         Test.increaseTestCounter();
 
-        console.log(String('%counter) Running %status test "%message" (Code: %code).').replace(/%counter/, Test.getTestCounter()).replace(/%status/, this.code >= 200 ? 'success' : 'error').replace(/%message/, this.message).replace(/%code/, this.code)
+        console.log(
+            String('%counter) Running %status test "%message" %add(Code: %code).').
+                replace(/%counter/, Test.getTestCounter()).
+                replace(/%status/, this.code >= 200 ? 'success' : 'error').
+                replace(/%message/, this.message).replace(/%code/, this.code).
+                replace(/%add/, this.mode !== null ? '[mode: ' + this.mode + '] ' : '')
         );
 
         try {

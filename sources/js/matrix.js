@@ -80,11 +80,21 @@ class Matrix {
 
     /**
      * The constructor of the meshHolder.
+     *
+     * @param matrix
      */
     constructor(matrix) {
-
         this.name = 'Matrix';
 
+        return this.init(matrix);
+    }
+
+    /**
+     * Initialise this matrix
+     *
+     * @param matrix
+     */
+    init(matrix) {
         /* check assertions of given matrix */
         this.assertionCheck(matrix instanceof Array, 'matrix.constructor', Matrix.ERROR_ROWS_IS_NO_ARRAY);
         this.assertionCheck(matrix.length > 0, 'matrix.constructor', Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG);
@@ -130,6 +140,8 @@ class Matrix {
                 this.matrix[rowNumber][colNumber] = Number(col);
             }, this);
         }, this);
+
+        return true;
     }
 
     /**
@@ -198,16 +210,52 @@ class Matrix {
     }
 
     /**
+     * Extracts the copy argument from given argument list.
+     *
+     * @returns {{copy: boolean, matrix: Array}}
+     */
+    extractArguments() {
+        var copy   = false;
+        var matrix = arguments[0] || [];
+
+        /* Handle a copy situation */
+        if (typeof matrix === "boolean") {
+            copy = matrix;
+            matrix = arguments[1] || [];
+        }
+
+        return {
+            copy:   copy,
+            matrix: matrix,
+        };
+    }
+
+    doCalculate() {
+        var copy = [].shift.apply(arguments);
+        var func = [].shift.apply(arguments);
+
+        if (copy) {
+            return new Matrix(func.apply(this, arguments));
+        }
+
+        this.init(func.apply(this, arguments));
+        return this;
+    }
+
+    /**
      * Returns the result of adding the given matrix with this matrix.
      *
+     * @param copy
      * @param matrix
      * @returns {Matrix}
      */
-    add(matrix) {
-        this.assertionCheck(matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assertionCheck(this.cols === matrix.numberCols && this.rows === matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+    add() {
+        var args = this.extractArguments.apply(this, arguments);
 
-        return new Matrix(this.helperAdd(this.array, matrix.array));
+        this.assertionCheck(args.matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+
+        return this.doCalculate(args.copy, this.helperAdd, this.array, args.matrix.array);
     }
 
     /**

@@ -113,7 +113,30 @@
 
         /* Matrix: start add test (correct) */
         new Test(
-            Matrix.SUCCESS_ADDITION_TEST,
+            {config: Matrix.SUCCESS_ADDITION_TEST, mode: 'keep'},
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
+
+                matrix1.add(matrix2);
+
+                return (
+                    matrix1 instanceof Matrix &&
+                    matrix1.getCell(0, 0) === 3 &&
+                    matrix1.getCell(0, 1) === 6 &&
+                    matrix1.getCell(0, 2) === 9 &&
+                    matrix1.getCell(1, 0) === 12 &&
+                    matrix1.getCell(1, 1) === 15 &&
+                    matrix1.getCell(1, 2) === 18 &&
+                    matrix1.numberCols === matrix1.numberCols &&
+                    matrix1.numberRows === matrix1.numberRows
+                );
+            }
+        );
+
+        /* Matrix: start add test (correct) */
+        new Test(
+            {config: Matrix.SUCCESS_ADDITION_TEST, mode: 'copy'},
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
