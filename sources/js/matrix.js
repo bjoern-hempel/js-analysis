@@ -230,6 +230,11 @@ class Matrix {
         };
     }
 
+    /**
+     * Doing the calculation.
+     *
+     * @returns {Matrix}
+     */
     doCalculate() {
         var copy = [].shift.apply(arguments);
         var func = [].shift.apply(arguments);
