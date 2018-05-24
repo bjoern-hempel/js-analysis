@@ -6,30 +6,44 @@ This javascript library provides some functions to do some numerical analysis ca
 
 Here are some calculation examples with vectors with the help of the library `sources/js/vector.js`:
 
-### 2.1 Create a vector
+### 1.1 Create a vector
 
 ```javascript
 var vector = new Vector([1, 2, 3]);
 console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 ```
 
-### 2.2 Add two vectors
+### 1.2 Manipulate the vector
+
+#### 1.2.1 Change a value
+
+TODO...
+
+#### 1.2.2 Add a value
+
+TODO...
+
+#### 1.2.3 Delete a value
+
+TODO...
+
+### 1.3 Add two vectors
 
 Coming soon..
 
-### 2.3 Subtract two vectors
+### 1.4 Subtract two vectors
 
 Coming soon..
 
-### 3.4 Dot Product
+### 1.5 Dot Product
 
 Coming soon..
 
-### 3.5 Cross Product
+### 1.6 Cross Product
 
 Coming soon..
 
-### 3.6 Length of the vector
+### 1.7 Length of the vector
 
 Coming soon..
 
