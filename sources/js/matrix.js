@@ -280,15 +280,42 @@ class Matrix {
     }
 
     /**
+     * Calculate the matrix multiplication from this matrix and the given matrix.
+     *
+     * @param copy
+     * @param matrix
+     * @returns {Matrix|Vector}
+     */
+    multiply() {
+        var args = this.extractArguments.apply(this, arguments);
+
+        if (this.helperIsNumber(args.matrix)) {
+            return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
+        }
+
+        if (args.matrix instanceof Vector) {
+            return new Vector(this.multiply(new Matrix([args.matrix.array]).transpose()).transpose().array[0]);
+        }
+
+        this.assertionCheck(args.matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assertionCheck(this.cols === args.matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+
+        return this.doCalculate(args.copy, this.helperMultiply, this.array, args.matrix.array);
+    }
+
+    /**
      * Does a scalar multiplication.
      *
+     * @param copy
      * @param scalar
      * @returns {Matrix}
      */
-    scalarMultiplication(scalar) {
-        this.assertionCheck(this.helperIsNumber(scalar), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
+    scalarMultiplication() {
+        var args = this.extractArguments.apply(this, arguments);
 
-        return new Matrix(this.helperScalarMultiplication(scalar, this.array));
+        this.assertionCheck(this.helperIsNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
+
+        return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
     }
 
     /**
@@ -298,27 +325,6 @@ class Matrix {
      */
     transpose() {
         return new Matrix(this.helperTranspose(this.array));
-    }
-
-    /**
-     * Calculate the matrix multiplication from this matrix and the given matrix.
-     *
-     * @param matrix
-     * @returns {Matrix|Vector}
-     */
-    multiply(matrix) {
-        if (this.helperIsNumber(matrix)) {
-            return new Matrix(this.helperScalarMultiplication(matrix, this.array));
-        }
-
-        if (matrix instanceof Vector) {
-            return new Vector(this.multiply(new Matrix([matrix.array]).transpose()).transpose().array[0]);
-        }
-
-        this.assertionCheck(matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assertionCheck(this.cols === matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
-
-        return new Matrix(this.helperMultiply(this.array, matrix.array));
     }
 
     /**

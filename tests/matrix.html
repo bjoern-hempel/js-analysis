@@ -89,7 +89,7 @@
                 var matrix2 = 1;
                 /* this is not a matrix */
 
-                var matrix3 = matrix1.add(matrix2);
+                matrix1.add(matrix2);
 
                 /* the method add should throw an exception */
                 return false;
@@ -104,7 +104,7 @@
                 var matrix2 = new Matrix([[2, 4], [8, 10]]);
                 /* this matrix has the wrong dimensions */
 
-                var matrix3 = matrix1.add(matrix2);
+                matrix1.add(matrix2);
 
                 /* the method add should throw an exception */
                 return false;
@@ -157,7 +157,7 @@
             }
         );
 
-        /* Matrix: start add test (wrong matrix type) */
+        /* Matrix: start subtraction test (wrong matrix type) */
         new Test(
             Matrix.ERROR_WRONG_MATRIX_TYPE,
             function () {
@@ -165,14 +165,14 @@
                 var matrix2 = 1;
                 /* this is not a matrix */
 
-                var matrix3 = matrix1.subtract(matrix2);
+                matrix1.subtract(matrix2);
 
                 /* the method add should throw an exception */
                 return false;
             }
         );
 
-        /* Matrix: start add test (wrong matrix dimension) */
+        /* Matrix: start subtraction test (wrong matrix dimension) */
         new Test(
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
             function () {
@@ -180,16 +180,14 @@
                 var matrix2 = new Matrix([[2, 4], [8, 10]]);
                 /* this matrix has the wrong dimensions */
 
-                var matrix3 = matrix1.subtract(matrix2);
-
-                console.log(matrix3);
+                matrix1.subtract(matrix2);
 
                 /* the method add should throw an exception */
                 return false;
             }
         );
 
-        /* Matrix: start add test (correct - keep) */
+        /* Matrix: start subtraction test (correct - keep) */
         new Test(
             {config: Matrix.SUCCESS_SUBTRACTION_TEST, mode: 'keep'},
             function () {
@@ -212,7 +210,7 @@
             }
         );
 
-        /* Matrix: start add test (correct - copy) */
+        /* Matrix: start subtraction test (correct - copy) */
         new Test(
             {config: Matrix.SUCCESS_SUBTRACTION_TEST, mode: 'copy'},
             function () {
@@ -258,9 +256,32 @@
             }
         );
 
-        /* Matrix: start scalar multiplication test */
+        /* Matrix: start scalar multiplication test (keep) */
         new Test(
-            Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST,
+            {config: Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST, mode: 'keep'},
+            function () {
+                var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var scalar = 2.5;
+
+                matrix.multiply(scalar);
+
+                return (
+                    matrix instanceof Matrix &&
+                    matrix.getCell(0, 0) === 2.5 &&
+                    matrix.getCell(0, 1) === 5 &&
+                    matrix.getCell(0, 2) === 7.5 &&
+                    matrix.getCell(1, 0) === 10 &&
+                    matrix.getCell(1, 1) === 12.5 &&
+                    matrix.getCell(1, 2) === 15 &&
+                    matrix.numberCols === 3 &&
+                    matrix.numberRows === 2
+                );
+            }
+        );
+
+        /* Matrix: start scalar multiplication test (copy) */
+        new Test(
+            {config: Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST, mode: 'copy'},
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
                 var scalar = 2.5;
@@ -277,27 +298,6 @@
                     matrix2.getCell(1, 2) === 15 &&
                     matrix2.numberCols === matrix1.numberCols &&
                     matrix2.numberRows === matrix1.numberRows
-                );
-            }
-        );
-
-        /* Matrix: start transpose test */
-        new Test(
-            Matrix.SUCCESS_TRANSPOSE_TEST,
-            function () {
-                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-                var matrix2 = matrix1.transpose();
-
-                return (
-                    matrix2 instanceof Matrix &&
-                    matrix2.getCell(0, 0) === 1 &&
-                    matrix2.getCell(0, 1) === 4 &&
-                    matrix2.getCell(1, 0) === 2 &&
-                    matrix2.getCell(1, 1) === 5 &&
-                    matrix2.getCell(2, 0) === 3 &&
-                    matrix2.getCell(2, 1) === 6 &&
-                    matrix2.numberCols === matrix1.numberRows &&
-                    matrix2.numberRows === matrix1.numberCols
                 );
             }
         );
@@ -346,6 +346,27 @@
                     vector2.getElement(0) === 14 &&
                     vector2.getElement(1) === 32 &&
                     vector2.size === 2
+                );
+            }
+        );
+
+        /* Matrix: start transpose test */
+        new Test(
+            Matrix.SUCCESS_TRANSPOSE_TEST,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = matrix1.transpose();
+
+                return (
+                    matrix2 instanceof Matrix &&
+                    matrix2.getCell(0, 0) === 1 &&
+                    matrix2.getCell(0, 1) === 4 &&
+                    matrix2.getCell(1, 0) === 2 &&
+                    matrix2.getCell(1, 1) === 5 &&
+                    matrix2.getCell(2, 0) === 3 &&
+                    matrix2.getCell(2, 1) === 6 &&
+                    matrix2.numberCols === matrix1.numberRows &&
+                    matrix2.numberRows === matrix1.numberCols
                 );
             }
         );
