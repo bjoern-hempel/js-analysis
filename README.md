@@ -44,7 +44,37 @@ var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
 ```
 
-### 2.2 Add two matrices
+### 2.2 Manipulate the matrix
+
+#### 2.2.1 Change value
+
+TODO...
+
+#### 2.2.2 Change row
+
+TODO...
+
+#### 2.2.3 Change col
+
+TODO...
+
+#### 2.2.4 Add row
+
+TODO...
+
+#### 2.2.5 Add col
+
+TODO...
+
+#### 2.2.6 Delete row
+
+TODO...
+
+#### 2.2.7 Delete col
+
+TODO...
+
+### 2.3 Add two matrices
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -53,7 +83,7 @@ var matrix3 = matrix1.add(matrix2);
 console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 ```
 
-### 2.3. Subtract two matrices
+### 2.4 Subtract two matrices
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -62,7 +92,7 @@ var matrix3 = matrix1.substract(matrix2);
 console.log(JSON.stringify(matrix3.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 ```
 
-### 2.4 Scalar multiplication
+### 2.5 Scalar multiplication
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -71,7 +101,7 @@ var matrix2 = matrix1.scalarMultiplication(scalar);
 console.log(JSON.stringify(matrix2.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
 ```
 
-### 2.5 Multiply two matrices
+### 2.6 Multiply two matrices
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -80,7 +110,7 @@ var matrix3 = matrix1.multiply(matrix2);
 console.log(JSON.stringify(matrix3.array)); // prints [[14],[32]]
 ```
 
-### 2.6 Multiply a matrix with a vector
+### 2.7 Multiply a matrix with a vector
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -89,7 +119,7 @@ var matrix2 = matrix1.multiply(vector1);
 console.log(JSON.stringify(matrix2.array)); // prints [[14],[32]]
 ```
 
-### 2.7 Transpose a matrix
+### 2.8 Transpose a matrix
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -97,7 +127,7 @@ var matrix2 = matrix1.transpose();
 console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
-### 2.8 Calculate the determinant of the matrix
+### 2.9 Calculate the determinant of the matrix
 
 ```javascript
 var matrix = new Matrix([
@@ -111,7 +141,7 @@ var determinant = matrix.determinant();
 console.log(determinant); // prints -8406
 ```
 
-### 2.9 Inverse a matrix
+### 2.10 Inverse a matrix
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
