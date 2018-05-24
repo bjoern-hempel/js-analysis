@@ -17,15 +17,15 @@ console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 
 #### 1.2.1 Change a value
 
-TODO...
+Coming soon..
 
 #### 1.2.2 Add a value
 
-TODO...
+Coming soon..
 
 #### 1.2.3 Delete a value
 
-TODO...
+Coming soon..
 
 ### 1.3 Add two vectors
 
@@ -62,31 +62,31 @@ console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
 
 #### 2.2.1 Change value
 
-TODO...
+Coming soon..
 
 #### 2.2.2 Change row
 
-TODO...
+Coming soon..
 
 #### 2.2.3 Change col
 
-TODO...
+Coming soon..
 
 #### 2.2.4 Add row
 
-TODO...
+Coming soon..
 
 #### 2.2.5 Add col
 
-TODO...
+Coming soon..
 
 #### 2.2.6 Delete row
 
-TODO...
+Coming soon..
 
 #### 2.2.7 Delete col
 
-TODO...
+Coming soon..
 
 ### 2.3 Add two matrices
 
