@@ -491,9 +491,8 @@
             Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC,
             function () {
                 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
-                var determinant = matrix.determinant();
 
-                console.log(determinant);
+                matrix.determinant();
 
                 /* the method add should throw an exception */
                 return false;
@@ -560,6 +559,8 @@
                 );
             }
         );
+
+        /* TODO: add inverse test */
 
 
         /* prints out the test result */
