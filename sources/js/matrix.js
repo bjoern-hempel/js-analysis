@@ -66,7 +66,7 @@ class Matrix {
         return [205, 'Matrix: successful transpose test'];
     }
 
-    static get SUCCESS_MULTIPLICATION_TEST() {
+    static get SUCCESS_MULTIPLICATION_MATRIX_TEST() {
         return [206, 'Matrix: successful multiplication test'];
     }
 
@@ -294,7 +294,12 @@ class Matrix {
         }
 
         if (args.matrix instanceof Vector) {
-            return new Vector(this.multiply(new Matrix([args.matrix.array]).transpose()).transpose().array[0]);
+            if (args.copy) {
+                return new Vector(this.multiply(new Matrix([args.matrix.array]).transpose()).transpose().array[0]);
+            }
+
+            this.init(this.multiply(new Matrix([args.matrix.array]).transpose()).array);
+            return this;
         }
 
         this.assertionCheck(args.matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
