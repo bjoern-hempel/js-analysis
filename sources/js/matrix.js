@@ -266,14 +266,17 @@ class Matrix {
     /**
      * Returns the result subtracting the given matrix from this matrix.
      *
+     * @param copy
      * @param matrix
      * @returns {Matrix}
      */
-    subtract(matrix) {
-        this.assertionCheck(matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assertionCheck(this.cols === matrix.numberCols && this.rows === matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+    subtract() {
+        var args = this.extractArguments.apply(this, arguments);
 
-        return new Matrix(this.helperSubtract(this.matrix, matrix.array));
+        this.assertionCheck(args.matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+
+        return this.doCalculate(args.copy, this.helperSubtract, this.array, args.matrix.array);
     }
 
     /**
