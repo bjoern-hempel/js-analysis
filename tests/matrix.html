@@ -113,6 +113,28 @@
 
         /* Matrix: start add test (correct - keep) */
         new Test(
+            {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'keep'},
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+
+                matrix1.changeCell(0, 0, -1);
+
+                return (
+                    matrix1 instanceof Matrix &&
+                    matrix1.getCell(0, 0) === -1 &&
+                    matrix1.getCell(0, 1) === 2 &&
+                    matrix1.getCell(0, 2) === 3 &&
+                    matrix1.getCell(1, 0) === 4 &&
+                    matrix1.getCell(1, 1) === 5 &&
+                    matrix1.getCell(1, 2) === 6 &&
+                    matrix1.numberCols === 3 &&
+                    matrix1.numberRows === 2
+                );
+            }
+        );
+
+        /* Matrix: start add test (correct - keep) */
+        new Test(
             {config: Matrix.SUCCESS_ADDITION_TEST, mode: 'keep'},
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);

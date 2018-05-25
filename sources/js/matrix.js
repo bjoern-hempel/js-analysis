@@ -46,36 +46,44 @@ class Matrix {
         return [110, 'Matrix: cell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
     }
 
+    static get ERROR_WRONG_CELL_ACCESS() {
+        return [111, 'Matrix: cell access is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
+    }
+
     static get SUCCESS_INITIALIZE_MATRIX() {
         return [201, 'Matrix: initialize matrix'];
     }
 
+    static get SUCCESS_CHANGE_CELL_TEST() {
+        return [202, 'Matrix: successful change value test'];
+    }
+
     static get SUCCESS_ADDITION_TEST() {
-        return [202, 'Matrix: successful add test'];
+        return [203, 'Matrix: successful add test'];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [203, 'Matrix: successful subtract test'];
+        return [204, 'Matrix: successful subtract test'];
     }
 
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [204, 'Matrix: successful scalar multiplication test'];
+        return [205, 'Matrix: successful scalar multiplication test'];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [205, 'Matrix: successful transpose test'];
+        return [206, 'Matrix: successful transpose test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_TEST() {
-        return [206, 'Matrix: successful multiplication test'];
+        return [207, 'Matrix: successful multiplication test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST() {
-        return [207, 'Matrix: successful multiplication test with a vector'];
+        return [208, 'Matrix: successful multiplication test with a vector'];
     }
 
     static get SUCCESS_DETERMINANT_TEST() {
-        return [208, 'Matrix: successful determinant test'];
+        return [209, 'Matrix: successful determinant test'];
     }
 
     /**
@@ -215,19 +223,61 @@ class Matrix {
      * @returns {{copy: boolean, matrix: Array}}
      */
     extractArguments() {
-        var copy   = false;
-        var matrix = arguments[0] || [];
+        var type = [].shift.apply(arguments);
 
-        /* Handle a copy situation */
-        if (typeof matrix === "boolean") {
-            copy = matrix;
-            matrix = arguments[1] || [];
+        switch (type) {
+            case 1:
+                var copy   = false;
+                var matrix = arguments[0] || [];
+
+                /* Handle a copy situation */
+                if (typeof matrix === "boolean") {
+                    copy = matrix;
+                    matrix = arguments[1] || [];
+                }
+
+                return {
+                    copy:   copy,
+                    matrix: matrix,
+                };
+
+                break;
+
+            case 3:
+                var copy  = false;
+                var col   = arguments[0] || 0;
+                var row   = arguments[1] || 0;
+                var value = arguments[2] || 0;
+
+                /* Handle a copy situation */
+                if (typeof col === "boolean") {
+                    copy  = col;
+                    col   = arguments[1] || 0;
+                    row   = arguments[2] || 0;
+                    value = arguments[3] || 0;
+                }
+
+                return {
+                    copy:  copy,
+                    col:   col,
+                    row:   row,
+                    value: value
+                };
+
+                break
         }
+    }
 
-        return {
-            copy:   copy,
-            matrix: matrix,
-        };
+    /**
+     * Extract the arguments.
+     *
+     * @param args
+     * @returns {{copy: boolean, matrix: Array}}
+     */
+    buildArgumentList(args, type) {
+        var args = [].slice.call(args);
+        args.unshift(type);
+        return this.extractArguments.apply(this, args);
     }
 
     /**
@@ -248,6 +298,24 @@ class Matrix {
     }
 
     /**
+     * Change value of a cell of this matrix.
+     *
+     * @param col
+     * @param row
+     * @param value
+     */
+    changeCell() {
+        var args = this.buildArgumentList(arguments, 3);
+
+        this.assertionCheck(args.col < this.numberCols, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
+        this.assertionCheck(args.row < this.numberRows, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
+
+        this.array[args.row][args.col] = args.value;
+
+        return this;
+    }
+
+    /**
      * Returns the result of adding the given matrix with this matrix.
      *
      * @param copy
@@ -255,7 +323,7 @@ class Matrix {
      * @returns {Matrix}
      */
     add() {
-        var args = this.extractArguments.apply(this, arguments);
+        var args = this.buildArgumentList(arguments, 1);
 
         this.assertionCheck(args.matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
@@ -271,7 +339,7 @@ class Matrix {
      * @returns {Matrix}
      */
     subtract() {
-        var args = this.extractArguments.apply(this, arguments);
+        var args = this.buildArgumentList(arguments, 1);
 
         this.assertionCheck(args.matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
@@ -287,7 +355,7 @@ class Matrix {
      * @returns {Matrix|Vector}
      */
     multiply() {
-        var args = this.extractArguments.apply(this, arguments);
+        var args = this.buildArgumentList(arguments, 1);
 
         if (this.helperIsNumber(args.matrix)) {
             return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
@@ -316,7 +384,7 @@ class Matrix {
      * @returns {Matrix}
      */
     scalarMultiplication() {
-        var args = this.extractArguments.apply(this, arguments);
+        var args = this.buildArgumentList(arguments, 1);
 
         this.assertionCheck(this.helperIsNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
 
