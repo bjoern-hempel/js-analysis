@@ -88,7 +88,32 @@ console.log(JSON.stringify(vector3.array)); // prints [3,6,9]
 
 #### 1.3.2 Add two vectors
 
-Coming soon..
+<table>
+    <tr>
+        <th colspan="2" align="left"><code>Vector.add([copy], vector)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean} copy (optional)</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector} vector</code></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Vector}</code></td>
+    </tr>
+</table>
+
+##### 1.3.2.1 Example
+
+```javascript
+var vector1 = new Vector([1, 2, 3]);
+var vector2 = new Vector([2, 4, 6]);
+vector1.add(vector2);
+console.log(JSON.stringify(vector1.array)); // prints [3,6,9]
+```
 
 #### 1.3.2 Subtract two vectors
 
