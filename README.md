@@ -84,7 +84,7 @@ console.log(JSON.stringify(matrix2.array)); // prints [[2,4,6],[8,10,12]]
 
 #### 2.2.2 "Copy" example:
 
-If you want to keep the values from the used matrix `matrix1`, you can do a copy from the calculation result. Just add another parameter:
+If you want to keep the values from the used matrix `matrix1`, you can do a copy from the calculation result. Just add another parameter to the calculation function:
 
 ```javascript
 /* create two matrices */
