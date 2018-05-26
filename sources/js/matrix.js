@@ -86,6 +86,10 @@ class Matrix extends Base {
         return [209, 'Matrix: successful determinant test'];
     }
 
+    static get SUCCESS_INVERSE_TEST() {
+        return [210, 'Matrix: successful inverse test'];
+    }
+
     /**
      * The constructor of the meshHolder.
      *

@@ -13,6 +13,7 @@
 <body>
     <script>
 
+        Test.startTests();
 
         /* Matrix: start given rows are not an array */
         new Test(
@@ -591,7 +592,7 @@
 
         /* Matrix: start matrix inverse calculation test */
         new Test(
-            Matrix.SUCCESS_DETERMINANT_TEST,
+            Matrix.SUCCESS_INVERSE_TEST,
             function () {
                 var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
                 var matrix2 = matrix1.inverse();
@@ -614,11 +615,8 @@
             }
         );
 
-        /* TODO: add inverse test */
-
-
         /* prints out the test result */
-        Test.resultTest();
+        Test.resultTests();
 
     </script>
 </body>

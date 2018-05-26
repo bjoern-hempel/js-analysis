@@ -61,6 +61,7 @@ class Test {
                 replace(/%add/, this.mode !== null ? '[mode: ' + this.mode + '] ' : '')
         );
 
+        var timeStart = performance.now();
         try {
             this.testOK = this.testFunction.call(this);
         } catch (err) {
@@ -69,8 +70,15 @@ class Test {
                 console.error(err.toString());
             }
         }
+        var timeFinished = performance.now();
 
-        this.testOK ? console.info('   Test succeeded.') : console.error('   Test failed.');
+        var timeNeeded = Math.round((timeFinished - timeStart) * 100000) / 100000;
+
+        var message = this.testOK ? 'Test succeeded (%time).' : 'Test failed (%time).';
+
+        message = '   ' + message.replace('%time', timeNeeded + ' ms');
+
+        this.testOK ? console.info(message) : console.error(message);
 
         if (!this.testOK) {
             Test.increaseErrorCounter();
@@ -118,15 +126,31 @@ class Test {
     }
 
     /**
+     * Start the tests and measure the time.
+     */
+    static startTests() {
+        this.timeStart = performance.now();
+    }
+
+    /**
      * A static method to prints out the result of all tests.
      *
      */
-    static resultTest() {
+    static resultTests() {
+
+        this.timeFinished = performance.now();
+
+        var timeNeeded = Math.round((this.timeFinished - this.timeStart) * 100000) / 100000;
+
         console.log('');
         console.log('RESULT');
 
-        Test.getErrorCounter() <= 0 ?
-            console.info('-> All test succeeded.') :
-            console.error('-> At least on test failed.');
+        var message = Test.getErrorCounter() <= 0 ?
+            '-> All test succeeded (%time).' :
+            '-> At least on test failed.';
+
+        message = message.replace('%time', timeNeeded + ' ms');
+
+        Test.getErrorCounter() <= 0 ? console.info(message) : console.error(message);
     }
 }
