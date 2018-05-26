@@ -22,6 +22,14 @@ class Vector extends Base {
         return [104, 'Vector: getCell access is wrong', 'Cell %index does not exist.'];
     }
 
+    static get ERROR_WRONG_VECTOR_TYPE() {
+        return [105, 'Vector: wrong given vector type', 'The given parameter vector must be an instance of Vector.'];
+    }
+
+    static get ERROR_WRONG_VECTOR_DIMENSIONS() {
+        return [106, 'Vector: two given vectors with different dimensions', 'The given vector does not fit to this vector.'];
+    }
+
     static get SUCCESS_INITIALIZE_VECTOR() {
         return [201, 'init vector'];
     }
@@ -34,8 +42,12 @@ class Vector extends Base {
         return [203, 'Vector: successful change value test'];
     }
 
+    static get SUCCESS_ADDITION_TEST() {
+        return [204, 'Vector: successful add test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [204, 'callback function'];
+        return [205, 'callback function'];
     }
 
     /**
@@ -135,6 +147,22 @@ class Vector extends Base {
     }
 
     /**
+     * Returns the result of adding the given matrix with this matrix.
+     *
+     * @param copy
+     * @param matrix
+     * @returns {Matrix}
+     */
+    add() {
+        var args = this.buildArgumentList(arguments, ['vector']);
+
+        this.assert(args.vector instanceof Vector, 'vector.add', this.constructor.ERROR_WRONG_VECTOR_TYPE);
+        this.assert(this.size === args.vector.size, 'vector.add', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
+
+        return this.doCalculate(args.copy, this.constructor.add, this.array, args.vector.array);
+    }
+
+    /**
      * Unshift a value to the internal vector.
      *
      * @param value
@@ -167,5 +195,20 @@ class Vector extends Base {
         vector[index] = value;
 
         return vector;
+    }
+
+    /**
+     * Static function: Add a given vector to another one.
+     *
+     * @param vector1
+     * @param vector2
+     * @returns {Array}
+     */
+    static add(vector1, vector2) {
+        var addedVector = vector1.map(function (value, index) {
+            return value + vector2[index];
+        });
+
+        return addedVector;
     }
 }
