@@ -209,7 +209,7 @@ class Matrix extends Base {
         this.assert(args.col < this.numberCols, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
         this.assert(args.row < this.numberRows, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
 
-        return this.doCalculate(args.copy, this.helperChangeCell, this.array, args.col, args.row, args.value);
+        return this.doCalculate(args.copy, Matrix.changeCell, this.array, args.col, args.row, args.value);
     }
 
     /**
@@ -225,7 +225,7 @@ class Matrix extends Base {
         this.assert(args.matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
-        return this.doCalculate(args.copy, this.helperAdd, this.array, args.matrix.array);
+        return this.doCalculate(args.copy, Matrix.add, this.array, args.matrix.array);
     }
 
     /**
@@ -241,7 +241,7 @@ class Matrix extends Base {
         this.assert(args.matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
-        return this.doCalculate(args.copy, this.helperSubtract, this.array, args.matrix.array);
+        return this.doCalculate(args.copy, Matrix.subtract, this.array, args.matrix.array);
     }
 
     /**
@@ -255,7 +255,7 @@ class Matrix extends Base {
         var args = this.buildArgumentList(arguments,  ['matrix']);
 
         if (this.isNumber(args.matrix)) {
-            return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
+            return this.doCalculate(args.copy, Matrix.scalarMultiplication, args.matrix, this.array);
         }
 
         if (args.matrix instanceof Vector) {
@@ -270,7 +270,7 @@ class Matrix extends Base {
         this.assert(args.matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assert(this.cols === args.matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
-        return this.doCalculate(args.copy, this.helperMultiply, this.array, args.matrix.array);
+        return this.doCalculate(args.copy, Matrix.multiply, this.array, args.matrix.array);
     }
 
     /**
@@ -285,7 +285,7 @@ class Matrix extends Base {
 
         this.assert(this.isNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
 
-        return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
+        return this.doCalculate(args.copy, Matrix.scalarMultiplication, args.matrix, this.array);
     }
 
     /**
@@ -294,7 +294,7 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     transpose() {
-        return new Matrix(this.helperTranspose(this.array));
+        return new Matrix(Matrix.transpose(this.array));
     }
 
     /**
@@ -305,7 +305,7 @@ class Matrix extends Base {
     determinant() {
         this.assert(this.cols === this.rows, 'matrix.determinant', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
-        return this.helperDeterminant(this.array);
+        return Matrix.determinant(this.array);
     }
 
     /**
@@ -316,11 +316,11 @@ class Matrix extends Base {
     inverse() {
         this.assert(this.cols === this.rows, 'matrix.inverse', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
-        return new Matrix(this.helperInverse(this.array));
+        return new Matrix(Matrix.inverse(this.array));
     }
 
     /**
-     * Helper function to change a given getCell.
+     * Static function: Change a cell from given matrix.
      *
      * @param matrix
      * @param col
@@ -328,20 +328,20 @@ class Matrix extends Base {
      * @param value
      * @returns {Array}
      */
-    helperChangeCell(matrix, col, row, value) {
+    static changeCell(matrix, col, row, value) {
         matrix[row][col] = value;
 
         return matrix;
     }
 
     /**
-     * Helper function to add to matrices.
+     * Static function: Add a given matrix to another one.
      *
      * @param matrix1
      * @param matrix2
      * @returns {Array}
      */
-    helperAdd(matrix1, matrix2) {
+    static add(matrix1, matrix2) {
         var addedMatrix = matrix1.map(function (row, rowIndex) {
             return row.map(function (col, colIndex) {
                 return col + matrix2[rowIndex][colIndex];
@@ -352,13 +352,13 @@ class Matrix extends Base {
     }
 
     /**
-     * Helper function to add to matrices.
+     * Static function: Subtract a given matrix from another one.
      *
      * @param matrix1
      * @param matrix2
      * @returns {Array}
      */
-    helperSubtract(matrix1, matrix2) {
+    static subtract(matrix1, matrix2) {
         var addedMatrix = matrix1.map(function (row, rowIndex) {
             return row.map(function (col, colIndex) {
                 return col - matrix2[rowIndex][colIndex];
@@ -375,10 +375,10 @@ class Matrix extends Base {
      * @param matrix2
      * @returns {Array}
      */
-    helperMultiply(matrix1, matrix2) {
+    static multiply(matrix1, matrix2) {
         var matrix = matrix1.map(function (vector1) {
-            return this.helperTranspose(matrix2 ).map(function (vector2) {
-                return this.helperDotProduct(vector1, vector2);
+            return Matrix.transpose(matrix2 ).map(function (vector2) {
+                return Matrix.dotProduct(vector1, vector2);
             }, this);
         }, this);
 
@@ -392,7 +392,7 @@ class Matrix extends Base {
      * @param matrix
      * @returns {Array}
      */
-    helperScalarMultiplication(scalar, matrix) {
+    static scalarMultiplication(scalar, matrix) {
         var matrix = matrix.map(function (row) {
             return row.map(function (col) {
                 return scalar * col;
@@ -408,7 +408,7 @@ class Matrix extends Base {
      * @param matrix
      * @returns {Array}
      */
-    helperTranspose(matrix) {
+    static transpose(matrix) {
         var transposedMatrix = matrix[0].map(function (col, colIndex) {
             return matrix.map(function (row) {
                 return row[colIndex];
@@ -425,7 +425,7 @@ class Matrix extends Base {
      * @param vector2
      * @returns {Number}
      */
-    helperDotProduct(vector1, vector2) {
+    static dotProduct(vector1, vector2) {
         return vector1.map(function (cell, cellIndex) {
             return vector1[cellIndex] * vector2[cellIndex];
         }).reduce(function (number1, number2) {
@@ -439,7 +439,7 @@ class Matrix extends Base {
      * @param matrix
      * @returns {Number}
      */
-    helperDeterminant(matrix) {
+    static determinant(matrix) {
         if (matrix.length == 1) {
             return matrix[0][0];
         }
@@ -447,7 +447,7 @@ class Matrix extends Base {
         var determinant = 0;
 
         for (var i = 0; i < matrix.length; i++) {
-            determinant += Math.pow(-1, i) * matrix[0][i] * this.helperDeterminant(this.helperDeleteRowAndColumn(matrix, 0, i));
+            determinant += Math.pow(-1, i) * matrix[0][i] * Matrix.determinant(Matrix.deleteRowAndColumn(matrix, 0, i));
         }
 
         return determinant;
@@ -461,7 +461,7 @@ class Matrix extends Base {
      * @param column
      * @returns {Array}
      */
-    helperDeleteRowAndColumn(matrix, row, column) {
+    static deleteRowAndColumn(matrix, row, column) {
         var reducedMatrix = [];
 
         /* copy the rows from matrix to reducedMatrix */
@@ -487,7 +487,7 @@ class Matrix extends Base {
      * @param matrix
      * @returns {*}
      */
-    helperInverse(matrix) {
+    static inverse(matrix) {
         var temp;
         var matrixRows = matrix.length;
         var inversedMatrix = [];
