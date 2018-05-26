@@ -39,9 +39,9 @@ Coming soon..
 
 ### 1.3 Calculations
 
-#### 1.3.1 Change or copy the used matrix
+#### 1.3.1 Change or copy the used vector
 
-Normally all calculations refer to the used matrix. That means that all calculations will change this matrix.
+Normally all calculations refer to the used vector. That means that all calculations will change this vector.
 
 ##### 1.3.1.1 "Change" example:
 
