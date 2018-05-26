@@ -18,6 +18,10 @@ class Vector extends Base {
         return [103, 'Vector: element from vector is no number', 'Element %element of given parameter vector must be a number.'];
     }
 
+    static get ERROR_WRONG_CELL_ACCESS() {
+        return [104, 'Vector: getCell access is wrong', 'Cell %index does not exist.'];
+    }
+
     static get SUCCESS_INITIALIZE_VECTOR() {
         return [201, 'init vector'];
     }
@@ -26,15 +30,18 @@ class Vector extends Base {
         return [202, 'length of vector'];
     }
 
+    static get SUCCESS_CHANGE_CELL_TEST() {
+        return [203, 'Vector: successful change value test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [203, 'callback function'];
+        return [204, 'callback function'];
     }
 
     /**
      * The constructor of the Vector class.
      *
-     * @param vector {Array}
-     * @returns {null}
+     * @param vector
      */
     constructor(vector) {
         super();
@@ -113,6 +120,21 @@ class Vector extends Base {
     }
 
     /**
+     * Change value of a getCell of this matrix.
+     *
+     * @param col
+     * @param row
+     * @param value
+     */
+    changeCell() {
+        var args = this.buildArgumentList(arguments, ['index', 'value']);
+
+        this.assert(args.index < this.size, 'vector.changeCell', this.constructor.ERROR_WRONG_CELL_ACCESS);
+
+        return this.doCalculate(args.copy, this.constructor.changeCell, this.array, args.index, args.value);
+    }
+
+    /**
      * Unshift a value to the internal vector.
      *
      * @param value
@@ -131,5 +153,19 @@ class Vector extends Base {
      */
     callback(func) {
         return new Vector(this.array.map(func));
+    }
+
+    /**
+     * Static function: Change a cell from given matrix.
+     *
+     * @param vector
+     * @param index
+     * @param value
+     * @returns {Array}
+     */
+    static changeCell(vector, index, value) {
+        vector[index] = value;
+
+        return vector;
     }
 }

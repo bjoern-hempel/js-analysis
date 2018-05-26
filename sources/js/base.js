@@ -91,7 +91,21 @@ class Base {
             /* copy the argument list to avoid changes on the original object. */
             var args = JSON.parse(JSON.stringify([].slice.call(arguments)));
 
-            return new Matrix(func.apply(this, args));
+            switch (this.name) {
+                case 'Vector':
+                    return new Vector(func.apply(this, args));
+                    break;
+
+                case 'Matrix':
+                    return new Matrix(func.apply(this, args));
+                    break;
+
+                default:
+                    throw new Error('Unknown class ' + this.name);
+                    break;
+            }
+
+
         }
 
         this.init(func.apply(this, arguments));
