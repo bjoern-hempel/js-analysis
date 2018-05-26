@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>js-analysis - Matrix - Test</title>
+    <title>js-analysis - Vector - Test</title>
+    <script src="../sources/js/base.js"></script>
     <script src="../sources/js/vector.js"></script>
     <script src="../sources/js/vectorException.js"></script>
     <script src="../sources/js/matrix.js"></script>
@@ -13,7 +14,7 @@
     <script>
 
 
-        /* Vector: initialize vector wrong given values */
+        /* Vector: init vector wrong given values */
         new Test(
             Vector.ERROR_VECTOR_IS_NO_ARRAY,
             function () {
@@ -23,7 +24,7 @@
             }
         );
 
-        /* Vector: initialize vector wrong given values */
+        /* Vector: init vector wrong given values */
         new Test(
             Vector.ERROR_VECTOR_SIZE_WRONG,
             function () {
@@ -33,7 +34,7 @@
             }
         );
 
-        /* Vector: initialize vector wrong given values */
+        /* Vector: init vector wrong given values */
         new Test(
             Vector.ERROR_ELEMENT_IS_NO_NUMBER,
             function () {

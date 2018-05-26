@@ -51,7 +51,7 @@ class Matrix extends Base {
     }
 
     static get SUCCESS_INITIALIZE_MATRIX() {
-        return [201, 'Matrix: initialize matrix'];
+        return [201, 'Matrix: init matrix'];
     }
 
     static get SUCCESS_CHANGE_CELL_TEST() {
@@ -109,8 +109,8 @@ class Matrix extends Base {
         this.assert(matrix instanceof Array, 'matrix.constructor', Matrix.ERROR_ROWS_IS_NO_ARRAY);
         this.assert(matrix.length > 0, 'matrix.constructor', Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG);
 
-        this.rows = matrix.length;
-        this.cols = 0;
+        this.numberRows = matrix.length;
+        this.numberCols = 0;
         this.matrix = matrix;
 
         /* check the rows and cols of matrix */
@@ -128,14 +128,14 @@ class Matrix extends Base {
                 {'row': rowNumber}
             );
 
-            if (this.cols === 0) {
-                this.cols = row.length;
+            if (this.numberCols === 0) {
+                this.numberCols = row.length;
             } else {
                 this.assert(
-                    this.cols === row.length,
+                    this.numberCols === row.length,
                     'matrix.constructor',
                     Matrix.ERROR_WRONG_COL_NUMBER,
-                    {'row': rowNumber + 1, 'col': this.cols}
+                    {'row': rowNumber + 1, 'col': this.numberCols}
                 );
             }
 
@@ -181,8 +181,8 @@ class Matrix extends Base {
      * @param y
      * @returns {*}
      */
-    get numberRows() {
-        return this.rows;
+    get rows() {
+        return this.numberRows;
     }
 
     /**
@@ -192,8 +192,8 @@ class Matrix extends Base {
      * @param y
      * @returns {*}
      */
-    get numberCols() {
-        return this.cols;
+    get cols() {
+        return this.numberCols;
     }
 
     /**

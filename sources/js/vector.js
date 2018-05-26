@@ -4,7 +4,7 @@
  * @author  Björn Hempel <bjoern@hempel.li>
  * @version 1.0 (2018-05-21)
  */
-class Vector {
+class Vector extends Base {
 
     static get ERROR_VECTOR_IS_NO_ARRAY() {
         return [101, 'Vector: given vector format is not an array', 'The given parameter vector must be an instance of Array.'];
@@ -19,7 +19,7 @@ class Vector {
     }
 
     static get SUCCESS_INITIALIZE_VECTOR() {
-        return [201, 'initialize vector'];
+        return [201, 'init vector'];
     }
 
     static get SUCCESS_CALLBACK() {
@@ -27,26 +27,26 @@ class Vector {
     }
 
     /**
-     * The constructor of the meshHolder.
+     * The constructor of the Vector class.
      *
      * @param vector {Array}
      * @returns {null}
      */
     constructor(vector) {
+        super();
 
         this.name = 'Vector';
 
-        return this.initialize(vector);
+        this.init(vector);
     }
 
     /**
-     * Initialize this class.
+     * Initialise this class.
      *
      * @param vector {Array}
      * @returns {null}
      */
-    initialize(vector) {
-
+    init(vector) {
         /* check assertions of given vector */
         this.assert(vector instanceof Array, 'vector.constructor', Vector.ERROR_VECTOR_IS_NO_ARRAY);
         this.assert(vector.length > 0, 'vector.constructor', Vector.ERROR_VECTOR_SIZE_WRONG);
@@ -62,8 +62,6 @@ class Vector {
                 {'element': elementNumber + 1}
             );
         }, this);
-
-        return;
     }
 
     /**
