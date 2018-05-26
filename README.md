@@ -13,37 +13,37 @@ var vector = new Vector([1, 2, 3]);
 console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 ```
 
-### 1.2 Manipulate the vector
-
-#### 1.2.1 Change a value
+### 1.2 Add two vectors
 
 Coming soon..
 
-#### 1.2.2 Add a value
+### 1.3 Subtract two vectors
 
 Coming soon..
 
-#### 1.2.3 Delete a value
+### 1.4 Dot Product
 
 Coming soon..
 
-### 1.3 Add two vectors
+### 1.5 Cross Product
 
 Coming soon..
 
-### 1.4 Subtract two vectors
+### 1.6 Length of the vector
 
 Coming soon..
 
-### 1.5 Dot Product
+### 1.7 Manipulate the vector
+
+#### 1.7.1 Change a value
 
 Coming soon..
 
-### 1.6 Cross Product
+#### 1.7.2 Add a value
 
 Coming soon..
 
-### 1.7 Length of the vector
+#### 1.7.3 Delete a value
 
 Coming soon..
 
