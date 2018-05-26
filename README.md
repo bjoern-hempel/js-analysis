@@ -221,7 +221,7 @@ console.log(JSON.stringify(matrix2.array)); // prints [[0.22727272727272718,-0.0
 
 <table>
     <tr>
-        <th colspan="2" align="left"><code>Matrix.add([copy], col, row, value)</code></th>
+        <th colspan="2" align="left"><code>Matrix.changeCell([copy], col, row, value)</code></th>
     </tr>
     <tr>
         <td><code>@param</code></td>
