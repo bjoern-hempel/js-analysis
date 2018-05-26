@@ -327,16 +327,20 @@ Call `tests/vector.html` in your browser. It returns for example something like 
 
 ```text
 1) Running error test "Vector: given vector format is not an array" (Code: 101).
-   Test succeeded.
+   Test succeeded (0.4 ms).
 2) Running error test "Vector: the size of the given vector is wrong" (Code: 102).
-   Test succeeded.
+   Test succeeded (0.2 ms).
 3) Running error test "Vector: element from vector is no number" (Code: 103).
-   Test succeeded.
-4) Running success test "initialize vector" (Code: 201).
-   Test succeeded.
+   Test succeeded (0.2 ms).
+4) Running success test "init vector" (Code: 201).
+   Test succeeded (0.2 ms).
+5) Running success test "length of vector" (Code: 202).
+   Test succeeded (0.1 ms).
+6) Running success test "callback function" (Code: 203).
+   Test succeeded (0.1 ms).
 
 RESULT
--> All test succeeded.
+-> All test succeeded (5.6 ms).
 ```
 
 ### 3.2 Matrix library
