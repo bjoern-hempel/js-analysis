@@ -131,8 +131,8 @@ console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
-var matrix3 = matrix1.add(matrix2);
-console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
+matrix1.add(matrix2);
+console.log(JSON.stringify(matrix1.array)); // prints [[3,6,9],[12,15,18]]
 ```
 
 #### 2.3.2 Subtract two matrices
@@ -142,8 +142,8 @@ console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
-var matrix3 = matrix1.substract(matrix2);
-console.log(JSON.stringify(matrix3.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
+matrix1.substract(matrix2);
+console.log(JSON.stringify(matrix1.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 ```
 
 #### 2.3.3 Scalar multiplication
@@ -151,10 +151,10 @@ console.log(JSON.stringify(matrix3.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 ##### 2.3.3.1 Example
 
 ```javascript
-var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var scalar = 2.5;
-var matrix2 = matrix1.scalarMultiplication(scalar);
-console.log(JSON.stringify(matrix2.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
+matrix.scalarMultiplication(scalar);
+console.log(JSON.stringify(matrix.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
 ```
 
 #### 2.3.4 Multiply two matrices
@@ -164,8 +164,8 @@ console.log(JSON.stringify(matrix2.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var matrix2 = new Matrix([[1], [2], [3]]);
-var matrix3 = matrix1.multiply(matrix2);
-console.log(JSON.stringify(matrix3.array)); // prints [[14],[32]]
+matrix1.multiply(matrix2);
+console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 ```
 
 #### 2.3.5 Multiply a matrix with a vector
@@ -175,8 +175,8 @@ console.log(JSON.stringify(matrix3.array)); // prints [[14],[32]]
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var vector1 = new Vector([1, 2 ,3]);
-var matrix2 = matrix1.multiply(vector1);
-console.log(JSON.stringify(matrix2.array)); // prints [[14],[32]]
+matrix1.multiply(vector1);
+console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 ```
 
 #### 2.3.6 Transpose a matrix
