@@ -53,6 +53,22 @@ Here are some calculation examples with matrices with the help of the library `s
 
 ### 2.1 Create a matrix
 
+<table>
+    <tr>
+        <th colspan="2" align="left"><code>Matrix.constructor(array)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Array} array A 2-dimensional array that represents the matrix.</code></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Matrix}</code></td>
+    </tr>
+</table>
+
+##### 2.2.1 Example
+
 ```javascript
 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
