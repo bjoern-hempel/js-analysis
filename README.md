@@ -45,7 +45,7 @@ Normally all calculations refer to the used vector. That means that all calculat
 
 ##### 1.3.1.1 "Change" example:
 
-The following example applies the calculation to the first matrix (`matrix1`).
+The following example applies the calculation to the first vector (`vector1`).
 
 ```javascript
 /* create two matrices */
