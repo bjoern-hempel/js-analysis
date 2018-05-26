@@ -219,7 +219,39 @@ console.log(JSON.stringify(matrix2.array)); // prints [[0.22727272727272718,-0.0
 
 #### 2.4.1 Change value
 
-Coming soon..
+<table>
+    <tr>
+        <th colspan="2" align="left"><code>Matrix.add([copy], col, row, value)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean} copy (optional)</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Integer} col</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Integer} row</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Number} value</code></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Matrix}</code></td>
+    </tr>
+</table>
+
+##### 2.4.1.1 Example
+
+```javascript
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+matrix.changeCell(0, 0, -1);
+console.log(JSON.stringify(matrix1.array)); // prints [[-1,2,3],[4,5,6]]
+```
 
 #### 2.4.2 Change row
 
