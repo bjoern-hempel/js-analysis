@@ -30,10 +30,25 @@ class Base {
                 Object.keys(replace).map(function(key) { errorText = errorText.replace('%' + key, replace[key]); });
             }
 
-            throw new MatrixException(
-                errorType[0],
-                String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
-            );
+            switch (this.name) {
+                case 'Vector':
+                    throw new VectorException(
+                        errorType[0],
+                        String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
+                    );
+                    break;
+
+                case 'Matrix':
+                    throw new MatrixException(
+                        errorType[0],
+                        String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
+                    );
+                    break;
+
+                default:
+                    throw new Error('Unknown class ' + this.name);
+                    break;
+            }
         }
     }
 

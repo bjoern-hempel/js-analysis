@@ -50,9 +50,9 @@
             function () {
                 var vector = new Vector([1, 2, 3]);
                 return (
-                    vector.getElement(0) === 1 &&
-                    vector.getElement(1) === 2 &&
-                    vector.getElement(2) === 3 &&
+                    vector.getCell(0) === 1 &&
+                    vector.getCell(1) === 2 &&
+                    vector.getCell(2) === 3 &&
                     vector.size === 3
                 );
             }
@@ -65,9 +65,9 @@
                 var vector1 = new Vector([1, 2, 3]);
                 var vector2 = vector1.callback(function (element) { return Math.pow(element, 2); });
                 return (
-                    vector2.getElement(0) === 1 &&
-                    vector2.getElement(1) === 4 &&
-                    vector2.getElement(2) === 9 &&
+                    vector2.getCell(0) === 1 &&
+                    vector2.getCell(1) === 4 &&
+                    vector2.getCell(2) === 9 &&
                     vector2.size === 3
                 );
             }

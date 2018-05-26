@@ -43,11 +43,11 @@ class Matrix extends Base {
     }
 
     static get ERROR_CELL_IS_NO_NUMBER() {
-        return [110, 'Matrix: cell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
+        return [110, 'Matrix: getCell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
     }
 
     static get ERROR_WRONG_CELL_ACCESS() {
-        return [111, 'Matrix: cell access is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
+        return [111, 'Matrix: getCell access is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
     }
 
     static get SUCCESS_INITIALISE_MATRIX() {
@@ -155,17 +155,6 @@ class Matrix extends Base {
     }
 
     /**
-     * get the cell of matrix.
-     *
-     * @param x
-     * @param y
-     * @returns {*}
-     */
-    getCell(row, col) {
-        return this.matrix[row][col];
-    }
-
-    /**
      * Returns the current matrix.
      *
      * @returns {Array|*}
@@ -197,7 +186,18 @@ class Matrix extends Base {
     }
 
     /**
-     * Change value of a cell of this matrix.
+     * get the getCell of matrix.
+     *
+     * @param x
+     * @param y
+     * @returns {*}
+     */
+    getCell(row, col) {
+        return this.matrix[row][col];
+    }
+
+    /**
+     * Change value of a getCell of this matrix.
      *
      * @param col
      * @param row
@@ -320,7 +320,7 @@ class Matrix extends Base {
     }
 
     /**
-     * Helper function to change a given cell.
+     * Helper function to change a given getCell.
      *
      * @param matrix
      * @param col

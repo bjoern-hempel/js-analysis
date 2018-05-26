@@ -112,7 +112,7 @@
             }
         );
 
-        /* Matrix: start change cell test (correct - keep) */
+        /* Matrix: start change getCell test (correct - keep) */
         new Test(
             {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'keep'},
             function () {
@@ -134,7 +134,7 @@
             }
         );
 
-        /* Matrix: start change cell test (correct - keep) */
+        /* Matrix: start change getCell test (correct - keep) */
         new Test(
             {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'copy'},
             function () {
@@ -512,8 +512,8 @@
 
                 return (
                     vector2 instanceof Vector &&
-                    vector2.getElement(0) === 14 &&
-                    vector2.getElement(1) === 32 &&
+                    vector2.getCell(0) === 14 &&
+                    vector2.getCell(1) === 32 &&
                     vector2.size === 2
                 );
             }

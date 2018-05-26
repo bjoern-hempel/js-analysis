@@ -65,17 +65,6 @@ class Vector extends Base {
     }
 
     /**
-     * get the element of vector.
-     *
-     * @param x
-     * @param y
-     * @returns {*}
-     */
-    getElement(element) {
-        return this.vector[element];
-    }
-
-    /**
      * Returns the current vector.
      *
      * @returns {Array|*}
@@ -96,26 +85,14 @@ class Vector extends Base {
     }
 
     /**
-     * Check the assertion and throw an exception if the assertion is not satisfied.
+     * get the element of vector.
      *
-     * @param assertion
-     * @param functionName
-     * @param errorCode
-     * @param errorText
+     * @param x
+     * @param y
+     * @returns {*}
      */
-    assert(assertion, functionName, errorType, replace) {
-        if (!assertion) {
-            var errorText = errorType[2];
-
-            if (typeof replace === "object") {
-                Object.keys(replace).map(function(key) { errorText = errorText.replace('%' + key, replace[key]); });
-            }
-
-            throw new VectorException(
-                errorType[0],
-                String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
-            );
-        }
+    getCell(element) {
+        return this.vector[element];
     }
 
     /**
