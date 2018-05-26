@@ -106,8 +106,8 @@ class Matrix extends Base {
      */
     init(matrix) {
         /* check assertions of given matrix */
-        this.assert(matrix instanceof Array, 'matrix.constructor', Matrix.ERROR_ROWS_IS_NO_ARRAY);
-        this.assert(matrix.length > 0, 'matrix.constructor', Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG);
+        this.assert(matrix instanceof Array, 'matrix.constructor', this.constructor.ERROR_ROWS_IS_NO_ARRAY);
+        this.assert(matrix.length > 0, 'matrix.constructor', this.constructor.ERROR_ROWS_COUNT_ARRAY_WRONG);
 
         this.numberRows = matrix.length;
         this.numberCols = 0;
@@ -118,13 +118,13 @@ class Matrix extends Base {
             this.assert(
                 row instanceof Array,
                 'matrix.constructor',
-                Matrix.ERROR_COLS_IS_NO_ARRAY,
+                this.constructor.ERROR_COLS_IS_NO_ARRAY,
                 {'row': rowNumber + 1}
             );
             this.assert(
                 row.length > 0,
                 'matrix.constructor',
-                Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
+                this.constructor.ERROR_COLS_COUNT_ARRAY_WRONG,
                 {'row': rowNumber}
             );
 
@@ -134,7 +134,7 @@ class Matrix extends Base {
                 this.assert(
                     this.numberCols === row.length,
                     'matrix.constructor',
-                    Matrix.ERROR_WRONG_COL_NUMBER,
+                    this.constructor.ERROR_WRONG_COL_NUMBER,
                     {'row': rowNumber + 1, 'col': this.numberCols}
                 );
             }
@@ -143,7 +143,7 @@ class Matrix extends Base {
                 this.assert(
                     !isNaN(col),
                     'matrix.constructor',
-                    Matrix.ERROR_CELL_IS_NO_NUMBER,
+                    this.constructor.ERROR_CELL_IS_NO_NUMBER,
                     {'col': colNumber + 1, 'row': rowNumber + 1}
                 );
 
@@ -206,10 +206,10 @@ class Matrix extends Base {
     changeCell() {
         var args = this.buildArgumentList(arguments, ['col', 'row', 'value']);
 
-        this.assert(args.col < this.numberCols, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
-        this.assert(args.row < this.numberRows, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
+        this.assert(args.col < this.numberCols, 'matrix.changeCell', this.constructor.ERROR_WRONG_CELL_ACCESS);
+        this.assert(args.row < this.numberRows, 'matrix.changeCell', this.constructor.ERROR_WRONG_CELL_ACCESS);
 
-        return this.doCalculate(args.copy, Matrix.changeCell, this.array, args.col, args.row, args.value);
+        return this.doCalculate(args.copy, this.constructor.changeCell, this.array, args.col, args.row, args.value);
     }
 
     /**
@@ -222,10 +222,10 @@ class Matrix extends Base {
     add() {
         var args = this.buildArgumentList(arguments, ['matrix']);
 
-        this.assert(args.matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+        this.assert(args.matrix instanceof Matrix, 'matrix.add', this.constructor.ERROR_WRONG_MATRIX_TYPE);
+        this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', this.constructor.ERROR_WRONG_MATRIX_DIMENSIONS);
 
-        return this.doCalculate(args.copy, Matrix.add, this.array, args.matrix.array);
+        return this.doCalculate(args.copy, this.constructor.add, this.array, args.matrix.array);
     }
 
     /**
@@ -238,10 +238,10 @@ class Matrix extends Base {
     subtract() {
         var args = this.buildArgumentList(arguments, ['matrix']);
 
-        this.assert(args.matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+        this.assert(args.matrix instanceof Matrix, 'matrix.subtract', this.constructor.ERROR_WRONG_MATRIX_TYPE);
+        this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', this.constructor.ERROR_WRONG_MATRIX_DIMENSIONS);
 
-        return this.doCalculate(args.copy, Matrix.subtract, this.array, args.matrix.array);
+        return this.doCalculate(args.copy, this.constructor.subtract, this.array, args.matrix.array);
     }
 
     /**
@@ -255,7 +255,7 @@ class Matrix extends Base {
         var args = this.buildArgumentList(arguments,  ['matrix']);
 
         if (this.isNumber(args.matrix)) {
-            return this.doCalculate(args.copy, Matrix.scalarMultiplication, args.matrix, this.array);
+            return this.doCalculate(args.copy, this.constructor.scalarMultiplication, args.matrix, this.array);
         }
 
         if (args.matrix instanceof Vector) {
@@ -267,10 +267,10 @@ class Matrix extends Base {
             return this;
         }
 
-        this.assert(args.matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assert(this.cols === args.matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+        this.assert(args.matrix instanceof Matrix, 'matrix.multiply', this.constructor.ERROR_WRONG_MATRIX_TYPE);
+        this.assert(this.cols === args.matrix.numberRows, 'matrix.multiply', this.constructor.ERROR_WRONG_MATRIX_DIMENSIONS);
 
-        return this.doCalculate(args.copy, Matrix.multiply, this.array, args.matrix.array);
+        return this.doCalculate(args.copy, this.constructor.multiply, this.array, args.matrix.array);
     }
 
     /**
@@ -283,9 +283,9 @@ class Matrix extends Base {
     scalarMultiplication() {
         var args = this.buildArgumentList(arguments, ['matrix']);
 
-        this.assert(this.isNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
+        this.assert(this.isNumber(args.matrix), 'matrix.scalarMultiplication', this.constructor.ERROR_NO_SCALAR);
 
-        return this.doCalculate(args.copy, Matrix.scalarMultiplication, args.matrix, this.array);
+        return this.doCalculate(args.copy, this.constructor.scalarMultiplication, args.matrix, this.array);
     }
 
     /**
@@ -294,7 +294,7 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     transpose() {
-        return new Matrix(Matrix.transpose(this.array));
+        return new Matrix(this.constructor.transpose(this.array));
     }
 
     /**
@@ -303,9 +303,9 @@ class Matrix extends Base {
      * @returns {Number}
      */
     determinant() {
-        this.assert(this.cols === this.rows, 'matrix.determinant', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
+        this.assert(this.cols === this.rows, 'matrix.determinant', this.constructor.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
-        return Matrix.determinant(this.array);
+        return this.constructor.determinant(this.array);
     }
 
     /**
@@ -314,9 +314,9 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     inverse() {
-        this.assert(this.cols === this.rows, 'matrix.inverse', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
+        this.assert(this.cols === this.rows, 'matrix.inverse', this.constructor.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
-        return new Matrix(Matrix.inverse(this.array));
+        return new Matrix(this.constructor.inverse(this.array));
     }
 
     /**
@@ -377,8 +377,8 @@ class Matrix extends Base {
      */
     static multiply(matrix1, matrix2) {
         var matrix = matrix1.map(function (vector1) {
-            return Matrix.transpose(matrix2 ).map(function (vector2) {
-                return Matrix.dotProduct(vector1, vector2);
+            return this.constructor.transpose(matrix2 ).map(function (vector2) {
+                return this.constructor.dotProduct(vector1, vector2);
             }, this);
         }, this);
 
@@ -447,7 +447,7 @@ class Matrix extends Base {
         var determinant = 0;
 
         for (var i = 0; i < matrix.length; i++) {
-            determinant += Math.pow(-1, i) * matrix[0][i] * Matrix.determinant(Matrix.deleteRowAndColumn(matrix, 0, i));
+            determinant += Math.pow(-1, i) * matrix[0][i] * this.determinant(this.deleteRowAndColumn(matrix, 0, i));
         }
 
         return determinant;
