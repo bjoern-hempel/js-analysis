@@ -96,7 +96,7 @@ class Vector extends Base {
      * @returns {*}
      */
     get length() {
-        var square = this.vector.reduce(function(value1, value2) { return value1 + Math.pow(value2, 2); }, 0);
+        var square = this.vector.reduce(function(sum, currentValue) { return sum + Math.pow(currentValue, 2); }, 0);
 
         return Math.sqrt(square);
     }
