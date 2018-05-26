@@ -290,7 +290,10 @@ class Matrix {
         var func = [].shift.apply(arguments);
 
         if (copy) {
-            return new Matrix(func.apply(this, arguments));
+            /* copy the argument list to avoid changes on the original object. */
+            var args = JSON.parse(JSON.stringify([].slice.call(arguments)));
+
+            return new Matrix(func.apply(this, args));
         }
 
         this.init(func.apply(this, arguments));
@@ -310,9 +313,7 @@ class Matrix {
         this.assertionCheck(args.col < this.numberCols, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
         this.assertionCheck(args.row < this.numberRows, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
 
-        this.array[args.row][args.col] = args.value;
-
-        return this;
+        return this.doCalculate(args.copy, this.helperChangeCell, this.array, args.col, args.row, args.value);
     }
 
     /**
@@ -420,6 +421,21 @@ class Matrix {
         this.assertionCheck(this.cols === this.rows, 'matrix.inverse', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
         return new Matrix(this.helperInverse(this.array));
+    }
+
+    /**
+     * Helper function to change a given cell.
+     *
+     * @param matrix
+     * @param col
+     * @param row
+     * @param value
+     * @returns {Array}
+     */
+    helperChangeCell(matrix, col, row, value) {
+        matrix[row][col] = value;
+
+        return matrix;
     }
 
     /**
