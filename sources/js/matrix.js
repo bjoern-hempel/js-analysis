@@ -4,7 +4,7 @@
  * @author  Björn Hempel <bjoern@hempel.li>
  * @version 1.0 (2018-05-13)
  */
-class Matrix {
+class Matrix extends Base {
 
     static get ERROR_ROWS_IS_NO_ARRAY() {
         return [101, 'Matrix: rows are not an array', 'The given parameter matrix must be an instance of Array.'];
@@ -92,9 +92,11 @@ class Matrix {
      * @param matrix
      */
     constructor(matrix) {
+        super();
+
         this.name = 'Matrix';
 
-        return this.init(matrix);
+        this.init(matrix);
     }
 
     /**
@@ -195,112 +197,6 @@ class Matrix {
     }
 
     /**
-     * Check the assertion and throw an exception if the assertion is not satisfied.
-     *
-     * @param assertion
-     * @param functionName
-     * @param errorCode
-     * @param errorText
-     */
-    assertionCheck(assertion, functionName, errorType, replace) {
-        if (!assertion) {
-            var errorText = errorType[2];
-
-            if (typeof replace === "object") {
-                Object.keys(replace).map(function(key) { errorText = errorText.replace('%' + key, replace[key]); });
-            }
-
-            throw new MatrixException(
-                errorType[0],
-                String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
-            );
-        }
-    }
-
-    /**
-     * Extracts the copy argument from given argument list.
-     *
-     * @returns {{copy: boolean, matrix: Array}}
-     */
-    extractArguments() {
-        var type = [].shift.apply(arguments);
-
-        switch (type) {
-            case 1:
-                var copy   = false;
-                var matrix = arguments[0] || [];
-
-                /* Handle a copy situation */
-                if (typeof matrix === "boolean") {
-                    copy = matrix;
-                    matrix = arguments[1] || [];
-                }
-
-                return {
-                    copy:   copy,
-                    matrix: matrix,
-                };
-
-                break;
-
-            case 3:
-                var copy  = false;
-                var col   = arguments[0] || 0;
-                var row   = arguments[1] || 0;
-                var value = arguments[2] || 0;
-
-                /* Handle a copy situation */
-                if (typeof col === "boolean") {
-                    copy  = col;
-                    col   = arguments[1] || 0;
-                    row   = arguments[2] || 0;
-                    value = arguments[3] || 0;
-                }
-
-                return {
-                    copy:  copy,
-                    col:   col,
-                    row:   row,
-                    value: value
-                };
-
-                break
-        }
-    }
-
-    /**
-     * Extract the arguments.
-     *
-     * @param args
-     * @returns {{copy: boolean, matrix: Array}}
-     */
-    buildArgumentList(args, type) {
-        var args = [].slice.call(args);
-        args.unshift(type);
-        return this.extractArguments.apply(this, args);
-    }
-
-    /**
-     * Doing the calculation.
-     *
-     * @returns {Matrix}
-     */
-    doCalculate() {
-        var copy = [].shift.apply(arguments);
-        var func = [].shift.apply(arguments);
-
-        if (copy) {
-            /* copy the argument list to avoid changes on the original object. */
-            var args = JSON.parse(JSON.stringify([].slice.call(arguments)));
-
-            return new Matrix(func.apply(this, args));
-        }
-
-        this.init(func.apply(this, arguments));
-        return this;
-    }
-
-    /**
      * Change value of a cell of this matrix.
      *
      * @param col
@@ -358,7 +254,7 @@ class Matrix {
     multiply() {
         var args = this.buildArgumentList(arguments, 1);
 
-        if (this.helperIsNumber(args.matrix)) {
+        if (this.isNumber(args.matrix)) {
             return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
         }
 
@@ -387,7 +283,7 @@ class Matrix {
     scalarMultiplication() {
         var args = this.buildArgumentList(arguments, 1);
 
-        this.assertionCheck(this.helperIsNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
+        this.assertionCheck(this.isNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
 
         return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
     }
@@ -643,23 +539,5 @@ class Matrix {
         }
 
         return inversedMatrix;
-    }
-
-    /**
-     * Check, if given value is a number.
-     *
-     * @param value
-     * @returns {boolean}
-     */
-    helperIsNumber(value) {
-        if (Number(value) === value && value % 1 === 0) {
-            return true;
-        }
-
-        if (Number(value) === value && value % 1 !== 0) {
-            return true;
-        }
-
-        return false;
     }
 }
