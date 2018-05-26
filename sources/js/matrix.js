@@ -50,7 +50,7 @@ class Matrix extends Base {
         return [111, 'Matrix: cell access is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
     }
 
-    static get SUCCESS_INITIALIZE_MATRIX() {
+    static get SUCCESS_INITIALISE_MATRIX() {
         return [201, 'Matrix: init matrix'];
     }
 
