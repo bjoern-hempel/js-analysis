@@ -108,6 +108,24 @@ console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 
 #### 2.3.1 Add two matrices
 
+<table>
+    <tr>
+        <th colspan="2" align="left"><code>Matrix.add([copy], matrix)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean} copy (optional)</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Matrix} matrix</code></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Matrix}</code></td>
+    </tr>
+</table>
+
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
