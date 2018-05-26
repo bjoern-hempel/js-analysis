@@ -38,66 +38,29 @@ class Base {
     }
 
     /**
-     * Extracts the copy argument from given argument list.
-     *
-     * @returns {{copy: boolean, matrix: Array}}
-     */
-    extractArguments() {
-        var type = [].shift.apply(arguments);
-
-        switch (type) {
-            case 1:
-                var copy   = false;
-                var matrix = arguments[0] || [];
-
-                /* Handle a copy situation */
-                if (typeof matrix === "boolean") {
-                    copy = matrix;
-                    matrix = arguments[1] || [];
-                }
-
-                return {
-                    copy:   copy,
-                    matrix: matrix,
-                };
-
-                break;
-
-            case 3:
-                var copy  = false;
-                var col   = arguments[0] || 0;
-                var row   = arguments[1] || 0;
-                var value = arguments[2] || 0;
-
-                /* Handle a copy situation */
-                if (typeof col === "boolean") {
-                    copy  = col;
-                    col   = arguments[1] || 0;
-                    row   = arguments[2] || 0;
-                    value = arguments[3] || 0;
-                }
-
-                return {
-                    copy:  copy,
-                    col:   col,
-                    row:   row,
-                    value: value
-                };
-
-                break
-        }
-    }
-
-    /**
-     * Extract the arguments.
+     * Build the argument list.
      *
      * @param args
-     * @returns {{copy: boolean, matrix: Array}}
+     * @param argumentNames
+     * @returns {Object}
      */
-    buildArgumentList(args, type) {
+    buildArgumentList(args, argumentNames) {
         var args = [].slice.call(args);
-        args.unshift(type);
-        return this.extractArguments.apply(this, args);
+
+        var index = 0;
+        var argumentList = {copy: false};
+
+        if (typeof args[index] === "boolean") {
+            argumentList.copy = args[index];
+            index++;
+        }
+
+        argumentNames.map(function(name) {
+            argumentList[name] = args[index];
+            index++;
+        });
+
+        return argumentList;
     }
 
     /**

@@ -204,7 +204,7 @@ class Matrix extends Base {
      * @param value
      */
     changeCell() {
-        var args = this.buildArgumentList(arguments, 3);
+        var args = this.buildArgumentList(arguments, ['col', 'row', 'value']);
 
         this.assertionCheck(args.col < this.numberCols, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
         this.assertionCheck(args.row < this.numberRows, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
@@ -220,7 +220,7 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     add() {
-        var args = this.buildArgumentList(arguments, 1);
+        var args = this.buildArgumentList(arguments, ['matrix']);
 
         this.assertionCheck(args.matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
@@ -236,7 +236,7 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     subtract() {
-        var args = this.buildArgumentList(arguments, 1);
+        var args = this.buildArgumentList(arguments, ['matrix']);
 
         this.assertionCheck(args.matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
         this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
@@ -252,7 +252,7 @@ class Matrix extends Base {
      * @returns {Matrix|Vector}
      */
     multiply() {
-        var args = this.buildArgumentList(arguments, 1);
+        var args = this.buildArgumentList(arguments,  ['matrix']);
 
         if (this.isNumber(args.matrix)) {
             return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
@@ -281,7 +281,7 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     scalarMultiplication() {
-        var args = this.buildArgumentList(arguments, 1);
+        var args = this.buildArgumentList(arguments, ['matrix']);
 
         this.assertionCheck(this.isNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
 
