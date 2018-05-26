@@ -22,7 +22,7 @@ class Base {
      * @param errorCode
      * @param errorText
      */
-    assertionCheck(assertion, functionName, errorType, replace) {
+    assert(assertion, functionName, errorType, replace) {
         if (!assertion) {
             var errorText = errorType[2];
 

@@ -106,8 +106,8 @@ class Matrix extends Base {
      */
     init(matrix) {
         /* check assertions of given matrix */
-        this.assertionCheck(matrix instanceof Array, 'matrix.constructor', Matrix.ERROR_ROWS_IS_NO_ARRAY);
-        this.assertionCheck(matrix.length > 0, 'matrix.constructor', Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG);
+        this.assert(matrix instanceof Array, 'matrix.constructor', Matrix.ERROR_ROWS_IS_NO_ARRAY);
+        this.assert(matrix.length > 0, 'matrix.constructor', Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG);
 
         this.rows = matrix.length;
         this.cols = 0;
@@ -115,13 +115,13 @@ class Matrix extends Base {
 
         /* check the rows and cols of matrix */
         matrix.map(function (row, rowNumber) {
-            this.assertionCheck(
+            this.assert(
                 row instanceof Array,
                 'matrix.constructor',
                 Matrix.ERROR_COLS_IS_NO_ARRAY,
                 {'row': rowNumber + 1}
             );
-            this.assertionCheck(
+            this.assert(
                 row.length > 0,
                 'matrix.constructor',
                 Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
@@ -131,7 +131,7 @@ class Matrix extends Base {
             if (this.cols === 0) {
                 this.cols = row.length;
             } else {
-                this.assertionCheck(
+                this.assert(
                     this.cols === row.length,
                     'matrix.constructor',
                     Matrix.ERROR_WRONG_COL_NUMBER,
@@ -140,7 +140,7 @@ class Matrix extends Base {
             }
 
             row.map(function (col, colNumber) {
-                this.assertionCheck(
+                this.assert(
                     !isNaN(col),
                     'matrix.constructor',
                     Matrix.ERROR_CELL_IS_NO_NUMBER,
@@ -206,8 +206,8 @@ class Matrix extends Base {
     changeCell() {
         var args = this.buildArgumentList(arguments, ['col', 'row', 'value']);
 
-        this.assertionCheck(args.col < this.numberCols, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
-        this.assertionCheck(args.row < this.numberRows, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
+        this.assert(args.col < this.numberCols, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
+        this.assert(args.row < this.numberRows, 'matrix.changeCell', Matrix.ERROR_WRONG_CELL_ACCESS);
 
         return this.doCalculate(args.copy, this.helperChangeCell, this.array, args.col, args.row, args.value);
     }
@@ -222,8 +222,8 @@ class Matrix extends Base {
     add() {
         var args = this.buildArgumentList(arguments, ['matrix']);
 
-        this.assertionCheck(args.matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+        this.assert(args.matrix instanceof Matrix, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.add', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
         return this.doCalculate(args.copy, this.helperAdd, this.array, args.matrix.array);
     }
@@ -238,8 +238,8 @@ class Matrix extends Base {
     subtract() {
         var args = this.buildArgumentList(arguments, ['matrix']);
 
-        this.assertionCheck(args.matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assertionCheck(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+        this.assert(args.matrix instanceof Matrix, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assert(this.cols === args.matrix.numberCols && this.rows === args.matrix.numberRows, 'matrix.subtract', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
         return this.doCalculate(args.copy, this.helperSubtract, this.array, args.matrix.array);
     }
@@ -267,8 +267,8 @@ class Matrix extends Base {
             return this;
         }
 
-        this.assertionCheck(args.matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
-        this.assertionCheck(this.cols === args.matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
+        this.assert(args.matrix instanceof Matrix, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_TYPE);
+        this.assert(this.cols === args.matrix.numberRows, 'matrix.multiply', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS);
 
         return this.doCalculate(args.copy, this.helperMultiply, this.array, args.matrix.array);
     }
@@ -283,7 +283,7 @@ class Matrix extends Base {
     scalarMultiplication() {
         var args = this.buildArgumentList(arguments, ['matrix']);
 
-        this.assertionCheck(this.isNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
+        this.assert(this.isNumber(args.matrix), 'matrix.scalarMultiplication', Matrix.ERROR_NO_SCALAR);
 
         return this.doCalculate(args.copy, this.helperScalarMultiplication, args.matrix, this.array);
     }
@@ -303,7 +303,7 @@ class Matrix extends Base {
      * @returns {Number}
      */
     determinant() {
-        this.assertionCheck(this.cols === this.rows, 'matrix.determinant', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
+        this.assert(this.cols === this.rows, 'matrix.determinant', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
         return this.helperDeterminant(this.array);
     }
@@ -314,7 +314,7 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     inverse() {
-        this.assertionCheck(this.cols === this.rows, 'matrix.inverse', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
+        this.assert(this.cols === this.rows, 'matrix.inverse', Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
         return new Matrix(this.helperInverse(this.array));
     }

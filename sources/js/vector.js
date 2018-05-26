@@ -48,14 +48,14 @@ class Vector {
     initialize(vector) {
 
         /* check assertions of given vector */
-        this.assertionCheck(vector instanceof Array, 'vector.constructor', Vector.ERROR_VECTOR_IS_NO_ARRAY);
-        this.assertionCheck(vector.length > 0, 'vector.constructor', Vector.ERROR_VECTOR_SIZE_WRONG);
+        this.assert(vector instanceof Array, 'vector.constructor', Vector.ERROR_VECTOR_IS_NO_ARRAY);
+        this.assert(vector.length > 0, 'vector.constructor', Vector.ERROR_VECTOR_SIZE_WRONG);
 
         this.vector = vector;
 
         /* check the rows and cols of vector */
         vector.map(function (element, elementNumber) {
-            this.assertionCheck(
+            this.assert(
                 !isNaN(element),
                 'vector.constructor',
                 Vector.ERROR_ELEMENT_IS_NO_NUMBER,
@@ -105,7 +105,7 @@ class Vector {
      * @param errorCode
      * @param errorText
      */
-    assertionCheck(assertion, functionName, errorType, replace) {
+    assert(assertion, functionName, errorType, replace) {
         if (!assertion) {
             var errorText = errorType[2];
 
