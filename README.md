@@ -39,7 +39,53 @@ Coming soon..
 
 ### 1.3 Calculations
 
-#### 1.3.1 Add two vectors
+#### 1.3.1 Change or copy the used vector
+
+Normally all calculations refer to the used vector. That means that all calculations will change this vector.
+
+##### 1.3.1.1 "Change" example:
+
+The following example applies the calculation to the first matrix (`matrix1`).
+
+```javascript
+/* create two matrices */
+var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
+
+/* do the calculation */
+matrix1.add(matrix2);
+
+/* The matrix matrix1 now contains the value [[3,6,9],[12,15,18]]!
+ * The old value [[1,2,3],[4,5,6]] has changed.
+ * The matrix matrix2 is unchanged.
+ */
+console.log(JSON.stringify(matrix1.array)); // prints [[3,6,9],[12,15,18]]
+console.log(JSON.stringify(matrix2.array)); // prints [[2,4,6],[8,10,12]]
+```
+
+##### 1.3.1.2 "Copy" example:
+
+If you want to keep the values from the used matrix `matrix1`, you can do a copy from the calculation result. Just add another parameter to the calculation function (the copy parameter):
+
+```javascript
+/* create two matrices */
+var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+var matrix2 = new Matrix([[2, 4, 6], [8, 10, 12]]);
+
+/* Do the calculation and copy the result to matrix3.
+ * The first parameter must contain the value true. */
+var matrix3 = matrix1.add(true, matrix2);
+
+/* The matrix matrix1 is unchanged.
+ * The matrix matrix2 is unchanged.
+ * The matrix matrix3 now contains the calculation result [[3,6,9],[12,15,18]]!
+ */
+console.log(JSON.stringify(matrix1.array)); // prints [[1,2,3],[4,5,6]]
+console.log(JSON.stringify(matrix2.array)); // prints [[2,4,6],[8,10,12]]
+console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
+```
+
+#### 1.3.2 Add two vectors
 
 Coming soon..
 
@@ -47,11 +93,11 @@ Coming soon..
 
 Coming soon..
 
-#### 1.3.3 Dot Product
+#### 1.3.4 Dot Product
 
 Coming soon..
 
-#### 1.3.4 Cross Product
+#### 1.3.5 Cross Product
 
 Coming soon..
 
@@ -98,11 +144,15 @@ var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
 ```
 
-#### 2.1.2 Change or copy the used matrix
+### 2.2 Properties
+
+### 2.3 Calculations
+
+#### 2.3.1 Change or copy the used matrix
 
 Normally all calculations refer to the used matrix. That means that all calculations will change this matrix.
 
-##### 2.1.2.1 "Change" example:
+##### 2.3.1.1 "Change" example:
 
 The following example applies the calculation to the first matrix (`matrix1`).
 
@@ -122,7 +172,7 @@ console.log(JSON.stringify(matrix1.array)); // prints [[3,6,9],[12,15,18]]
 console.log(JSON.stringify(matrix2.array)); // prints [[2,4,6],[8,10,12]]
 ```
 
-##### 2.1.2.2 "Copy" example:
+##### 2.3.1.2 "Copy" example:
 
 If you want to keep the values from the used matrix `matrix1`, you can do a copy from the calculation result. Just add another parameter to the calculation function (the copy parameter):
 
@@ -144,11 +194,7 @@ console.log(JSON.stringify(matrix2.array)); // prints [[2,4,6],[8,10,12]]
 console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 ```
 
-### 2.2 Properties
-
-### 2.3 Calculations
-
-#### 2.3.1 Add two matrices
+#### 2.3.2 Add two matrices
 
 <table>
     <tr>
@@ -168,7 +214,7 @@ console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
     </tr>
 </table>
 
-##### 2.3.1.1 Example
+##### 2.3.2.1 Example
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -177,9 +223,9 @@ matrix1.add(matrix2);
 console.log(JSON.stringify(matrix1.array)); // prints [[3,6,9],[12,15,18]]
 ```
 
-#### 2.3.2 Subtract two matrices
+#### 2.3.3 Subtract two matrices
 
-##### 2.3.2.1 Example
+##### 2.3.3.1 Example
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -188,9 +234,9 @@ matrix1.substract(matrix2);
 console.log(JSON.stringify(matrix1.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 ```
 
-#### 2.3.3 Scalar multiplication
+#### 2.3.4 Scalar multiplication
 
-##### 2.3.3.1 Example
+##### 2.3.4.1 Example
 
 ```javascript
 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -199,9 +245,9 @@ matrix.scalarMultiplication(scalar);
 console.log(JSON.stringify(matrix.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
 ```
 
-#### 2.3.4 Multiply two matrices
+#### 2.3.5 Multiply two matrices
 
-##### 2.3.4.1 Example
+##### 2.3.5.1 Example
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -210,9 +256,9 @@ matrix1.multiply(matrix2);
 console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 ```
 
-#### 2.3.5 Multiply a matrix with a vector
+#### 2.3.6 Multiply a matrix with a vector
 
-##### 2.3.5.1 Example
+##### 2.3.6.1 Example
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -221,9 +267,9 @@ matrix1.multiply(vector1);
 console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 ```
 
-#### 2.3.6 Transpose a matrix
+#### 2.3.7 Transpose a matrix
 
-##### 2.3.6.1 Example
+##### 2.3.7.1 Example
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -231,9 +277,9 @@ var matrix2 = matrix1.transpose();
 console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
-#### 2.3.7 Calculate the determinant of the matrix
+#### 2.3.8 Calculate the determinant of the matrix
 
-##### 2.3.7.1 Example
+##### 2.3.8.1 Example
 
 ```javascript
 var matrix = new Matrix([
@@ -247,9 +293,9 @@ var determinant = matrix.determinant();
 console.log(determinant); // prints -8406
 ```
 
-#### 2.3.8 Inverse a matrix
+#### 2.3.9 Inverse a matrix
 
-##### 2.3.8.1 Example
+##### 2.3.9.1 Example
 
 ```javascript
 var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
