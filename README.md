@@ -60,7 +60,7 @@ console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
 
 ### 2.2 Change or copy the used matrix
 
-Normally all calculations refer to the used matrix. That means the all calculations will change this matrix.
+Normally all calculations refer to the used matrix. That means that all calculations will change this matrix.
 
 #### 2.2.1 "Change" example:
 
