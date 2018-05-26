@@ -16,7 +16,7 @@ Create vectors and do some calculations with the library `sources/js/vector.js`.
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Array} array A 1-dimensional array that represents the vector.</code></td>
+        <td><code>{Array} array  An one-dimensional array that represents the vector.</code></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
@@ -83,7 +83,7 @@ Here are some calculation examples with matrices with the help of the library `s
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Array} array A 2-dimensional array that represents the matrix.</code></td>
+        <td><code>{Array} array  A two-dimensional array that represents the matrix.</code></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
