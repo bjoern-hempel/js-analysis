@@ -22,8 +22,12 @@ class Vector extends Base {
         return [201, 'init vector'];
     }
 
+    static get SUCCESS_LENGTH_VECTOR() {
+        return [202, 'length of vector'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [202, 'callback function'];
+        return [203, 'callback function'];
     }
 
     /**
@@ -82,6 +86,19 @@ class Vector extends Base {
      */
     get size() {
         return this.vector.length;
+    }
+
+    /**
+     * calculates the length of this vector.
+     *
+     * @param x
+     * @param y
+     * @returns {*}
+     */
+    get length() {
+        var square = this.vector.reduce(function(value1, value2) { return value1 + Math.pow(value2, 2); }, 0);
+
+        return Math.sqrt(square);
     }
 
     /**

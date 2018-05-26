@@ -60,6 +60,18 @@
 
         /* Vector: start initial test */
         new Test(
+            Vector.SUCCESS_LENGTH_VECTOR,
+            function () {
+                var vector = new Vector([1, 2, 3]);
+
+                return (
+                    vector.length === Math.sqrt(14)
+                );
+            }
+        );
+
+        /* Vector: start initial test */
+        new Test(
             Vector.SUCCESS_CALLBACK,
             function () {
                 var vector1 = new Vector([1, 2, 3]);
