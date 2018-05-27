@@ -99,6 +99,36 @@
             }
         );
 
+        /* Vector: start add test (wrong vector type) */
+        new Test(
+            Vector.ERROR_WRONG_VECTOR_TYPE,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = 1;
+                /* this is not a matrix */
+
+                vector1.add(vector2);
+
+                /* the method add should throw an exception */
+                return false;
+            }
+        );
+
+        /* Vector: start add test (wrong vector dimension) */
+        new Test(
+            Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([2, 4]);
+                /* this matrix has the wrong dimensions */
+
+                vector1.add(vector2);
+
+                /* the method add should throw an exception */
+                return false;
+            }
+        );
+
         /* Vector: start add test (correct - keep) */
         new Test(
             {config: Vector.SUCCESS_ADDITION_TEST, mode: 'keep'},

@@ -46,8 +46,12 @@ class Vector extends Base {
         return [204, 'Vector: successful add test'];
     }
 
+    static get SUCCESS_SUBTRACTION_TEST() {
+        return [205, 'Vector: successful add test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [205, 'callback function'];
+        return [206, 'callback function'];
     }
 
     /**

@@ -83,36 +83,6 @@
             }
         );
 
-        /* Matrix: start add test (wrong matrix type) */
-        new Test(
-            Matrix.ERROR_WRONG_MATRIX_TYPE,
-            function () {
-                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-                var matrix2 = 1;
-                /* this is not a matrix */
-
-                matrix1.add(matrix2);
-
-                /* the method add should throw an exception */
-                return false;
-            }
-        );
-
-        /* Matrix: start add test (wrong matrix dimension) */
-        new Test(
-            Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
-            function () {
-                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-                var matrix2 = new Matrix([[2, 4], [8, 10]]);
-                /* this matrix has the wrong dimensions */
-
-                matrix1.add(matrix2);
-
-                /* the method add should throw an exception */
-                return false;
-            }
-        );
-
         /* Matrix: start change getCell test (correct - keep) */
         new Test(
             {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'keep'},
@@ -163,6 +133,36 @@
                     matrix2.cols === 3 &&
                     matrix2.rows === 2
                 );
+            }
+        );
+
+        /* Matrix: start add test (wrong matrix type) */
+        new Test(
+            Matrix.ERROR_WRONG_MATRIX_TYPE,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = 1;
+                /* this is not a matrix */
+
+                matrix1.add(matrix2);
+
+                /* the method add should throw an exception */
+                return false;
+            }
+        );
+
+        /* Matrix: start add test (wrong matrix dimension) */
+        new Test(
+            Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
+            function () {
+                var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+                var matrix2 = new Matrix([[2, 4], [8, 10]]);
+                /* this matrix has the wrong dimensions */
+
+                matrix1.add(matrix2);
+
+                /* the method add should throw an exception */
+                return false;
             }
         );
 
