@@ -199,13 +199,13 @@ Coming soon..
         <td><code>@param</code></td>
         <td><code>{Vector}</code></td>
         <td><code>vector2</code></td>
-        <td>(optional)</td>
+        <td><code>(optional)</code></td>
     </tr>
     <tr>
         <td><code>@param</code></td>
         <td><code>{Vector}</code></td>
         <td><code>vector3</code></td>
-        <td>(optional)</td>
+        <td><code>(optional)</code></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
