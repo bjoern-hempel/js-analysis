@@ -354,6 +354,26 @@ console.log(JSON.stringify(matrix.array)); // prints [[1,4,7],[2,5,8],[3,6,9]]
 
 ### 2.2 Properties
 
+#### 2.2.1 Size of the matrix
+
+<table>
+    <tr>
+        <th colspan="3" align="left"><code>Matrix.size</code></th>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Array}</code></td>
+        <td>Returns number of rows and cols that this matrix consists of.</td>
+    </tr>
+</table>
+
+##### 2.2.1.1 Example
+
+```javascript
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+console.log(JSON.stringify(vector.size)); // prints [2,3]
+```
+
 ### 2.3 Calculations
 
 #### 2.3.1 **Calculation mode:** Change or copy the used matrix
