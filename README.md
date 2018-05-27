@@ -39,7 +39,7 @@ Coming soon..
 
 ### 1.3 Calculations
 
-#### 1.3.1 Change or copy the used vector
+#### 1.3.1 **Calculation mode:** Change or copy the used vector
 
 Normally all calculations refer to the used vector. That means that all calculations will change this vector.
 
@@ -174,7 +174,7 @@ console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
 
 ### 2.3 Calculations
 
-#### 2.3.1 Change or copy the used matrix
+#### 2.3.1 **Calculation mode:** Change or copy the used matrix
 
 Normally all calculations refer to the used matrix. That means that all calculations will change this matrix.
 
