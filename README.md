@@ -203,7 +203,7 @@ console.log(JSON.stringify(vector1.array)); // prints [-1,-2,-3]
         <td><code>@param</code></td>
         <td><code>{Boolean}</code></td>
         <td><code>copy</code></td>
-        <td>(optional)</td>
+        <td>(optional) The copy parameter has no effect in here.</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
