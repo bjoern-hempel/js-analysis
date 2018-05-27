@@ -56,14 +56,8 @@ function startMatrixTest() {
         function () {
             var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
             return (
-                matrix.getCell(0, 0) === 1 &&
-                matrix.getCell(0, 1) === 2 &&
-                matrix.getCell(0, 2) === 3 &&
-                matrix.getCell(1, 0) === 4 &&
-                matrix.getCell(1, 1) === 5 &&
-                matrix.getCell(1, 2) === 6 &&
-                matrix.cols === 3 &&
-                matrix.rows === 2
+                Test.arrayEqual(matrix.array, [[1, 2, 3], [4, 5, 6]]) &&
+                Test.arrayEqual(matrix.size, [2, 3])
             );
         }
     );
@@ -76,11 +70,8 @@ function startMatrixTest() {
             var matrix = new Matrix(vector);
 
             return (
-                matrix.getCell(0, 0) === 1 &&
-                matrix.getCell(1, 0) === 2 &&
-                matrix.getCell(2, 0) === 3 &&
-                matrix.cols === 1 &&
-                matrix.rows === 3
+                Test.arrayEqual(matrix.array, [[1], [2], [3]]) &&
+                Test.arrayEqual(matrix.size, [3, 1])
             );
         }
     );
@@ -95,17 +86,8 @@ function startMatrixTest() {
             var matrix = new Matrix(vector1, vector2, vector3);
 
             return (
-                matrix.getCell(0, 0) === 1 &&
-                matrix.getCell(1, 0) === 2 &&
-                matrix.getCell(2, 0) === 3 &&
-                matrix.getCell(0, 1) === 4 &&
-                matrix.getCell(1, 1) === 5 &&
-                matrix.getCell(2, 1) === 6 &&
-                matrix.getCell(0, 2) === 7 &&
-                matrix.getCell(1, 2) === 8 &&
-                matrix.getCell(2, 2) === 9 &&
-                matrix.cols === 3 &&
-                matrix.rows === 3
+                Test.arrayEqual(matrix.array, [[1, 4, 7], [2, 5, 8], [3, 6, 9]]) &&
+                Test.arrayEqual(matrix.size, [3, 3])
             );
         }
     );
@@ -120,14 +102,8 @@ function startMatrixTest() {
 
             return (
                 matrix1 instanceof Matrix &&
-                matrix1.getCell(0, 0) === -1 &&
-                matrix1.getCell(0, 1) === 2 &&
-                matrix1.getCell(0, 2) === 3 &&
-                matrix1.getCell(1, 0) === 4 &&
-                matrix1.getCell(1, 1) === 5 &&
-                matrix1.getCell(1, 2) === 6 &&
-                matrix1.cols === 3 &&
-                matrix1.rows === 2
+                Test.arrayEqual(matrix1.array, [[-1, 2, 3], [4, 5, 6]]) &&
+                Test.arrayEqual(matrix1.size, [2, 3])
             );
         }
     );
@@ -142,23 +118,11 @@ function startMatrixTest() {
 
             return (
                 matrix1 instanceof Matrix &&
-                matrix1.getCell(0, 0) === 1 &&
-                matrix1.getCell(0, 1) === 2 &&
-                matrix1.getCell(0, 2) === 3 &&
-                matrix1.getCell(1, 0) === 4 &&
-                matrix1.getCell(1, 1) === 5 &&
-                matrix1.getCell(1, 2) === 6 &&
-                matrix1.cols === 3 &&
-                matrix1.rows === 2 &&
+                Test.arrayEqual(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
+                Test.arrayEqual(matrix1.size, [2, 3]) &&
                 matrix2 instanceof Matrix &&
-                matrix2.getCell(0, 0) === -1 &&
-                matrix2.getCell(0, 1) === 2 &&
-                matrix2.getCell(0, 2) === 3 &&
-                matrix2.getCell(1, 0) === 4 &&
-                matrix2.getCell(1, 1) === 5 &&
-                matrix2.getCell(1, 2) === 6 &&
-                matrix2.cols === 3 &&
-                matrix2.rows === 2
+                Test.arrayEqual(matrix2.array, [[-1, 2, 3], [4, 5, 6]]) &&
+                Test.arrayEqual(matrix2.size, [2, 3])
             );
         }
     );

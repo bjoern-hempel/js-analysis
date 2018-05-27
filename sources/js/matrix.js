@@ -221,6 +221,17 @@ class Matrix extends Base {
     }
 
     /**
+     * returns the size of vector.
+     *
+     * @param x
+     * @param y
+     * @returns {*}
+     */
+    get size() {
+        return [this.rows, this.cols];
+    }
+
+    /**
      * get the getCell of matrix.
      *
      * @param x
