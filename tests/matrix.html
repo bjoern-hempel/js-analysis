@@ -225,6 +225,16 @@
                 var matrix2 = matrix1.deleteRow(true, 1);
 
                 return (
+                    vector1 instanceof Vector &&
+                    vector1.getCell(0) === 1 &&
+                    vector1.getCell(1) === 2 &&
+                    vector1.getCell(2) === 3 &&
+                    vector1.size === 3 &&
+                    vector2 instanceof Vector &&
+                    vector2.getCell(0) === 4 &&
+                    vector2.getCell(1) === 5 &&
+                    vector2.getCell(2) === 6 &&
+                    vector2.size === 3 &&
                     matrix1 instanceof Matrix &&
                     matrix1.getCell(0, 0) === 1 &&
                     matrix1.getCell(1, 0) === 2 &&
