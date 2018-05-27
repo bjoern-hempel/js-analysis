@@ -4,7 +4,7 @@ This javascript library provides some functions to do some numerical analysis ca
 
 ## 1. Vectors
 
-Create vectors and do some calculations with the library `sources/js/vector.js`.
+Create vectors and do some calculations with them. It uses the library `sources/js/vector.js`.
 
 ### 1.1 Some basics
 
@@ -284,7 +284,7 @@ Coming soon..
 
 ## 2. Matrices
 
-Here are some calculation examples with matrices with the help of the library `sources/js/matrix.js`:
+Create vectors and do some calculations with them. It uses the library `sources/js/vector.js`.
 
 ### 2.1 Some basics
 
