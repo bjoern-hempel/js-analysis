@@ -292,6 +292,17 @@ var vector4 = vector1.vectorProduct(true, vector2, vector3);
 console.log(JSON.stringify(vector4.array)); // prints [-110,0,50,-10]
 ```
 
+##### 1.3.5.3 Example 3
+
+```javascript
+var vector1 = new Vector([1, 2, 3, 4, 5]);
+var vector2 = new Vector([-1, 5, -2, 1, 0]);
+var vector3 = new Vector([0, 4, 2, 10, -9]);
+var vector4 = new Vector([7, 3, -5, 20, -3]);
+var vector5 = vector1.vectorProduct(true, vector2, vector3, vector4);
+console.log(JSON.stringify(vector5.array)); // prints [-6223,-2318,-1519,2329,1220]
+```
+
 ### 1.4 Manipulate the vector
 
 #### 1.4.1 Change a value
