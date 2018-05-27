@@ -289,6 +289,25 @@ function startVectorTest() {
         }
     );
 
+    /* Vector: start subtraction test (correct - keep) */
+    new Test(
+        {config: Vector.SUCCESS_DOT_PRODUCT, mode: 'keep'},
+        function () {
+            var vector1 = new Vector([1, 2, 3, 4]);
+            var vector2 = new Vector([2, 4, 6, 8]);
+
+            var product = vector1.dotProduct(vector2);
+
+            return (
+                Test.objectInstance(vector1, Vector) &&
+                Test.arrayEqual(vector1.array, [1, 2, 3, 4]) &&
+                Test.objectInstance(vector2, Vector) &&
+                Test.arrayEqual(vector2.array, [2, 4, 6, 8]) &&
+                product === 60
+            );
+        }
+    );
+
     /* Vector: start dot product test (correct - copy) */
     new Test(
         {config: Vector.SUCCESS_DOT_PRODUCT, mode: 'copy'},
