@@ -235,19 +235,24 @@ console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
 
 <table>
     <tr>
-        <th colspan="2" align="left"><code>Matrix.add([copy], matrix)</code></th>
+        <th colspan="4" align="left"><code>Matrix.add([copy], matrix)</code></th>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Boolean} copy (optional)</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td><code>(optional)</code></td>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Matrix} matrix</code></td>
+        <td><code>{Matrix}</code></td>
+        <td><code>matrix</code></td>
+        <td></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
-        <td><code>{Matrix}</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
     </tr>
 </table>
 
