@@ -177,9 +177,52 @@ console.log(JSON.stringify(vector1.array)); // prints [-1,-2,-3]
 
 Coming soon..
 
-#### 1.3.5 Cross Product
+#### 1.3.5 Vector Product (Cross Product)
 
-Coming soon..
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Vector.vectorProduct([copy], vector, [vector2, [vector3, [...]]])</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td><code>(optional)</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector2</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector3</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Vector}</code></td>
+        <td></td>
+    </tr>
+</table>
+
+##### 1.3.3.1 Example
+
+```javascript
+var vector1 = new Vector([1, 2, 3, 4]);
+var vector2 = new Vector([-1, 5, -2, 1]);
+var vector3 = new Vector([0, 4, 2, 10]);
+var vector4 = vector1.vectorProduct(true, vector2, vector3);
+console.log(JSON.stringify(vector4.array)); // prints [-110,0,50,-10]
+```
 
 ### 1.4 Manipulate the vector
 
