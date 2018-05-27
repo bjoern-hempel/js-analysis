@@ -218,13 +218,22 @@ console.log(JSON.stringify(vector1.array)); // prints [-1,-2,-3]
     </tr>
 </table>
 
-##### 1.3.4.1 Example
+##### 1.3.4.1 Example 1
 
 ```javascript
 var vector1 = new Vector([1, 2, 3]);
 var vector2 = new Vector([2, 4, 6]);
 var product = vector1.dotProduct(vector2);
 console.log(product); // prints 28
+```
+
+##### 1.3.4.1 Example 2
+
+```javascript
+var vector1 = new Vector([1, 2, 3, 4]);
+var vector2 = new Vector([2, 4, 6, 8]);
+var product = vector1.dotProduct(vector2);
+console.log(product); // prints 60
 ```
 
 #### 1.3.5 Vector Product (Cross Product)
