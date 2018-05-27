@@ -294,11 +294,9 @@ class Vector extends Base {
     /**
      * Static function: vectorProduct of given vectors.
      *
-     * @param vector1
-     * @param vector2
      * @returns {Array}
      */
-    static vectorProduct(vector1, vector2) {
+    static vectorProduct() {
         var array = [];
 
         [].slice.call(arguments).map(function(vector) { array.push(vector); });
