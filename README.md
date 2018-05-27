@@ -36,7 +36,27 @@ console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 
 ### 1.2 Properties
 
-#### 1.2.1 Length of the vector
+#### 1.2.1 Size of the vector
+
+<table>
+    <tr>
+        <th colspan="3" align="left"><code>Vector.size</code></th>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Integer}</code></td>
+        <td>Returns number of elements that this vector consists of.</td>
+    </tr>
+</table>
+
+##### 1.2.1.1 Example
+
+```javascript
+var vector = new Vector([1, 2, 3]);
+console.log(vector.size); // prints 3
+```
+
+#### 1.2.2 Length of the vector
 
 <table>
     <tr>
@@ -49,7 +69,7 @@ console.log(JSON.stringify(vector.array)); // prints [1,2,3]
     </tr>
 </table>
 
-##### 1.2.1.1 Example
+##### 1.2.2.1 Example
 
 ```javascript
 var vector = new Vector([1, 2, 3]);
