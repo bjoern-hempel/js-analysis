@@ -159,6 +159,17 @@ class Test {
     }
 
     /**
+     * Checks if the given object is an instance of given instance.
+     *
+     * @param {Object} obj
+     * @param {Object} instance
+     * @returns {boolean}
+     */
+    static objectInstance(obj, instance) {
+        return obj instanceof instance;
+    }
+
+    /**
      * Compares two given arrays.
      *
      * @param {Array} array1

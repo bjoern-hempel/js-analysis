@@ -101,7 +101,7 @@ function startMatrixTest() {
             matrix1.changeCell(0, 0, -1);
 
             return (
-                matrix1 instanceof Matrix &&
+                Test.objectInstance(matrix1, Matrix) &&
                 Test.arrayEqual(matrix1.array, [[-1, 2, 3], [4, 5, 6]]) &&
                 Test.arrayEqual(matrix1.size, [2, 3])
             );
@@ -117,10 +117,10 @@ function startMatrixTest() {
             var matrix2 = matrix1.changeCell(true, 0, 0, -1);
 
             return (
-                matrix1 instanceof Matrix &&
+                Test.objectInstance(matrix1, Matrix) &&
                 Test.arrayEqual(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
                 Test.arrayEqual(matrix1.size, [2, 3]) &&
-                matrix2 instanceof Matrix &&
+                Test.objectInstance(matrix2, Matrix) &&
                 Test.arrayEqual(matrix2.array, [[-1, 2, 3], [4, 5, 6]]) &&
                 Test.arrayEqual(matrix2.size, [2, 3])
             );
