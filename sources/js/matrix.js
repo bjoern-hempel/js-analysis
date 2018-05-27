@@ -50,6 +50,10 @@ class Matrix extends Base {
         return [111, 'Matrix: getCell access is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
     }
 
+    static get ERROR_WRONG_ROW_ACCESS() {
+        return [112, 'Matrix: row access is wrong', 'Row %row does not fit to this matrix.'];
+    }
+
     static get SUCCESS_INITIALISE_MATRIX() {
         return [201, 'Matrix: init matrix'];
     }
@@ -66,36 +70,40 @@ class Matrix extends Base {
         return [204, 'Matrix: successful change value test'];
     }
 
+    static get SUCCESS_DELETE_ROW_TEST() {
+        return [205, 'Matrix: successful delete row test'];
+    }
+
     static get SUCCESS_ADDITION_TEST() {
-        return [205, 'Matrix: successful add test'];
+        return [206, 'Matrix: successful add test'];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [206, 'Matrix: successful subtract test'];
+        return [207, 'Matrix: successful subtract test'];
     }
 
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [207, 'Matrix: successful scalar multiplication test'];
+        return [208, 'Matrix: successful scalar multiplication test'];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [208, 'Matrix: successful transpose test'];
+        return [209, 'Matrix: successful transpose test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_TEST() {
-        return [209, 'Matrix: successful multiplication test'];
+        return [210, 'Matrix: successful multiplication test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST() {
-        return [210, 'Matrix: successful multiplication test with a vector'];
+        return [211, 'Matrix: successful multiplication test with a vector'];
     }
 
     static get SUCCESS_DETERMINANT_TEST() {
-        return [211, 'Matrix: successful determinant test'];
+        return [212, 'Matrix: successful determinant test'];
     }
 
     static get SUCCESS_INVERSE_TEST() {
-        return [212, 'Matrix: successful inverse test'];
+        return [213, 'Matrix: successful inverse test'];
     }
 
     /**
@@ -240,6 +248,21 @@ class Matrix extends Base {
     }
 
     /**
+     * Delete a row of this matrix.
+     *
+     * @param col
+     * @param row
+     * @param value
+     */
+    deleteRow() {
+        var args = this.buildArgumentList(arguments, ['row']);
+
+        this.assert(args.row < this.numberRows, 'matrix.changeCell', this.constructor.ERROR_WRONG_ROW_ACCESS, {'row': args.row});
+
+        return this.doCalculate(args.copy, this.constructor.deleteRow, this.array, args.row);
+    }
+
+    /**
      * Returns the result of adding the given matrix with this matrix.
      *
      * @param copy
@@ -357,6 +380,19 @@ class Matrix extends Base {
      */
     static changeCell(matrix, col, row, value) {
         matrix[row][col] = value;
+
+        return matrix;
+    }
+
+    /**
+     * Static function: Delete a row from given matrix.
+     *
+     * @param matrix
+     * @param row
+     * @returns {Array}
+     */
+    static deleteRow(matrix, row) {
+        matrix.splice(row, 1);
 
         return matrix;
     }
