@@ -214,7 +214,7 @@ Coming soon..
     </tr>
 </table>
 
-##### 1.3.3.1 Example
+##### 1.3.5.1 Example
 
 ```javascript
 var vector1 = new Vector([1, 2, 3, 4]);
@@ -228,7 +228,42 @@ console.log(JSON.stringify(vector4.array)); // prints [-110,0,50,-10]
 
 #### 1.4.1 Change a value
 
-Coming soon..
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Vector.changeCell([copy], index, value)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td><code>(optional)</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Integer}</code></td>
+        <td><code>index</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Number}</code></td>
+        <td><code>value</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Vector}</code></td>
+        <td></td>
+    </tr>
+</table>
+
+##### 1.4.1.1 Example
+
+```javascript
+var vector = new Vector([1, 2, 3]);
+vector.changeCell(0, -1);
+console.log(JSON.stringify(vector.array)); // prints [-1,2,3]
+```
 
 #### 1.4.2 Add a value
 
