@@ -27,7 +27,7 @@ Create vectors and do some calculations with the library `sources/js/vector.js`.
     </tr>
 </table>
 
-##### 1.1.1.1 Example
+##### 1.1.1.1 Example (Create from given array)
 
 ```javascript
 var vector = new Vector([1, 2, 3]);
@@ -307,11 +307,29 @@ Here are some calculation examples with matrices with the help of the library `s
     </tr>
 </table>
 
-##### 2.1.1.1 Example
+##### 2.1.1.1 Example 1 (Create from given array)
 
 ```javascript
 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 console.log(JSON.stringify(matrix.array)); // prints [[1,2,3],[4,5,6]]
+```
+
+##### 2.1.1.2 Example 2 (Create from given vector)
+
+```javascript
+var vector = new Vector([1, 2, 3]);
+var matrix = new Matrix(vector);
+console.log(JSON.stringify(matrix.array)); // prints [[1],[2],[3]]
+```
+
+##### 2.1.1.3 Example 3 (Create from given vectors)
+
+```javascript
+var vector1 = new Vector([1, 2, 3]);
+var vector2 = new Vector([4, 5, 6]);
+var vector3 = new Vector([7, 8, 9]);
+var matrix = new Matrix(vector1, vector2, vector3);
+console.log(JSON.stringify(matrix.array)); // prints [[1,4,7],[2,5,8],[3,6,9]]
 ```
 
 ### 2.2 Properties
