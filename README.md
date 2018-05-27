@@ -1,6 +1,6 @@
 # Javascript Numerical Analysis Library
 
-This javascript library provides some functions to do some numerical analysis calculations.
+This javascript library provides some numerical analysis calculation functions.
 
 ## 1. Vectors
 
