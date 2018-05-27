@@ -351,27 +351,36 @@ console.log(JSON.stringify(matrix2.array)); // prints [[0.22727272727272718,-0.0
 
 <table>
     <tr>
-        <th colspan="2" align="left"><code>Matrix.changeCell([copy], col, row, value)</code></th>
+        <th colspan="4" align="left"><code>Matrix.changeCell([copy], col, row, value)</code></th>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Boolean} copy (optional)</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td><code>(optional)</code></td>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Integer} col</code></td>
+        <td><code>{Integer}</code></td>
+        <td><code>col</code></td>
+        <td></td>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Integer} row</code></td>
+        <td><code>{Integer}</code></td>
+        <td><code>row</code></td>
+        <td></td>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Number} value</code></td>
+        <td><code>{Number}</code></td>
+        <td><code>value</code></td>
+        <td></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
-        <td><code>{Matrix}</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
     </tr>
 </table>
 
