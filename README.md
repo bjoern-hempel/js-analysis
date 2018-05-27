@@ -159,15 +159,18 @@ Here are some calculation examples with matrices with the help of the library `s
 
 <table>
     <tr>
-        <th colspan="2" align="left"><code>Matrix.constructor(array)</code></th>
+        <th colspan="4" align="left"><code>Matrix.constructor(array)</code></th>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Array} array  A two-dimensional array that represents the matrix.</code></td>
+        <td><code>{Array}</code></td>
+        <td><code>array</code></td>
+        <td><code>A two-dimensional array that represents the matrix.</code></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
-        <td><code>{Matrix}</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
     </tr>
 </table>
 
