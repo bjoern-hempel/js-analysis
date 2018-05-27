@@ -100,6 +100,31 @@
             }
         );
 
+        /* Matrix: start initial test with vectors */
+        new Test(
+            Matrix.SUCCESS_INITIALISE_MATRIX_FROM_VECTORS,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([4, 5, 6]);
+                var vector3 = new Vector([7, 8, 9]);
+                var matrix = new Matrix(vector1, vector2, vector3);
+
+                return (
+                    matrix.getCell(0, 0) === 1 &&
+                    matrix.getCell(1, 0) === 2 &&
+                    matrix.getCell(2, 0) === 3 &&
+                    matrix.getCell(0, 1) === 4 &&
+                    matrix.getCell(1, 1) === 5 &&
+                    matrix.getCell(2, 1) === 6 &&
+                    matrix.getCell(0, 2) === 7 &&
+                    matrix.getCell(1, 2) === 8 &&
+                    matrix.getCell(2, 2) === 9 &&
+                    matrix.cols === 3 &&
+                    matrix.rows === 3
+                );
+            }
+        );
+
         /* Matrix: start change getCell test (correct - keep) */
         new Test(
             {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'keep'},

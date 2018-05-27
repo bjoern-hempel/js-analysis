@@ -58,40 +58,44 @@ class Matrix extends Base {
         return [202, 'Matrix: init matrix from vector'];
     }
 
+    static get SUCCESS_INITIALISE_MATRIX_FROM_VECTORS() {
+        return [203, 'Matrix: init matrix from vectors'];
+    }
+
     static get SUCCESS_CHANGE_CELL_TEST() {
-        return [203, 'Matrix: successful change value test'];
+        return [204, 'Matrix: successful change value test'];
     }
 
     static get SUCCESS_ADDITION_TEST() {
-        return [204, 'Matrix: successful add test'];
+        return [205, 'Matrix: successful add test'];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [205, 'Matrix: successful subtract test'];
+        return [206, 'Matrix: successful subtract test'];
     }
 
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [206, 'Matrix: successful scalar multiplication test'];
+        return [207, 'Matrix: successful scalar multiplication test'];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [207, 'Matrix: successful transpose test'];
+        return [208, 'Matrix: successful transpose test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_TEST() {
-        return [208, 'Matrix: successful multiplication test'];
+        return [209, 'Matrix: successful multiplication test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST() {
-        return [209, 'Matrix: successful multiplication test with a vector'];
+        return [210, 'Matrix: successful multiplication test with a vector'];
     }
 
     static get SUCCESS_DETERMINANT_TEST() {
-        return [210, 'Matrix: successful determinant test'];
+        return [211, 'Matrix: successful determinant test'];
     }
 
     static get SUCCESS_INVERSE_TEST() {
-        return [211, 'Matrix: successful inverse test'];
+        return [212, 'Matrix: successful inverse test'];
     }
 
     /**
@@ -99,12 +103,12 @@ class Matrix extends Base {
      *
      * @param matrix
      */
-    constructor(matrix) {
+    constructor() {
         super();
 
         this.name = 'Matrix';
 
-        this.init(matrix);
+        this.init.apply(this, arguments);
     }
 
     /**
@@ -114,8 +118,17 @@ class Matrix extends Base {
      */
     init(matrix) {
 
+        /* Create Matrix from given vectors. */
         if (matrix instanceof Vector) {
-            this.init(this.constructor.transpose([matrix.array]));
+            var array = [];
+
+            [].slice.call(arguments).map(function (argument) {
+                if (argument instanceof Vector) {
+                    array.push(argument.array);
+                }
+            });
+
+            this.init(this.constructor.transpose(array));
             return;
         }
 
