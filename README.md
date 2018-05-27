@@ -214,7 +214,16 @@ Coming soon..
     </tr>
 </table>
 
-##### 1.3.5.1 Example
+##### 1.3.5.1 Example 1
+
+```javascript
+var vector1 = new Vector([1, 2, 3]);
+var vector2 = new Vector([-1, 5, -2]);
+var vector3 = vector1.vectorProduct(true, vector2);
+console.log(JSON.stringify(vector4.array)); // prints [-19,-1,7]
+```
+
+##### 1.3.5.2 Example 2
 
 ```javascript
 var vector1 = new Vector([1, 2, 3, 4]);
