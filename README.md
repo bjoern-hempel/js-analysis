@@ -73,7 +73,27 @@ console.log(vector.size); // prints 3
 
 ```javascript
 var vector = new Vector([1, 2, 3]);
-console.log(JSON.stringify(vector.length)); // prints 3,741657386773941
+console.log(vector.length); // prints 3,741657386773941
+```
+
+#### 1.2.3 Array of the vector
+
+<table>
+    <tr>
+        <th colspan="3" align="left"><code>Vector.array</code></th>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Array}</code></td>
+        <td>Returns the array representation of this vector.</td>
+    </tr>
+</table>
+
+##### 1.2.3.1 Example
+
+```javascript
+var vector = new Vector([1, 2, 3]);
+console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 ```
 
 ### 1.3 Calculations
