@@ -38,7 +38,23 @@ console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 
 #### 1.2.1 Length of the vector
 
-Coming soon..
+<table>
+    <tr>
+        <th colspan="3" align="left"><code>Vector.length</code></th>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Number}</code></td>
+        <td>Returns the length of this vector.</td>
+    </tr>
+</table>
+
+##### 1.2.1.1 Example
+
+```javascript
+var vector = new Vector([1, 2, 3]);
+console.log(JSON.stringify(vector.length)); // prints 3,741657386773941
+```
 
 ### 1.3 Calculations
 
