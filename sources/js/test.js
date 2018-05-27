@@ -128,8 +128,12 @@ class Test {
     /**
      * Start the tests and measure the time.
      */
-    static startTests() {
+    static startTests(func) {
         this.timeStart = performance.now();
+
+        if (typeof func === 'function') {
+            func();
+        }
     }
 
     /**
