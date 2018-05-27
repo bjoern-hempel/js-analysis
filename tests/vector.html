@@ -255,7 +255,20 @@
             }
         );
 
-        /* Vector: start initial test */
+        /* Vector: start vector product (cross product) test */
+        new Test(
+            Vector.SUCCESS_VECTOR_PRODUCT,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([-1, 5, -2]);
+
+                return (
+                    true
+                );
+            }
+        );
+
+        /* Vector: start vector length test */
         new Test(
             Vector.SUCCESS_LENGTH_VECTOR,
             function () {

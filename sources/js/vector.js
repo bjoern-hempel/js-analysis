@@ -50,8 +50,12 @@ class Vector extends Base {
         return [205, 'Vector: successful add test'];
     }
 
+    static get SUCCESS_VECTOR_PRODUCT() {
+        return [206, 'Vector: successful vector product test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [206, 'callback function'];
+        return [207, 'Vector: successful callback function test'];
     }
 
     /**

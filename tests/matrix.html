@@ -83,6 +83,23 @@
             }
         );
 
+        /* Matrix: start initial test with vector */
+        new Test(
+            Matrix.SUCCESS_INITIALISE_MATRIX_FROM_VECTOR,
+            function () {
+                var vector = new Vector([1, 2, 3]);
+                var matrix = new Matrix(vector);
+
+                return (
+                    matrix.getCell(0, 0) === 1 &&
+                    matrix.getCell(1, 0) === 2 &&
+                    matrix.getCell(2, 0) === 3 &&
+                    matrix.cols === 1 &&
+                    matrix.rows === 3
+                );
+            }
+        );
+
         /* Matrix: start change getCell test (correct - keep) */
         new Test(
             {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'keep'},

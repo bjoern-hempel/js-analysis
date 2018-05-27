@@ -54,40 +54,44 @@ class Matrix extends Base {
         return [201, 'Matrix: init matrix'];
     }
 
+    static get SUCCESS_INITIALISE_MATRIX_FROM_VECTOR() {
+        return [202, 'Matrix: init matrix from vector'];
+    }
+
     static get SUCCESS_CHANGE_CELL_TEST() {
-        return [202, 'Matrix: successful change value test'];
+        return [203, 'Matrix: successful change value test'];
     }
 
     static get SUCCESS_ADDITION_TEST() {
-        return [203, 'Matrix: successful add test'];
+        return [204, 'Matrix: successful add test'];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [204, 'Matrix: successful subtract test'];
+        return [205, 'Matrix: successful subtract test'];
     }
 
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [205, 'Matrix: successful scalar multiplication test'];
+        return [206, 'Matrix: successful scalar multiplication test'];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [206, 'Matrix: successful transpose test'];
+        return [207, 'Matrix: successful transpose test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_TEST() {
-        return [207, 'Matrix: successful multiplication test'];
+        return [208, 'Matrix: successful multiplication test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST() {
-        return [208, 'Matrix: successful multiplication test with a vector'];
+        return [209, 'Matrix: successful multiplication test with a vector'];
     }
 
     static get SUCCESS_DETERMINANT_TEST() {
-        return [209, 'Matrix: successful determinant test'];
+        return [210, 'Matrix: successful determinant test'];
     }
 
     static get SUCCESS_INVERSE_TEST() {
-        return [210, 'Matrix: successful inverse test'];
+        return [211, 'Matrix: successful inverse test'];
     }
 
     /**
@@ -109,6 +113,12 @@ class Matrix extends Base {
      * @param matrix
      */
     init(matrix) {
+
+        if (matrix instanceof Vector) {
+            this.init(this.constructor.transpose([matrix.array]));
+            return;
+        }
+
         /* check assertions of given matrix */
         this.assert(matrix instanceof Array, 'matrix.constructor', this.constructor.ERROR_ROWS_IS_NO_ARRAY);
         this.assert(matrix.length > 0, 'matrix.constructor', this.constructor.ERROR_ROWS_COUNT_ARRAY_WRONG);
