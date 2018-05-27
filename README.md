@@ -93,19 +93,24 @@ console.log(JSON.stringify(vector3.array)); // prints [3,6,9]
 
 <table>
     <tr>
-        <th colspan="2" align="left"><code>Vector.add([copy], vector)</code></th>
+        <th colspan="4" align="left"><code>Vector.add([copy], vector)</code></th>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Boolean} copy (optional)</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td><code>(optional)</code></td>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Vector} vector</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector</code></td>
+        <td></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
-        <td><code>{Vector}</code></td>
+        <td colspan="2"><code>{Vector}</code></td>
+        <td></td>
     </tr>
 </table>
 
