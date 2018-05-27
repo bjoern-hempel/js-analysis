@@ -363,7 +363,7 @@ console.log(JSON.stringify(matrix.array)); // prints [[1,4,7],[2,5,8],[3,6,9]]
     <tr>
         <td><code>@returns</code></td>
         <td><code>{Array}</code></td>
-        <td>Returns number of rows and cols that this matrix consists of.</td>
+        <td>Returns the number of rows and cols that this matrix consists of.</td>
     </tr>
 </table>
 
@@ -372,6 +372,46 @@ console.log(JSON.stringify(matrix.array)); // prints [[1,4,7],[2,5,8],[3,6,9]]
 ```javascript
 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 console.log(JSON.stringify(vector.size)); // prints [2,3]
+```
+
+#### 2.2.2 Rows of the matrix
+
+<table>
+    <tr>
+        <th colspan="3" align="left"><code>Matrix.rows</code></th>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Integer}</code></td>
+        <td>Returns the number of rows that this matrix consists of.</td>
+    </tr>
+</table>
+
+##### 2.2.2.1 Example
+
+```javascript
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+console.log(vector.rows); // prints 2
+```
+
+#### 2.2.3 Cols of the matrix
+
+<table>
+    <tr>
+        <th colspan="3" align="left"><code>Matrix.cols</code></th>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Integer}</code></td>
+        <td>Returns the number of cols that this matrix consists of.</td>
+    </tr>
+</table>
+
+##### 2.2.3.1 Example
+
+```javascript
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+console.log(vector.cols); // prints 3
 ```
 
 ### 2.3 Calculations
