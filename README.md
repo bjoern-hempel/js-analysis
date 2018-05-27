@@ -12,15 +12,17 @@ Create vectors and do some calculations with the library `sources/js/vector.js`.
 
 <table>
     <tr>
-        <th colspan="2" align="left"><code>Vector.constructor(array)</code></th>
+        <th colspan="4" align="left"><code>Vector.constructor(array)</code></th>
     </tr>
     <tr>
         <td><code>@param</code></td>
-        <td><code>{Array} array  An one-dimensional array that represents the vector.</code></td>
+        <td><code>{Array}</code></td>
+        <td><code>array</code></td>
+        <td><code>An one-dimensional array that represents the vector.</code></td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
-        <td><code>{Vector}</code></td>
+        <td colspan="3"><code>{Vector}</code></td>
     </tr>
 </table>
 
