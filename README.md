@@ -18,7 +18,7 @@ Create vectors and do some calculations with the library `sources/js/vector.js`.
         <td><code>@param</code></td>
         <td><code>{Array}</code></td>
         <td><code>array</code></td>
-        <td><code>An one-dimensional array that represents the vector.</code></td>
+        <td>An one-dimensional array that represents the vector.</td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
@@ -115,7 +115,7 @@ console.log(JSON.stringify(vector3.array)); // prints [3,6,9]
         <td><code>@param</code></td>
         <td><code>{Boolean}</code></td>
         <td><code>copy</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
@@ -149,7 +149,7 @@ console.log(JSON.stringify(vector1.array)); // prints [3,6,9]
         <td><code>@param</code></td>
         <td><code>{Boolean}</code></td>
         <td><code>copy</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
@@ -187,7 +187,7 @@ Coming soon..
         <td><code>@param</code></td>
         <td><code>{Boolean}</code></td>
         <td><code>copy</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
@@ -199,13 +199,13 @@ Coming soon..
         <td><code>@param</code></td>
         <td><code>{Vector}</code></td>
         <td><code>vector2</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
         <td><code>{Vector}</code></td>
         <td><code>vector3</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
@@ -236,7 +236,7 @@ console.log(JSON.stringify(vector4.array)); // prints [-110,0,50,-10]
         <td><code>@param</code></td>
         <td><code>{Boolean}</code></td>
         <td><code>copy</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
@@ -289,7 +289,7 @@ Here are some calculation examples with matrices with the help of the library `s
         <td><code>@param</code></td>
         <td><code>{Array}</code></td>
         <td><code>array</code></td>
-        <td><code>A two-dimensional array that represents the matrix.</code></td>
+        <td>A two-dimensional array that represents the matrix.</td>
     </tr>
     <tr>
         <td><code>@returns</code></td>
@@ -365,7 +365,7 @@ console.log(JSON.stringify(matrix3.array)); // prints [[3,6,9],[12,15,18]]
         <td><code>@param</code></td>
         <td><code>{Boolean}</code></td>
         <td><code>copy</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
@@ -481,7 +481,7 @@ console.log(JSON.stringify(matrix2.array)); // prints [[0.22727272727272718,-0.0
         <td><code>@param</code></td>
         <td><code>{Boolean}</code></td>
         <td><code>copy</code></td>
-        <td><code>(optional)</code></td>
+        <td>(optional)</td>
     </tr>
     <tr>
         <td><code>@param</code></td>
