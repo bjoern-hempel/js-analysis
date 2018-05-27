@@ -30,6 +30,10 @@ class Vector extends Base {
         return [106, 'Vector: two given vectors with different dimensions', 'The given vector does not fit to this vector.'];
     }
 
+    static get ERROR_WRONG_VECTOR_COUNT() {
+        return [106, 'Vector: the number of given vectors is wrong', 'The number of given vectors is wrong.'];
+    }
+
     static get SUCCESS_INITIALIZE_VECTOR() {
         return [201, 'init vector'];
     }
@@ -187,6 +191,42 @@ class Vector extends Base {
     }
 
     /**
+     * Returns the result of the vector product of the given vectors.
+     *
+     * @param copy (optional)
+     * @param vector
+     * @returns {Vector}
+     */
+    vectorProduct() {
+        var argumentList = [].slice.call(arguments);
+        var args = {copy: false, vectors: []};
+
+        if (typeof argumentList[0] === "boolean") {
+            args.copy = argumentList[0];
+            argumentList.shift();
+        }
+
+        var vectorDimension = this.size;
+
+        this.assert(argumentList.length + 2 === vectorDimension, 'vector.vectorProduct', this.constructor.ERROR_WRONG_VECTOR_COUNT);
+
+        args.vectors = argumentList;
+
+        for (var i = 0; i < args.vectors.length; i++) {
+            this.assert(args.vectors[i] instanceof Vector, 'vector.vectorProduct', this.constructor.ERROR_WRONG_VECTOR_TYPE);
+            this.assert(args.vectors[i].size === vectorDimension, 'vector.vectorProduct', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
+
+            args.vectors[i] = args.vectors[i].array;
+        }
+
+        argumentList.unshift(this.array);
+        argumentList.unshift(this.constructor.vectorProduct);
+        argumentList.unshift(args.copy);
+
+        return this.doCalculate.apply(this, argumentList);
+    }
+
+    /**
      * Unshift a value to the internal vector (adds a value to the beginning).
      *
      * @param value
@@ -249,5 +289,28 @@ class Vector extends Base {
         });
 
         return addedVector;
+    }
+
+    /**
+     * Static function: vectorProduct of given vectors.
+     *
+     * @param vector1
+     * @param vector2
+     * @returns {Array}
+     */
+    static vectorProduct(vector1, vector2) {
+        var array = [];
+
+        [].slice.call(arguments).map(function(vector) { array.push(vector); });
+
+        array = Matrix.transpose(array);
+
+        var detArrays = [];
+
+        array.map(function(row, index) {
+            detArrays.push(Matrix.deleteRow(array.slice(), index));
+        });
+
+        return detArrays.map(function(matrix, index) { return Matrix.determinant(matrix) * Math.pow(-1, index); });
     }
 }

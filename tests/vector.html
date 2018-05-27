@@ -257,13 +257,119 @@
 
         /* Vector: start vector product (cross product) test */
         new Test(
-            Vector.SUCCESS_VECTOR_PRODUCT,
+            Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([-1, 5]);
+
+                vector1.vectorProduct(vector2);
+
+                return false;
+            }
+        );
+
+        /* Vector: start vector product (cross product) test */
+        new Test(
+            Vector.ERROR_WRONG_VECTOR_COUNT,
+            function () {
+                var vector1 = new Vector([1, 2, 3, 4]);
+                var vector2 = new Vector([-1, 5, -2, 1]);
+
+                /* one vector is missing */
+                vector1.vectorProduct(vector2);
+
+                return false;
+            }
+        );
+
+        /* Vector: start vector product (cross product) test (correct - keep) */
+        new Test(
+            {config: Vector.SUCCESS_VECTOR_PRODUCT, mode: 'keep'},
             function () {
                 var vector1 = new Vector([1, 2, 3]);
                 var vector2 = new Vector([-1, 5, -2]);
 
+                vector1.vectorProduct(vector2);
+
                 return (
-                    true
+                    vector1 instanceof Vector &&
+                    vector1.getCell(0) === -19 &&
+                    vector1.getCell(1) === -1 &&
+                    vector1.getCell(2) === 7 &&
+                    vector1.size === 3 &&
+                    vector2 instanceof Vector &&
+                    vector2.getCell(0) === -1 &&
+                    vector2.getCell(1) === 5 &&
+                    vector2.getCell(2) === -2 &&
+                    vector2.size === 3
+                );
+            }
+        );
+
+        /* Vector: start vector product (cross product) test (correct - copy) */
+        new Test(
+            {config: Vector.SUCCESS_VECTOR_PRODUCT, mode: 'copy'},
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([-1, 5, -2]);
+
+                var vector3 = vector1.vectorProduct(true, vector2);
+
+                return (
+                    vector1 instanceof Vector &&
+                    vector1.getCell(0) === 1 &&
+                    vector1.getCell(1) === 2 &&
+                    vector1.getCell(2) === 3 &&
+                    vector1.size === 3 &&
+                    vector2 instanceof Vector &&
+                    vector2.getCell(0) === -1 &&
+                    vector2.getCell(1) === 5 &&
+                    vector2.getCell(2) === -2 &&
+                    vector2.size === 3 &&
+                    vector3 instanceof Vector &&
+                    vector3.getCell(0) === -19 &&
+                    vector3.getCell(1) === -1 &&
+                    vector3.getCell(2) === 7 &&
+                    vector3.size === 3
+                );
+            }
+        );
+
+        /* Vector: start vector product (cross product) test (correct - copy) */
+        new Test(
+            {config: Vector.SUCCESS_VECTOR_PRODUCT, mode: 'copy'},
+            function () {
+                var vector1 = new Vector([1, 2, 3, 4]);
+                var vector2 = new Vector([-1, 5, -2, 1]);
+                var vector3 = new Vector([0, 4, 2, 10]);
+
+                var vector4 = vector1.vectorProduct(true, vector2, vector3);
+
+                return (
+                    vector1 instanceof Vector &&
+                    vector1.getCell(0) === 1 &&
+                    vector1.getCell(1) === 2 &&
+                    vector1.getCell(2) === 3 &&
+                    vector1.getCell(3) === 4 &&
+                    vector1.size === 4 &&
+                    vector2 instanceof Vector &&
+                    vector2.getCell(0) === -1 &&
+                    vector2.getCell(1) === 5 &&
+                    vector2.getCell(2) === -2 &&
+                    vector2.getCell(3) === 1 &&
+                    vector2.size === 4 &&
+                    vector3 instanceof Vector &&
+                    vector3.getCell(0) === 0 &&
+                    vector3.getCell(1) === 4 &&
+                    vector3.getCell(2) === 2 &&
+                    vector3.getCell(3) === 10 &&
+                    vector3.size === 4 &&
+                    vector4 instanceof Vector &&
+                    vector4.getCell(0) === -110 &&
+                    vector4.getCell(1) === 0 &&
+                    vector4.getCell(2) === 50 &&
+                    vector4.getCell(3) === -10 &&
+                    vector4.size === 4
                 );
             }
         );
