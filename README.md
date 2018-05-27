@@ -22,7 +22,8 @@ Create vectors and do some calculations with the library `sources/js/vector.js`.
     </tr>
     <tr>
         <td><code>@returns</code></td>
-        <td colspan="3"><code>{Vector}</code></td>
+        <td colspan="2"><code>{Vector}</code></td>
+        <td></td>
     </tr>
 </table>
 
