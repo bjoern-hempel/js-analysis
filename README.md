@@ -484,6 +484,26 @@ var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 console.log(vector.cols); // prints 3
 ```
 
+#### 2.2.4 Array of the matrix
+
+<table>
+    <tr>
+        <th colspan="3" align="left"><code>Matrix.array</code></th>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td><code>{Array}</code></td>
+        <td>Returns the array representation of this matrix.</td>
+    </tr>
+</table>
+
+##### 2.2.4.1 Example
+
+```javascript
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+console.log(JSON.stringify(vector.array)); // prints [[1,2,3],[4,5,6]]
+```
+
 ### 2.3 Calculations
 
 #### 2.3.1 **Calculation mode:** Change or copy the used matrix
