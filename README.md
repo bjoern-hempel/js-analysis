@@ -139,9 +139,39 @@ vector1.add(vector2);
 console.log(JSON.stringify(vector1.array)); // prints [3,6,9]
 ```
 
-#### 1.3.2 Subtract two vectors
+#### 1.3.3 Subtract two vectors
 
-Coming soon..
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Vector.subtract([copy], vector)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td><code>(optional)</code></td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Vector}</code></td>
+        <td></td>
+    </tr>
+</table>
+
+##### 1.3.3.1 Example
+
+```javascript
+var vector1 = new Vector([1, 2, 3]);
+var vector2 = new Vector([2, 4, 6]);
+vector1.subtract(vector2);
+console.log(JSON.stringify(vector1.array)); // prints [-1,-2,-3]
+```
 
 #### 1.3.4 Dot Product
 
