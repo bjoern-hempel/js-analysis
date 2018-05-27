@@ -452,7 +452,7 @@ class Matrix extends Base {
     static multiply(matrix1, matrix2) {
         var matrix = matrix1.map(function (vector1) {
             return this.constructor.transpose(matrix2 ).map(function (vector2) {
-                return this.constructor.dotProduct(vector1, vector2);
+                return Vector.dotProduct(vector1, vector2);
             }, this);
         }, this);
 
@@ -490,21 +490,6 @@ class Matrix extends Base {
         });
 
         return transposedMatrix;
-    }
-
-    /**
-     * Helper function to calculate the dot product from given two vectors.
-     *
-     * @param vector1
-     * @param vector2
-     * @returns {Number}
-     */
-    static dotProduct(vector1, vector2) {
-        return vector1.map(function (cell, cellIndex) {
-            return vector1[cellIndex] * vector2[cellIndex];
-        }).reduce(function (number1, number2) {
-            return number1 + number2;
-        });
     }
 
     /**

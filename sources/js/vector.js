@@ -54,12 +54,16 @@ class Vector extends Base {
         return [205, 'Vector: successful add test'];
     }
 
+    static get SUCCESS_DOT_PRODUCT() {
+        return [206, 'Vector: successful dot product test'];
+    }
+
     static get SUCCESS_VECTOR_PRODUCT() {
-        return [206, 'Vector: successful vector product test'];
+        return [207, 'Vector: successful vector product test'];
     }
 
     static get SUCCESS_CALLBACK() {
-        return [207, 'Vector: successful callback function test'];
+        return [208, 'Vector: successful callback function test'];
     }
 
     /**
@@ -184,10 +188,26 @@ class Vector extends Base {
     subtract() {
         var args = this.buildArgumentList(arguments, ['vector']);
 
-        this.assert(args.vector instanceof Vector, 'vector.add', this.constructor.ERROR_WRONG_VECTOR_TYPE);
-        this.assert(this.size === args.vector.size, 'vector.add', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
+        this.assert(args.vector instanceof Vector, 'vector.subtract', this.constructor.ERROR_WRONG_VECTOR_TYPE);
+        this.assert(this.size === args.vector.size, 'vector.subtract', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
 
         return this.doCalculate(args.copy, this.constructor.subtract, this.array, args.vector.array);
+    }
+
+    /**
+     * Returns the result of subtracting the given vector with this vector.
+     *
+     * @param copy (optional)
+     * @param vector
+     * @returns {Number}
+     */
+    dotProduct() {
+        var args = this.buildArgumentList(arguments, ['vector']);
+
+        this.assert(args.vector instanceof Vector, 'vector.dotProduct', this.constructor.ERROR_WRONG_VECTOR_TYPE);
+        this.assert(this.size === args.vector.size, 'vector.dotProduct', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
+
+        return this.constructor.dotProduct(this.array, args.vector.array);
     }
 
     /**
@@ -289,6 +309,21 @@ class Vector extends Base {
         });
 
         return addedVector;
+    }
+
+    /**
+     * Static function: Calculate the dot product from given two vectors.
+     *
+     * @param vector1
+     * @param vector2
+     * @returns {Number}
+     */
+    static dotProduct(vector1, vector2) {
+        return vector1.map(function (cell, cellIndex) {
+            return vector1[cellIndex] * vector2[cellIndex];
+        }).reduce(function (number1, number2) {
+            return number1 + number2;
+        });
     }
 
     /**

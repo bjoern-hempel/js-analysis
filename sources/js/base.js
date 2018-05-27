@@ -104,8 +104,6 @@ class Base {
                     throw new Error('Unknown class ' + this.name);
                     break;
             }
-
-
         }
 
         this.init(func.apply(this, arguments));
