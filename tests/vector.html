@@ -177,6 +177,84 @@
             }
         );
 
+        /* Vector: start subtraction test (wrong vector type) */
+        new Test(
+            Vector.ERROR_WRONG_VECTOR_TYPE,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = 1;
+                /* this is not a matrix */
+
+                vector1.add(vector2);
+
+                /* the method add should throw an exception */
+                return false;
+            }
+        );
+
+        /* Vector: start subtraction test (wrong vector dimension) */
+        new Test(
+            Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([2, 4]);
+                /* this matrix has the wrong dimensions */
+
+                vector1.add(vector2);
+
+                /* the method add should throw an exception */
+                return false;
+            }
+        );
+
+        /* Vector: start subtraction test (correct - keep) */
+        new Test(
+            {config: Vector.SUCCESS_SUBTRACTION_TEST, mode: 'keep'},
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([2, 4, 6]);
+
+                vector1.add(vector2);
+
+                return (
+                    vector1 instanceof Vector &&
+                    vector1.getCell(0) === 3 &&
+                    vector1.getCell(1) === 6 &&
+                    vector1.getCell(2) === 9 &&
+                    vector1.size === 3
+                );
+            }
+        );
+
+        /* Vector: start subtraction test (correct - copy) */
+        new Test(
+            {config: Vector.SUCCESS_SUBTRACTION_TEST, mode: 'copy'},
+            function () {
+                var vector1 = new Vector([1, 2, 3]);
+                var vector2 = new Vector([2, 4, 6]);
+
+                var vector3 = vector1.add(true, vector2);
+
+                return (
+                    vector1 instanceof Vector &&
+                    vector1.getCell(0) === 1 &&
+                    vector1.getCell(1) === 2 &&
+                    vector1.getCell(2) === 3 &&
+                    vector1.size === 3 &&
+                    vector2 instanceof Vector &&
+                    vector2.getCell(0) === 2 &&
+                    vector2.getCell(1) === 4 &&
+                    vector2.getCell(2) === 6 &&
+                    vector2.size === 3 &&
+                    vector3 instanceof Vector &&
+                    vector3.getCell(0) === 3 &&
+                    vector3.getCell(1) === 6 &&
+                    vector3.getCell(2) === 9 &&
+                    vector3.size === 3
+                );
+            }
+        );
+
         /* Vector: start initial test */
         new Test(
             Vector.SUCCESS_LENGTH_VECTOR,

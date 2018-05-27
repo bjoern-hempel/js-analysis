@@ -151,11 +151,11 @@ class Vector extends Base {
     }
 
     /**
-     * Returns the result of adding the given matrix with this matrix.
+     * Returns the result of adding the given vector with this vector.
      *
-     * @param copy
-     * @param matrix
-     * @returns {Matrix}
+     * @param copy (optional)
+     * @param vector
+     * @returns {Vector}
      */
     add() {
         var args = this.buildArgumentList(arguments, ['vector']);
@@ -167,7 +167,23 @@ class Vector extends Base {
     }
 
     /**
-     * Unshift a value to the internal vector.
+     * Returns the result of subtracting the given vector with this vector.
+     *
+     * @param copy (optional)
+     * @param vector
+     * @returns {Vector}
+     */
+    subtract() {
+        var args = this.buildArgumentList(arguments, ['vector']);
+
+        this.assert(args.vector instanceof Vector, 'vector.add', this.constructor.ERROR_WRONG_VECTOR_TYPE);
+        this.assert(this.size === args.vector.size, 'vector.add', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
+
+        return this.doCalculate(args.copy, this.constructor.subtract, this.array, args.vector.array);
+    }
+
+    /**
+     * Unshift a value to the internal vector (adds a value to the beginning).
      *
      * @param value
      * @returns {Vector}
@@ -211,6 +227,21 @@ class Vector extends Base {
     static add(vector1, vector2) {
         var addedVector = vector1.map(function (value, index) {
             return value + vector2[index];
+        });
+
+        return addedVector;
+    }
+
+    /**
+     * Static function: Subtract a given vector to another one.
+     *
+     * @param vector1
+     * @param vector2
+     * @returns {Array}
+     */
+    static subtract(vector1, vector2) {
+        var addedVector = vector1.map(function (value, index) {
+            return value - vector2[index];
         });
 
         return addedVector;

@@ -81,7 +81,7 @@ class Base {
     /**
      * Doing the calculation.
      *
-     * @returns {Matrix}
+     * @returns {Vector|Matrix}
      */
     doCalculate() {
         var copy = [].shift.apply(arguments);
