@@ -751,6 +751,23 @@ console.log(JSON.stringify(matrix.array)); // prints [[1,4],[2,5],[3,6]]
 
 #### 2.3.8 Calculate the determinant of the matrix
 
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.determinant([copy])</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional) The copy parameter has no effect in here.</td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Number}</code></td>
+        <td></td>
+    </tr>
+</table>
+
 ##### 2.3.8.1 Example
 
 ```javascript
