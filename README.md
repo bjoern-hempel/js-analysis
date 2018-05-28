@@ -588,6 +588,29 @@ console.log(JSON.stringify(matrix1.array)); // prints [[3,6,9],[12,15,18]]
 
 #### 2.3.3 Subtract two matrices
 
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.substract([copy], matrix)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Matrix}</code></td>
+        <td><code>matrix</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
+
 ##### 2.3.3.1 Example
 
 ```javascript
@@ -598,6 +621,29 @@ console.log(JSON.stringify(matrix1.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 ```
 
 #### 2.3.4 Scalar multiplication
+
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.scalarMultiplication([copy], matrix)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Matrix}</code></td>
+        <td><code>matrix</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
 
 ##### 2.3.4.1 Example
 
