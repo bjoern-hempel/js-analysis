@@ -624,7 +624,41 @@ console.log(JSON.stringify(matrix1.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 
 <table>
     <tr>
-        <th colspan="4" align="left"><code>Matrix.scalarMultiplication([copy], matrix)</code></th>
+        <th colspan="4" align="left"><code>Matrix.multiply([copy], scalar)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Number}</code></td>
+        <td><code>scalar</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
+
+##### 2.3.4.1 Example 1
+
+```javascript
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+var scalar = 2.5;
+matrix.scalarMultiplication(scalar);
+console.log(JSON.stringify(matrix.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
+```
+
+#### 2.3.5 Multiply two matrices
+
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.multiply([copy], matrix)</code></th>
     </tr>
     <tr>
         <td><code>@param</code></td>
@@ -645,17 +679,6 @@ console.log(JSON.stringify(matrix1.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
     </tr>
 </table>
 
-##### 2.3.4.1 Example
-
-```javascript
-var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
-var scalar = 2.5;
-matrix.scalarMultiplication(scalar);
-console.log(JSON.stringify(matrix.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
-```
-
-#### 2.3.5 Multiply two matrices
-
 ##### 2.3.5.1 Example
 
 ```javascript
@@ -666,6 +689,29 @@ console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 ```
 
 #### 2.3.6 Multiply a matrix with a vector
+
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.multiply([copy], vector)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
 
 ##### 2.3.6.1 Example
 
