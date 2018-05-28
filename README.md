@@ -650,7 +650,7 @@ console.log(JSON.stringify(matrix1.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 ```javascript
 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var scalar = 2.5;
-matrix.scalarMultiplication(scalar);
+matrix.multiply(scalar);
 console.log(JSON.stringify(matrix.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
 ```
 
