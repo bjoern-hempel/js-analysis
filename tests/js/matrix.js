@@ -588,12 +588,33 @@ function startMatrixTest() {
         }
     );
 
-    /* Matrix: start transpose test */
+    /* Matrix: start transpose test (keep) */
     new Test(
-        Matrix.SUCCESS_TRANSPOSE_TEST,
+        {config: Matrix.SUCCESS_TRANSPOSE_TEST, mode: 'keep'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-            var matrix2 = matrix1.transpose();
+            matrix1.transpose();
+
+            return (
+                matrix1 instanceof Matrix &&
+                matrix1.getCell(0, 0) === 1 &&
+                matrix1.getCell(0, 1) === 4 &&
+                matrix1.getCell(1, 0) === 2 &&
+                matrix1.getCell(1, 1) === 5 &&
+                matrix1.getCell(2, 0) === 3 &&
+                matrix1.getCell(2, 1) === 6 &&
+                matrix1.cols === 2 &&
+                matrix1.rows === 3
+            );
+        }
+    );
+
+    /* Matrix: start transpose test (copy) */
+    new Test(
+        {config: Matrix.SUCCESS_TRANSPOSE_TEST, mode: 'copy'},
+        function () {
+            var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
+            var matrix2 = matrix1.transpose(true);
 
             return (
                 matrix2 instanceof Matrix &&

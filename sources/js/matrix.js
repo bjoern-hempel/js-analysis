@@ -355,7 +355,9 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     transpose() {
-        return new Matrix(this.constructor.transpose(this.array));
+        var args = this.buildArgumentList(arguments, []);
+
+        return this.doCalculate(args.copy, this.constructor.transpose, this.array);
     }
 
     /**
