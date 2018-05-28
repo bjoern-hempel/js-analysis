@@ -632,12 +632,29 @@ console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 
 #### 2.3.7 Transpose a matrix
 
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.transpose([copy])</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
+
 ##### 2.3.7.1 Example
 
 ```javascript
-var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-var matrix2 = matrix1.transpose();
-console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+matrix.transpose();
+console.log(JSON.stringify(matrix.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
 #### 2.3.8 Calculate the determinant of the matrix
