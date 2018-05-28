@@ -588,6 +588,29 @@ console.log(JSON.stringify(matrix1.array)); // prints [[3,6,9],[12,15,18]]
 
 #### 2.3.3 Subtract two matrices
 
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.substract([copy], matrix)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Matrix}</code></td>
+        <td><code>matrix</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
+
 ##### 2.3.3.1 Example
 
 ```javascript
@@ -599,16 +622,62 @@ console.log(JSON.stringify(matrix1.array)); // prints [[-1,-2,-3],[-4,-5,-6]]
 
 #### 2.3.4 Scalar multiplication
 
-##### 2.3.4.1 Example
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.multiply([copy], scalar)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Number}</code></td>
+        <td><code>scalar</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
+
+##### 2.3.4.1 Example 1
 
 ```javascript
 var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
 var scalar = 2.5;
-matrix.scalarMultiplication(scalar);
+matrix.multiply(scalar);
 console.log(JSON.stringify(matrix.array)); // prints [[2.5,5,7.5],[10,12.5,15]]
 ```
 
 #### 2.3.5 Multiply two matrices
+
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.multiply([copy], matrix)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Matrix}</code></td>
+        <td><code>matrix</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
 
 ##### 2.3.5.1 Example
 
@@ -621,6 +690,29 @@ console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 
 #### 2.3.6 Multiply a matrix with a vector
 
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.multiply([copy], vector)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
+
 ##### 2.3.6.1 Example
 
 ```javascript
@@ -632,15 +724,49 @@ console.log(JSON.stringify(matrix1.array)); // prints [[14],[32]]
 
 #### 2.3.7 Transpose a matrix
 
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.transpose([copy])</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Matrix}</code></td>
+        <td></td>
+    </tr>
+</table>
+
 ##### 2.3.7.1 Example
 
 ```javascript
-var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
-var matrix2 = matrix1.transpose();
-console.log(JSON.stringify(matrix2.array)); // prints [[1,4],[2,5],[3,6]]
+var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
+matrix.transpose();
+console.log(JSON.stringify(matrix.array)); // prints [[1,4],[2,5],[3,6]]
 ```
 
 #### 2.3.8 Calculate the determinant of the matrix
+
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Matrix.determinant([copy])</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional) The copy parameter has no effect in here.</td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Number}</code></td>
+        <td></td>
+    </tr>
+</table>
 
 ##### 2.3.8.1 Example
 
@@ -837,4 +963,4 @@ RESULT
 
 ## B. License
 
-This tutorial is licensed under the MIT License - see the [LICENSE.md](/LICENSE.md) file for details
+This library is licensed under the MIT License - see the [LICENSE.md](/LICENSE.md) file for details
