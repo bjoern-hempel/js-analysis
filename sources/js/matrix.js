@@ -377,9 +377,11 @@ class Matrix extends Base {
      * @returns {Matrix}
      */
     inverse() {
+        var args = this.buildArgumentList(arguments, []);
+
         this.assert(this.cols === this.rows, 'matrix.inverse', this.constructor.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC);
 
-        return new Matrix(this.constructor.inverse(this.array));
+        return this.doCalculate(args.copy, this.constructor.inverse, this.array);
     }
 
     /**

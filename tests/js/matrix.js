@@ -679,15 +679,43 @@ function startMatrixTest() {
         }
     );
 
-    /* Matrix: start matrix inverse calculation test */
+    /* Matrix: start matrix inverse calculation test (keep) */
     new Test(
-        Matrix.SUCCESS_INVERSE_TEST,
+        {config: Matrix.SUCCESS_INVERSE_TEST, mode: 'keep'},
         function () {
-            var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
-            var matrix2 = matrix1.inverse();
+            var matrix = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
+            matrix.inverse();
             var precision = 5;
 
             return (
+                matrix instanceof Matrix &&
+                Math.round(precision * matrix.getCell(0, 0)) === Math.round(precision * 5 / 22) &&
+                Math.round(precision * matrix.getCell(0, 1)) === Math.round(precision * -1 / 11) &&
+                Math.round(precision * matrix.getCell(0, 2)) === Math.round(precision * -9 / 22) &&
+                Math.round(precision * matrix.getCell(1, 0)) === Math.round(precision * 3 / 11) &&
+                Math.round(precision * matrix.getCell(1, 1)) === Math.round(precision * 1 / 11) &&
+                Math.round(precision * matrix.getCell(1, 2)) === Math.round(precision * -1 / 11) &&
+                Math.round(precision * matrix.getCell(2, 0)) === Math.round(precision * 5 / 66) &&
+                Math.round(precision * matrix.getCell(2, 1)) === Math.round(precision * -1 / 33) &&
+                Math.round(precision * matrix.getCell(2, 2)) === Math.round(precision * 13 / 66) &&
+                matrix.cols === 3 &&
+                matrix.rows === 3
+            );
+        }
+    );
+
+    /* Matrix: start matrix inverse calculation test (copy) */
+    new Test(
+        {config: Matrix.SUCCESS_INVERSE_TEST, mode: 'copy'},
+        function () {
+            var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
+            var matrix2 = matrix1.inverse(true);
+            var precision = 5;
+
+            return (
+                matrix2 instanceof Matrix &&
+                Test.arrayEqual(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
+                Test.arrayEqual(matrix1.size, [3, 3]) &&
                 matrix2 instanceof Matrix &&
                 Math.round(precision * matrix2.getCell(0, 0)) === Math.round(precision * 5 / 22) &&
                 Math.round(precision * matrix2.getCell(0, 1)) === Math.round(precision * -1 / 11) &&
