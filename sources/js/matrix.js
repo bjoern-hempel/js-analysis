@@ -107,7 +107,7 @@ class Matrix extends Base {
     }
 
     /**
-     * The constructor of the meshHolder.
+     * The constructor of this matrix class.
      *
      * @param matrix
      */
