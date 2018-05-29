@@ -186,7 +186,7 @@ class Matrix extends Base {
             }, this);
         }, this);
 
-        return true;
+        return matrix;
     }
 
     /**
@@ -315,17 +315,18 @@ class Matrix extends Base {
     multiply() {
         var args = this.buildArgumentList(arguments,  ['matrix']);
 
+
         if (this.isNumber(args.matrix)) {
             return this.doCalculate(args.copy, this.constructor.scalarMultiplication, args.matrix, this.array);
         }
 
+        /* convert the vector to matrix before -> then call multiply again */
         if (args.matrix instanceof Vector) {
             if (args.copy) {
-                return new Vector(this.multiply(new Matrix([args.matrix.array]).transpose()).transpose().array[0]);
+                return new Vector(this.multiply(args.copy, new Matrix(args.matrix)).transpose().array[0]);
             }
 
-            this.init(this.multiply(new Matrix([args.matrix.array]).transpose()).array);
-            return this;
+            return this.init(this.multiply(args.copy, new Matrix(args.matrix)).array);
         }
 
         this.assert(args.matrix instanceof Matrix, 'matrix.multiply', this.constructor.ERROR_WRONG_MATRIX_TYPE);

@@ -90,7 +90,8 @@ class Vector extends Base {
         this.assert(vector instanceof Array, 'vector.constructor', Vector.ERROR_VECTOR_IS_NO_ARRAY);
         this.assert(vector.length > 0, 'vector.constructor', Vector.ERROR_VECTOR_SIZE_WRONG);
 
-        this.vector = vector;
+        /* copy the given vector to avoid changes on this object */
+        this.vector = vector.slice();
 
         /* check the rows and cols of vector */
         vector.map(function (element, elementNumber) {

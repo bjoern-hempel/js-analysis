@@ -580,9 +580,14 @@ function startMatrixTest() {
             var vector2 = matrix1.multiply(true, vector1);
 
             return (
-                vector2 instanceof Vector &&
-                vector2.getCell(0) === 14 &&
-                vector2.getCell(1) === 32 &&
+                Test.objectInstance(matrix1, Matrix) &&
+                Test.arrayEqual(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
+                Test.arrayEqual(matrix1.size, [2, 3]) &&
+                Test.objectInstance(vector1, Vector) &&
+                Test.arrayEqual(vector1.array, [1, 2, 3]) &&
+                vector1.size === 3 &&
+                Test.objectInstance(vector2, Vector) &&
+                Test.arrayEqual(vector2.array, [14, 32]) &&
                 vector2.size === 2
             );
         }
