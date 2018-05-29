@@ -24,7 +24,7 @@ class Base {
      */
     assert(assertion, functionName, errorType, replace) {
         if (!assertion) {
-            var errorText = errorType[2];
+            var errorText = errorType[3];
 
             if (typeof replace === "object") {
                 Object.keys(replace).map(function(key) { errorText = errorText.replace('%' + key, replace[key]); });
@@ -33,14 +33,14 @@ class Base {
             switch (this.name) {
                 case 'Vector':
                     throw new VectorException(
-                        errorType[0],
+                        errorType[1],
                         String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
                     );
                     break;
 
                 case 'Matrix':
                     throw new MatrixException(
-                        errorType[0],
+                        errorType[1],
                         String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
                     );
                     break;

@@ -280,10 +280,10 @@ function startVectorTest() {
             var product = vector1.dotProduct(vector2);
 
             return (
-                Test.objectInstance(vector1, Vector) &&
-                Test.arrayEqual(vector1.array, [1, 2, 3]) &&
-                Test.objectInstance(vector2, Vector) &&
-                Test.arrayEqual(vector2.array, [2, 4, 6]) &&
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3]) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [2, 4, 6]) &&
                 product === 28
             );
         }
@@ -299,10 +299,10 @@ function startVectorTest() {
             var product = vector1.dotProduct(vector2);
 
             return (
-                Test.objectInstance(vector1, Vector) &&
-                Test.arrayEqual(vector1.array, [1, 2, 3, 4]) &&
-                Test.objectInstance(vector2, Vector) &&
-                Test.arrayEqual(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
                 product === 60
             );
         }
@@ -318,10 +318,10 @@ function startVectorTest() {
             var product = vector1.dotProduct(true, vector2);
 
             return (
-                Test.objectInstance(vector1, Vector) &&
-                Test.arrayEqual(vector1.array, [1, 2, 3]) &&
-                Test.objectInstance(vector2, Vector) &&
-                Test.arrayEqual(vector2.array, [2, 4, 6]) &&
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3]) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [2, 4, 6]) &&
                 product === 28
             );
         }
@@ -458,20 +458,20 @@ function startVectorTest() {
             var vector5 = vector1.vectorProduct(true, vector2, vector3, vector4);
 
             return (
-                Test.objectInstance(vector1, Vector) &&
-                Test.arrayEqual(vector1.array, [1, 2, 3, 4, 5]) &&
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3, 4, 5]) &&
                 vector1.size === 5 &&
-                Test.objectInstance(vector2, Vector) &&
-                Test.arrayEqual(vector2.array, [-1, 5, -2, 1, 0]) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [-1, 5, -2, 1, 0]) &&
                 vector2.size === 5 &&
-                Test.objectInstance(vector3, Vector) &&
-                Test.arrayEqual(vector3.array, [0, 4, 2, 10, -9]) &&
+                Test.equalObjectInstance(vector3, Vector) &&
+                Test.equalArray(vector3.array, [0, 4, 2, 10, -9]) &&
                 vector3.size === 5 &&
-                Test.objectInstance(vector4, Vector) &&
-                Test.arrayEqual(vector4.array, [7, 3, -5, 20, -3]) &&
+                Test.equalObjectInstance(vector4, Vector) &&
+                Test.equalArray(vector4.array, [7, 3, -5, 20, -3]) &&
                 vector4.size === 5 &&
-                Test.objectInstance(vector5, Vector) &&
-                Test.arrayEqual(vector5.array, [-6223, -2318, -1519, 2329, 1220]) &&
+                Test.equalObjectInstance(vector5, Vector) &&
+                Test.equalArray(vector5.array, [-6223, -2318, -1519, 2329, 1220]) &&
                 vector5.size === 5
             );
         }

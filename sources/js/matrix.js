@@ -7,103 +7,107 @@
 class Matrix extends Base {
 
     static get ERROR_ROWS_IS_NO_ARRAY() {
-        return [101, 'Matrix: rows are not an array', 'The given parameter matrix must be an instance of Array.'];
+        return [this, 101, 'Rows are not an array', 'The given parameter matrix must be an instance of Array.'];
     }
 
     static get ERROR_ROWS_COUNT_ARRAY_WRONG() {
-        return [102, 'Matrix: count rows is wrong', 'The number of rows from given parameter matrix must greater than 0.'];
+        return [this, 102, 'Count rows is wrong', 'The number of rows from given parameter matrix must greater than 0.'];
     }
 
     static get ERROR_COLS_IS_NO_ARRAY() {
-        return [103, 'Matrix: cols are not an array', 'Row %row of given parameter elements must be an instance of Array.'];
+        return [this, 103, 'Cols are not an array', 'Row %row of given parameter elements must be an instance of Array.'];
     }
 
     static get ERROR_COLS_COUNT_ARRAY_WRONG() {
-        return [104, 'Matrix: count cols is wrong', 'The number of cols in row %row from given parameter matrix must greater than 0.'];
+        return [this, 104, 'Count cols is wrong', 'The number of cols in row %row from given parameter matrix must greater than 0.'];
     }
 
     static get ERROR_WRONG_COL_NUMBER() {
-        return [105, 'Matrix: wrong col number test', 'The number of cols in row %row from given parameter matrix must equal to %col.'];
+        return [this, 105, 'Wrong col number test', 'The number of cols in row %row from given parameter matrix must equal to %col.'];
     }
 
     static get ERROR_WRONG_MATRIX_TYPE() {
-        return [106, 'Matrix: wrong given matrix type', 'The given parameter matrix must be an instance of Matrix.'];
+        return [this, 106, 'Wrong given matrix type', 'The given parameter matrix must be an instance of Matrix.'];
     }
 
     static get ERROR_WRONG_MATRIX_DIMENSIONS() {
-        return [107, 'Matrix: two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'];
+        return [this, 107, 'Two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'];
     }
 
     static get ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC() {
-        return [108, 'Matrix: the matrix is not quadratic', 'The matrix is not quadratic.'];
+        return [this, 108, 'The matrix is not quadratic', 'The matrix is not quadratic.'];
     }
 
     static get ERROR_NO_SCALAR() {
-        return [109, 'Matrix: given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
+        return [this, 109, 'Given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
     }
 
     static get ERROR_CELL_IS_NO_NUMBER() {
-        return [110, 'Matrix: getCell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
+        return [this, 110, 'The value of getCell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
     }
 
     static get ERROR_WRONG_CELL_ACCESS() {
-        return [111, 'Matrix: getCell access is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
+        return [this, 111, 'The access of getCell is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
     }
 
     static get ERROR_WRONG_ROW_ACCESS() {
-        return [112, 'Matrix: row access is wrong', 'Row %row does not fit to this matrix.'];
+        return [this, 112, 'Row access is wrong', 'Row %row does not fit to this matrix.'];
     }
 
     static get SUCCESS_INITIALISE_MATRIX() {
-        return [201, 'Matrix: init matrix'];
+        return [this, 201, 'Init matrix'];
     }
 
     static get SUCCESS_INITIALISE_MATRIX_FROM_VECTOR() {
-        return [202, 'Matrix: init matrix from vector'];
+        return [this, 202, 'Init matrix from vector'];
     }
 
     static get SUCCESS_INITIALISE_MATRIX_FROM_VECTORS() {
-        return [203, 'Matrix: init matrix from vectors'];
+        return [this, 203, 'Init matrix from vectors'];
     }
 
     static get SUCCESS_CHANGE_CELL_TEST() {
-        return [204, 'Matrix: successful change value test'];
+        return [this, 204, 'Successful change value test'];
     }
 
     static get SUCCESS_DELETE_ROW_TEST() {
-        return [205, 'Matrix: successful delete row test'];
+        return [this, 205, 'Successful delete row test'];
     }
 
     static get SUCCESS_ADDITION_TEST() {
-        return [206, 'Matrix: successful add test'];
+        return [this, 206, 'Successful add test'];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [207, 'Matrix: successful subtract test'];
+        return [this, 207, 'Successful subtract test'];
     }
 
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [208, 'Matrix: successful scalar multiplication test'];
+        return [this, 208, 'Successful scalar multiplication test'];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [209, 'Matrix: successful transpose test'];
+        return [this, 209, 'Successful transpose test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_TEST() {
-        return [210, 'Matrix: successful multiplication test'];
+        return [this, 210, 'Successful multiplication test'];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST() {
-        return [211, 'Matrix: successful multiplication test with a vector'];
+        return [this, 211, 'Successful multiplication test with a vector'];
     }
 
     static get SUCCESS_DETERMINANT_TEST() {
-        return [212, 'Matrix: successful determinant test'];
+        return [this, 212, 'Successful determinant test'];
     }
 
     static get SUCCESS_INVERSE_TEST() {
-        return [213, 'Matrix: successful inverse test'];
+        return [this, 213, 'Successful inverse test'];
+    }
+
+    static get CLASS_NAME() {
+        return 'Matrix';
     }
 
     /**
@@ -114,7 +118,7 @@ class Matrix extends Base {
     constructor() {
         super();
 
-        this.name = 'Matrix';
+        this.name = this.constructor.CLASS_NAME;
 
         this.init.apply(this, arguments);
     }

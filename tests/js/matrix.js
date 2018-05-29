@@ -56,8 +56,8 @@ function startMatrixTest() {
         function () {
             var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
             return (
-                Test.arrayEqual(matrix.array, [[1, 2, 3], [4, 5, 6]]) &&
-                Test.arrayEqual(matrix.size, [2, 3])
+                Test.equalArray(matrix.array, [[1, 2, 3], [4, 5, 6]]) &&
+                Test.equalArray(matrix.size, [2, 3])
             );
         }
     );
@@ -70,8 +70,8 @@ function startMatrixTest() {
             var matrix = new Matrix(vector);
 
             return (
-                Test.arrayEqual(matrix.array, [[1], [2], [3]]) &&
-                Test.arrayEqual(matrix.size, [3, 1])
+                Test.equalArray(matrix.array, [[1], [2], [3]]) &&
+                Test.equalArray(matrix.size, [3, 1])
             );
         }
     );
@@ -86,8 +86,8 @@ function startMatrixTest() {
             var matrix = new Matrix(vector1, vector2, vector3);
 
             return (
-                Test.arrayEqual(matrix.array, [[1, 4, 7], [2, 5, 8], [3, 6, 9]]) &&
-                Test.arrayEqual(matrix.size, [3, 3])
+                Test.equalArray(matrix.array, [[1, 4, 7], [2, 5, 8], [3, 6, 9]]) &&
+                Test.equalArray(matrix.size, [3, 3])
             );
         }
     );
@@ -101,9 +101,9 @@ function startMatrixTest() {
             matrix1.changeCell(0, 0, -1);
 
             return (
-                Test.objectInstance(matrix1, Matrix) &&
-                Test.arrayEqual(matrix1.array, [[-1, 2, 3], [4, 5, 6]]) &&
-                Test.arrayEqual(matrix1.size, [2, 3])
+                Test.equalObjectInstance(matrix1, Matrix) &&
+                Test.equalArray(matrix1.array, [[-1, 2, 3], [4, 5, 6]]) &&
+                Test.equalArray(matrix1.size, [2, 3])
             );
         }
     );
@@ -117,12 +117,12 @@ function startMatrixTest() {
             var matrix2 = matrix1.changeCell(true, 0, 0, -1);
 
             return (
-                Test.objectInstance(matrix1, Matrix) &&
-                Test.arrayEqual(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
-                Test.arrayEqual(matrix1.size, [2, 3]) &&
-                Test.objectInstance(matrix2, Matrix) &&
-                Test.arrayEqual(matrix2.array, [[-1, 2, 3], [4, 5, 6]]) &&
-                Test.arrayEqual(matrix2.size, [2, 3])
+                Test.equalObjectInstance(matrix1, Matrix) &&
+                Test.equalArray(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
+                Test.equalArray(matrix1.size, [2, 3]) &&
+                Test.equalObjectInstance(matrix2, Matrix) &&
+                Test.equalArray(matrix2.array, [[-1, 2, 3], [4, 5, 6]]) &&
+                Test.equalArray(matrix2.size, [2, 3])
             );
         }
     );
@@ -580,14 +580,14 @@ function startMatrixTest() {
             var vector2 = matrix1.multiply(true, vector1);
 
             return (
-                Test.objectInstance(matrix1, Matrix) &&
-                Test.arrayEqual(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
-                Test.arrayEqual(matrix1.size, [2, 3]) &&
-                Test.objectInstance(vector1, Vector) &&
-                Test.arrayEqual(vector1.array, [1, 2, 3]) &&
+                Test.equalObjectInstance(matrix1, Matrix) &&
+                Test.equalArray(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
+                Test.equalArray(matrix1.size, [2, 3]) &&
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3]) &&
                 vector1.size === 3 &&
-                Test.objectInstance(vector2, Vector) &&
-                Test.arrayEqual(vector2.array, [14, 32]) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [14, 32]) &&
                 vector2.size === 2
             );
         }
@@ -719,8 +719,8 @@ function startMatrixTest() {
 
             return (
                 matrix2 instanceof Matrix &&
-                Test.arrayEqual(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
-                Test.arrayEqual(matrix1.size, [3, 3]) &&
+                Test.equalArray(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
+                Test.equalArray(matrix1.size, [3, 3]) &&
                 matrix2 instanceof Matrix &&
                 Math.round(precision * matrix2.getCell(0, 0)) === Math.round(precision * 5 / 22) &&
                 Math.round(precision * matrix2.getCell(0, 1)) === Math.round(precision * -1 / 11) &&

@@ -22,8 +22,9 @@ class Test {
             messageCode = messageCode.config;
         }
 
-        this.message = messageCode[1];
-        this.code = messageCode[0];
+        this.message = messageCode[2];
+        this.code = messageCode[1];
+        this.originClass = messageCode[0];
         this.testFunction = testFunction;
         this.errorFunction = typeof errorFunction === 'function' ? errorFunction : this.errFunc;
         this.testOK = false;
@@ -51,11 +52,12 @@ class Test {
      * The function to start the test.
      */
     start() {
-        Test.increaseTestCounter();
+        this.constructor.increaseSuccessCounter();
 
         console.log(
-            String('%counter) Running %status test "%message" %add(Code: %code).').
-                replace(/%counter/, Test.getTestCounter()).
+            String('%counter) %class: Running %status test "%message" %add(Code: %code).').
+                replace(/%class/, this.originClass.CLASS_NAME).
+                replace(/%counter/, Test.getSuccessCounter()).
                 replace(/%status/, this.code >= 200 ? 'success' : 'error').
                 replace(/%message/, this.message).replace(/%code/, this.code).
                 replace(/%add/, this.mode !== null ? '[mode: ' + this.mode + '] ' : '')
@@ -81,28 +83,19 @@ class Test {
         this.testOK ? console.info(message) : console.error(message);
 
         if (!this.testOK) {
-            Test.increaseErrorCounter();
+            this.constructor.increaseErrorCounter();
         }
     }
 
     /**
      * Increases the test counter.
      */
-    static increaseTestCounter() {
-        if (typeof this.testCounter === 'undefined') {
-            this.testCounter = 0;
+    static increaseSuccessCounter() {
+        if (typeof this.successCounter === 'undefined') {
+            this.successCounter = 0;
         }
 
-        this.testCounter++;
-    }
-
-    /**
-     * Returns the number of tests.
-     *
-     * @returns {number}
-     */
-    static getTestCounter() {
-        return typeof this.testCounter === 'undefined' ? 0 : this.testCounter;
+        this.successCounter++;
     }
 
     /**
@@ -117,6 +110,15 @@ class Test {
     }
 
     /**
+     * Returns the number of tests.
+     *
+     * @returns {number}
+     */
+    static getSuccessCounter() {
+        return typeof this.successCounter === 'undefined' ? 0 : this.successCounter;
+    }
+
+    /**
      * Returns the number of errors.
      *
      * @returns {number}
@@ -126,14 +128,25 @@ class Test {
     }
 
     /**
+     * Returns the number of all tests.
+     *
+     * @returns {number}
+     */
+    static getAllCounter() {
+        return this.getSuccessCounter() + this.getErrorCounter();
+    }
+
+    /**
      * Start the tests and measure the time.
      */
-    static startTests(func) {
+    static startTests() {
         this.timeStart = performance.now();
 
-        if (typeof func === 'function') {
-            func();
-        }
+        [].slice.call(arguments).map(function (argument) {
+            if (typeof argument === 'function') {
+                argument();
+            }
+        });
     }
 
     /**
@@ -150,10 +163,14 @@ class Test {
         console.log('RESULT');
 
         var message = Test.getErrorCounter() <= 0 ?
-            '-> All test succeeded (%time).' :
-            '-> At least on test failed.';
+            '-> All test succeeded (%time) [success: %testsSuccess; error: %testsError; all: %testsAll].' :
+            '-> At least on test failed (%time) [%testsSuccess/%testsAll]';
 
-        message = message.replace('%time', timeNeeded + ' ms');
+        message = message.
+            replace('%time', timeNeeded + ' ms').
+            replace('%testsSuccess', this.getSuccessCounter()).
+            replace('%testsError', this.getErrorCounter()).
+            replace('%testsAll', this.getAllCounter());
 
         Test.getErrorCounter() <= 0 ? console.info(message) : console.error(message);
     }
@@ -165,7 +182,7 @@ class Test {
      * @param {Object} instance
      * @returns {boolean}
      */
-    static objectInstance(obj, instance) {
+    static equalObjectInstance(obj, instance) {
         return obj instanceof instance;
     }
 
@@ -176,7 +193,7 @@ class Test {
      * @param {Array} array2
      * @returns {boolean}
      */
-    static arrayEqual(array1, array2) {
+    static equalArray(array1, array2) {
 
         if (!(array1 instanceof Array)) {
             return false;
@@ -192,7 +209,7 @@ class Test {
 
         for (var i = 0; i < array1.length; i++) {
             if (array1[i] instanceof Array && array2[i] instanceof Array) {
-                if (!this.arrayEqual(array1[i], array2[i])) {
+                if (!this.equalArray(array1[i], array2[i])) {
                     return false;
                 }
             } else if (array1[i] != array2[i]) {

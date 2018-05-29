@@ -7,63 +7,67 @@
 class Vector extends Base {
 
     static get ERROR_VECTOR_IS_NO_ARRAY() {
-        return [101, 'Vector: given vector format is not an array', 'The given parameter vector must be an instance of Array.'];
+        return [this, 101, 'Given vector format is not an array', 'The given parameter vector must be an instance of Array.'];
     }
 
     static get ERROR_VECTOR_SIZE_WRONG() {
-        return [102, 'Vector: the size of the given vector is wrong', 'The given parameter vector must be greater then 0.'];
+        return [this, 102, 'The size of the given vector is wrong', 'The given parameter vector must be greater then 0.'];
     }
 
     static get ERROR_ELEMENT_IS_NO_NUMBER() {
-        return [103, 'Vector: element from vector is no number', 'Element %element of given parameter vector must be a number.'];
+        return [this, 103, 'Element from vector is no number', 'Element %element of given parameter vector must be a number.'];
     }
 
     static get ERROR_WRONG_CELL_ACCESS() {
-        return [104, 'Vector: getCell access is wrong', 'Cell %index does not exist.'];
+        return [this, 104, 'Execution of getCell access is wrong', 'Cell %index does not exist.'];
     }
 
     static get ERROR_WRONG_VECTOR_TYPE() {
-        return [105, 'Vector: wrong given vector type', 'The given parameter vector must be an instance of Vector.'];
+        return [this, 105, 'Wrong given vector type', 'The given parameter vector must be an instance of Vector.'];
     }
 
     static get ERROR_WRONG_VECTOR_DIMENSIONS() {
-        return [106, 'Vector: two given vectors with different dimensions', 'The given vector does not fit to this vector.'];
+        return [this, 106, 'Two given vectors with different dimensions', 'The given vector does not fit to this vector.'];
     }
 
     static get ERROR_WRONG_VECTOR_COUNT() {
-        return [106, 'Vector: the number of given vectors is wrong', 'The number of given vectors is wrong.'];
+        return [this, 106, 'The number of given vectors is wrong', 'The number of given vectors is wrong.'];
     }
 
     static get SUCCESS_INITIALIZE_VECTOR() {
-        return [201, 'init vector'];
+        return [this, 201, 'Init vector'];
     }
 
     static get SUCCESS_LENGTH_VECTOR() {
-        return [202, 'length of vector'];
+        return [this, 202, 'Successful length of vector test'];
     }
 
     static get SUCCESS_CHANGE_CELL_TEST() {
-        return [203, 'Vector: successful change value test'];
+        return [this, 203, 'Successful change value test'];
     }
 
     static get SUCCESS_ADDITION_TEST() {
-        return [204, 'Vector: successful add test'];
+        return [this, 204, 'Successful add test'];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [205, 'Vector: successful add test'];
+        return [this, 205, 'Successful add test'];
     }
 
     static get SUCCESS_DOT_PRODUCT() {
-        return [206, 'Vector: successful dot product test'];
+        return [this, 206, 'Successful dot product test'];
     }
 
     static get SUCCESS_VECTOR_PRODUCT() {
-        return [207, 'Vector: successful vector product test'];
+        return [this, 207, 'Successful vector product test'];
     }
 
     static get SUCCESS_CALLBACK() {
-        return [208, 'Vector: successful callback function test'];
+        return [this, 208, 'Successful callback function test'];
+    }
+
+    static get CLASS_NAME() {
+        return 'Vector';
     }
 
     /**
@@ -74,7 +78,7 @@ class Vector extends Base {
     constructor(vector) {
         super();
 
-        this.name = 'Vector';
+        this.name = this.constructor.CLASS_NAME;
 
         this.init(vector);
     }
