@@ -545,6 +545,80 @@ function startVectorTest() {
         }
     );
 
+    /* Vector: start row multiplication test (wrong vector type) */
+    new Test(
+        Vector.ERROR_WRONG_VECTOR_TYPE,
+        function () {
+            var vector1 = new Vector([1, 2, 3]);
+            var vector2 = 1;
+            /* this is not a matrix */
+
+            vector1.multiplyDyadic(vector2);
+
+            /* the method add should throw an exception */
+            return false;
+        }
+    );
+
+    /* Vector: start row multiplication test (wrong vector dimension) */
+    new Test(
+        Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
+        function () {
+            var vector1 = new Vector([1, 2, 3]);
+            var vector2 = new Vector([2, 4]);
+            /* this matrix has the wrong dimensions */
+
+            vector1.multiplyDyadic(vector2);
+
+            /* the method add should throw an exception */
+            return false;
+        }
+    );
+
+    /* Vector: start dyadic product test (correct - copy) */
+    new Test(
+        {config: Vector.SUCCESS_DYADIC_MULTIPLICATION, mode: 'keep'},
+        function () {
+            var vector1 = new Vector([1, 2, 3, 4]);
+            var vector2 = new Vector([2, 4, 6, 8]);
+            var matrix  = vector1.multiplyDyadic(vector2);
+
+            return (
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalInteger(vector1.size, 4) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalInteger(vector2.size, 4) &&
+                Test.equalObjectInstance(matrix, Matrix) &&
+                Test.equalArray(matrix.array, [[2, 4, 6, 8], [4, 8, 12, 16], [6, 12, 18, 24], [8, 16, 24, 32]]) &&
+                Test.equalArray(matrix.size, [4, 4])
+            );
+        }
+    );
+
+    /* Vector: start dyadic product test (correct - copy) */
+    new Test(
+        {config: Vector.SUCCESS_DYADIC_MULTIPLICATION, mode: 'copy'},
+        function () {
+            var vector1 = new Vector([1, 2, 3, 4]);
+            var vector2 = new Vector([2, 4, 6, 8]);
+            var matrix  = vector1.multiplyDyadic(true, vector2);
+
+            return (
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalInteger(vector1.size, 4) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalInteger(vector2.size, 4) &&
+                Test.equalObjectInstance(matrix, Matrix) &&
+                Test.equalArray(matrix.array, [[2, 4, 6, 8], [4, 8, 12, 16], [6, 12, 18, 24], [8, 16, 24, 32]]) &&
+                Test.equalArray(matrix.size, [4, 4])
+            );
+        }
+    );
+
     /* Vector: start vector length test */
     new Test(
         Vector.SUCCESS_LENGTH_VECTOR,

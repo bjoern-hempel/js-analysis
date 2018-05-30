@@ -66,8 +66,12 @@ class Vector extends Base {
         return [this, 208, 'Successful row multiplication test'];
     }
 
+    static get SUCCESS_DYADIC_MULTIPLICATION() {
+        return [this, 209, 'Successful dyadic multiplication test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [this, 209, 'Successful callback function test'];
+        return [this, 210, 'Successful callback function test'];
     }
 
     static get CLASS_NAME() {
@@ -272,6 +276,23 @@ class Vector extends Base {
     }
 
     /**
+     * Calculates the dyadic product (outer product).
+     *
+     * @param copy (optional)
+     * @param {Vector} vector
+     * @returns {Matrix}
+     */
+    multiplyDyadic() {
+        var args = this.buildArgumentList(arguments, ['vector']);
+
+        this.assert(args.vector instanceof Vector, 'vector.multiplyDyadic', this.constructor.ERROR_WRONG_VECTOR_TYPE);
+        this.assert(this.size === args.vector.size, 'vector.multiplyDyadic', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
+
+        return new Matrix(this.constructor.multiplyDyadic(this.array, args.vector.array));
+    }
+
+
+    /**
      * Unshift a value to the internal vector (adds a value to the beginning).
      *
      * @param value
@@ -375,9 +396,9 @@ class Vector extends Base {
     /**
      * Static function: multiply each row with each other.
      *
-     * @param {Vector} vector1
-     * @param {Vector} vector2
-     * @returns {Vector}
+     * @param {Array} vector1
+     * @param {Array} vector2
+     * @returns {Array}
      */
     static rowMultiply(vector1, vector2) {
         return vector1.map(function (cell, cellIndex) {
@@ -385,4 +406,26 @@ class Vector extends Base {
         });
     }
 
+    /**
+     * Static function: multiply each row with each other.
+     *
+     * @param {Array} vector1
+     * @param {Array} vector2
+     * @returns {Array}
+     */
+    static multiplyDyadic(vector1, vector2) {
+        var result = [];
+
+        vector1.map(function (cell1, cell1Index) {
+            var row = [];
+
+            vector2.map(function (cell2, cell2Index) {
+                row.push(cell1 * cell2);
+            });
+
+            result.push(row);
+        });
+
+        return result;
+    }
 }

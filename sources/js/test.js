@@ -187,6 +187,29 @@ class Test {
     }
 
     /**
+     * Compares two given integers.
+     *
+     * @param {Integer} integer1
+     * @param {Integer} integer2
+     * @returns {boolean}
+     */
+    static equalInteger(integer1, integer2) {
+        if (!Number.isInteger(integer1)) {
+            return false;
+        }
+
+        if (!Number.isInteger(integer2)) {
+            return false;
+        }
+
+        if (integer1 !== integer2) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Compares two given arrays.
      *
      * @param {Array} array1
