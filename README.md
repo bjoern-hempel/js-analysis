@@ -213,7 +213,7 @@ vector1.subtract(vector2);
 console.log(JSON.stringify(vector1.array)); // prints [-1,-2,-3]
 ```
 
-#### 1.3.4 Dot Product
+#### 1.3.4 Dot Product (Inner Product)
 
 <table>
     <tr>
@@ -357,7 +357,7 @@ vector1.rowMultiply(vector2);
 console.log(JSON.stringify(vector1.array)); // prints [2,6,18,32]
 ```
 
-#### 1.3.7 Dyadic product (outer product) from two vectors
+#### 1.3.7 Dyadic Product (Outer Product) from two vectors
 
 <table>
     <tr>
