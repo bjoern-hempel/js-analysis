@@ -323,6 +323,40 @@ var vector5 = vector1.vectorProduct(true, vector2, vector3, vector4);
 console.log(JSON.stringify(vector5.array)); // prints [-6223,-2318,-1519,2329,1220]
 ```
 
+#### 1.3.6 Row multiplication from two vectors
+
+<table>
+    <tr>
+        <th colspan="4" align="left"><code>Vector.rowMultiply([copy], vector)</code></th>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Boolean}</code></td>
+        <td><code>copy</code></td>
+        <td>(optional)</td>
+    </tr>
+    <tr>
+        <td><code>@param</code></td>
+        <td><code>{Vector}</code></td>
+        <td><code>vector</code></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><code>@returns</code></td>
+        <td colspan="2"><code>{Vector}</code></td>
+        <td></td>
+    </tr>
+</table>
+
+##### 1.3.3.1 Example
+
+```javascript
+var vector1 = new Vector([1, 2, 3, 4]);
+var vector2 = new Vector([2, 4, 6, 8]);
+vector1.rowMultiply(vector2);
+console.log(JSON.stringify(vector1.array)); // prints [2,6,18,32]
+```
+
 ### 1.4 Manipulate the vector
 
 #### 1.4.1 Change a value
