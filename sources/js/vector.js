@@ -62,8 +62,12 @@ class Vector extends Base {
         return [this, 207, 'Successful vector product test'];
     }
 
+    static get SUCCESS_ROW_MULTIPLICATION() {
+        return [this, 208, 'Successful row multiplication test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [this, 208, 'Successful callback function test'];
+        return [this, 209, 'Successful callback function test'];
     }
 
     static get CLASS_NAME() {
@@ -252,6 +256,22 @@ class Vector extends Base {
     }
 
     /**
+     * Multiplies each row of each vector.
+     *
+     * @param copy (optional)
+     * @param {Vector} vector
+     * @returns {Vector}
+     */
+    rowMultiply() {
+        var args = this.buildArgumentList(arguments, ['vector']);
+
+        this.assert(args.vector instanceof Vector, 'vector.rowMultiply', this.constructor.ERROR_WRONG_VECTOR_TYPE);
+        this.assert(this.size === args.vector.size, 'vector.rowMultiply', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
+
+        return this.doCalculate(args.copy, this.constructor.rowMultiply, this.array, args.vector.array);
+    }
+
+    /**
      * Unshift a value to the internal vector (adds a value to the beginning).
      *
      * @param value
@@ -351,4 +371,18 @@ class Vector extends Base {
 
         return detArrays.map(function(matrix, index) { return Matrix.determinant(matrix) * Math.pow(-1, index); });
     }
+
+    /**
+     * Static function: multiply each row with each other.
+     *
+     * @param {Vector} vector1
+     * @param {Vector} vector2
+     * @returns {Vector}
+     */
+    static rowMultiply(vector1, vector2) {
+        return vector1.map(function (cell, cellIndex) {
+            return vector1[cellIndex] * vector2[cellIndex];
+        });
+    }
+
 }

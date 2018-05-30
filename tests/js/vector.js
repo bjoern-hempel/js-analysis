@@ -270,7 +270,7 @@ function startVectorTest() {
         }
     );
 
-    /* Vector: start subtraction test (correct - keep) */
+    /* Vector: start dot product test (correct - keep) */
     new Test(
         {config: Vector.SUCCESS_DOT_PRODUCT, mode: 'keep'},
         function () {
@@ -289,7 +289,7 @@ function startVectorTest() {
         }
     );
 
-    /* Vector: start subtraction test (correct - keep) */
+    /* Vector: start dot product test (correct - keep) */
     new Test(
         {config: Vector.SUCCESS_DOT_PRODUCT, mode: 'keep'},
         function () {
@@ -473,6 +473,74 @@ function startVectorTest() {
                 Test.equalObjectInstance(vector5, Vector) &&
                 Test.equalArray(vector5.array, [-6223, -2318, -1519, 2329, 1220]) &&
                 vector5.size === 5
+            );
+        }
+    );
+
+    /* Vector: start row multiplication test (wrong vector type) */
+    new Test(
+        Vector.ERROR_WRONG_VECTOR_TYPE,
+        function () {
+            var vector1 = new Vector([1, 2, 3]);
+            var vector2 = 1;
+            /* this is not a matrix */
+
+            vector1.rowMultiply(vector2);
+
+            /* the method add should throw an exception */
+            return false;
+        }
+    );
+
+    /* Vector: start row multiplication test (wrong vector dimension) */
+    new Test(
+        Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
+        function () {
+            var vector1 = new Vector([1, 2, 3]);
+            var vector2 = new Vector([2, 4]);
+            /* this matrix has the wrong dimensions */
+
+            vector1.rowMultiply(vector2);
+
+            /* the method add should throw an exception */
+            return false;
+        }
+    );
+
+    /* Vector: start row multiplication test (correct - keep) */
+    new Test(
+        {config: Vector.SUCCESS_ROW_MULTIPLICATION, mode: 'keep'},
+        function () {
+            var vector1 = new Vector([1, 2, 3, 4]);
+            var vector2 = new Vector([2, 4, 6, 8]);
+
+            vector1.rowMultiply(vector2);
+
+            return (
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [2, 8, 18, 32]) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [2, 4, 6, 8])
+            );
+        }
+    );
+
+    /* Vector: start row multiplication test (correct - copy) */
+    new Test(
+        {config: Vector.SUCCESS_ROW_MULTIPLICATION, mode: 'copy'},
+        function () {
+            var vector1 = new Vector([1, 2, 3, 4]);
+            var vector2 = new Vector([2, 4, 6, 8]);
+
+            var vector3 = vector1.rowMultiply(true, vector2);
+
+            return (
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalObjectInstance(vector3, Vector) &&
+                Test.equalArray(vector3.array, [2, 8, 18, 32])
             );
         }
     );
