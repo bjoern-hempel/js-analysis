@@ -309,8 +309,17 @@ class Vector extends Base {
      * @param func
      * @returns {Vector}
      */
-    callback(func) {
-        return new Vector(this.array.map(func));
+    callback() {
+        var args = this.buildArgumentList(arguments, ['func']);
+
+        var array = this.array.map(args.func);
+
+        if (args.copy) {
+            return new Vector(array);
+        }
+
+        this.init(array);
+        return this;
     }
 
     /**

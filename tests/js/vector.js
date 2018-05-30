@@ -631,13 +631,38 @@ function startVectorTest() {
         }
     );
 
-    /* Vector: start initial test */
+    /* Vector: start calback test (keep) */
     new Test(
-        Vector.SUCCESS_CALLBACK,
+        {config: Vector.SUCCESS_CALLBACK, mode: 'keep'},
+        function () {
+            var vector = new Vector([1, 2, 3]);
+
+            vector.callback(function (element) { return Math.pow(element, 2); });
+
+            return (
+                Test.equalObjectInstance(vector, Vector) &&
+                vector.getCell(0) === 1 &&
+                vector.getCell(1) === 4 &&
+                vector.getCell(2) === 9 &&
+                vector.size === 3
+            );
+        }
+    );
+
+    /* Vector: start calback test (copy) */
+    new Test(
+        {config: Vector.SUCCESS_CALLBACK, mode: 'copy'},
         function () {
             var vector1 = new Vector([1, 2, 3]);
-            var vector2 = vector1.callback(function (element) { return Math.pow(element, 2); });
+            var vector2 = vector1.callback(true, function (element) { return Math.pow(element, 2); });
+
             return (
+                Test.equalObjectInstance(vector1, Vector) &&
+                vector1.getCell(0) === 1 &&
+                vector1.getCell(1) === 2 &&
+                vector1.getCell(2) === 3 &&
+                vector1.size === 3 &&
+                Test.equalObjectInstance(vector2, Vector) &&
                 vector2.getCell(0) === 1 &&
                 vector2.getCell(1) === 4 &&
                 vector2.getCell(2) === 9 &&
