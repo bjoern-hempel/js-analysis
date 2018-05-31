@@ -718,7 +718,7 @@ function startMatrixTest() {
             var precision = 5;
 
             return (
-                matrix2 instanceof Matrix &&
+                matrix1 instanceof Matrix &&
                 Test.equalArray(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
                 Test.equalArray(matrix1.size, [3, 3]) &&
                 matrix2 instanceof Matrix &&
@@ -733,6 +733,72 @@ function startMatrixTest() {
                 Math.round(precision * matrix2.getCell(2, 2)) === Math.round(precision * 13 / 66) &&
                 matrix2.cols === 3 &&
                 matrix2.rows === 3
+            );
+        }
+    );
+
+    /* Matrix: start matrix manipulate shift test (keep) */
+    new Test(
+        {config: Matrix.SUCCESS_MANIPULATE_SHIFT_COL, mode: 'keep'},
+        function () {
+            var matrix = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
+            matrix.shiftCol();
+
+            return (
+                matrix instanceof Matrix &&
+                Test.equalArray(matrix.array, [[2, 3], [5, -6], [0, 3]]) &&
+                Test.equalArray(matrix.size, [3, 2])
+            );
+        }
+    );
+
+    /* Matrix: start matrix manipulate shift test (copy) */
+    new Test(
+        {config: Matrix.SUCCESS_MANIPULATE_SHIFT_COL, mode: 'copy'},
+        function () {
+            var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
+            var matrix2 = matrix1.shiftCol(true);
+
+            return (
+                matrix1 instanceof Matrix &&
+                Test.equalArray(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
+                Test.equalArray(matrix1.size, [3, 3]) &&
+                matrix2 instanceof Matrix &&
+                Test.equalArray(matrix2.array, [[2, 3], [5, -6], [0, 3]]) &&
+                Test.equalArray(matrix2.size, [3, 2])
+            );
+        }
+    );
+
+    /* Matrix: start matrix manipulate shift test (keep) */
+    new Test(
+        {config: Matrix.SUCCESS_MANIPULATE_SHIFT_ROW, mode: 'keep'},
+        function () {
+            var matrix = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
+            matrix.shiftRow();
+
+            return (
+                matrix instanceof Matrix &&
+                Test.equalArray(matrix.array, [[-4, 5, -6], [-1, 0, 3]]) &&
+                Test.equalArray(matrix.size, [2, 3])
+            );
+        }
+    );
+
+    /* Matrix: start matrix manipulate shift test (copy) */
+    new Test(
+        {config: Matrix.SUCCESS_MANIPULATE_SHIFT_ROW, mode: 'copy'},
+        function () {
+            var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
+            var matrix2 = matrix1.shiftRow(true);
+
+            return (
+                matrix1 instanceof Matrix &&
+                Test.equalArray(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
+                Test.equalArray(matrix1.size, [3, 3]) &&
+                matrix2 instanceof Matrix &&
+                Test.equalArray(matrix2.array, [[-4, 5, -6], [-1, 0, 3]]) &&
+                Test.equalArray(matrix2.size, [2, 3])
             );
         }
     );

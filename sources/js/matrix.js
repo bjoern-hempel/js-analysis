@@ -54,6 +54,14 @@ class Matrix extends Base {
         return [this, 112, 'Row access is wrong', 'Row %row does not fit to this matrix.'];
     }
 
+    static get ERROR_WRONG_MATRIX_COL_LIMIT_REACHED() {
+        return [this, 113, 'The matrix must contain at least two columns.', 'The matrix must contain at least two columns.'];
+    }
+
+    static get ERROR_WRONG_MATRIX_ROW_LIMIT_REACHED() {
+        return [this, 113, 'The matrix must contain at least two rows.', 'The matrix must contain at least two rows.'];
+    }
+
     static get SUCCESS_INITIALISE_MATRIX() {
         return [this, 201, 'Init matrix'];
     }
@@ -104,6 +112,14 @@ class Matrix extends Base {
 
     static get SUCCESS_INVERSE_TEST() {
         return [this, 213, 'Successful inverse test'];
+    }
+
+    static get SUCCESS_MANIPULATE_SHIFT_COL() {
+        return [this, 214, 'Successful manipulate test: shift col'];
+    }
+
+    static get SUCCESS_MANIPULATE_SHIFT_ROW() {
+        return [this, 215, 'Successful manipulate test: shift row'];
     }
 
     static get CLASS_NAME() {
@@ -390,6 +406,32 @@ class Matrix extends Base {
     }
 
     /**
+     * Manipulate: Remove the first column.
+     *
+     * @returns {Matrix}
+     */
+    shiftCol() {
+        var args = this.buildArgumentList(arguments, []);
+
+        this.assert(this.cols > 1, 'matrix.shiftCol', this.constructor.ERROR_WRONG_MATRIX_COL_LIMIT_REACHED);
+
+        return this.doCalculate(args.copy, this.constructor.shiftCol, this.array);
+    }
+
+    /**
+     * Manipulate: Remove the first row.
+     *
+     * @returns {Matrix}
+     */
+    shiftRow() {
+        var args = this.buildArgumentList(arguments, []);
+
+        this.assert(this.rows > 1, 'matrix.shiftRow', this.constructor.ERROR_WRONG_MATRIX_ROW_LIMIT_REACHED);
+
+        return this.doCalculate(args.copy, this.constructor.shiftRow, this.array);
+    }
+
+    /**
      * Static function: Change a cell from given matrix.
      *
      * @param matrix
@@ -607,5 +649,29 @@ class Matrix extends Base {
         }
 
         return inversedMatrix;
+    }
+
+    /**
+     * Helper function to shift the first column (remove the first column).
+     *
+     * @param matrix
+     * @returns {Array}
+     */
+    static shiftCol(matrix) {
+        return matrix.map(function (row) {
+            row.shift();
+            return row;
+        });
+    }
+
+    /**
+     * Helper function to shift the first row (remove the first row).
+     *
+     * @param matrix
+     * @returns {Array}
+     */
+    static shiftRow(matrix) {
+        matrix.shift();
+        return matrix;
     }
 }
