@@ -70,8 +70,12 @@ class Vector extends Base {
         return [this, 209, 'Successful dyadic multiplication test'];
     }
 
+    static get SUCCESS_UNSHIFT() {
+        return [this, 210, 'Successful unshift test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [this, 210, 'Successful callback function test'];
+        return [this, 211, 'Successful callback function test'];
     }
 
     static get CLASS_NAME() {
@@ -299,8 +303,11 @@ class Vector extends Base {
      * @returns {Vector}
      */
     unshift(value) {
-        this.vector.unshift(value);
-        return this;
+        var args = this.buildArgumentList(arguments, ['value']);
+
+        this.assert(!isNaN(args.value), 'vector.unshift', Vector.ERROR_ELEMENT_IS_NO_NUMBER, {'element': 0});
+
+        return this.doCalculate(args.copy, this.constructor.unshift, this.array, args.value);
     }
 
     /**
@@ -425,10 +432,10 @@ class Vector extends Base {
     static multiplyDyadic(vector1, vector2) {
         var result = [];
 
-        vector1.map(function (cell1, cell1Index) {
+        vector1.map(function (cell1) {
             var row = [];
 
-            vector2.map(function (cell2, cell2Index) {
+            vector2.map(function (cell2) {
                 row.push(cell1 * cell2);
             });
 
@@ -436,5 +443,17 @@ class Vector extends Base {
         });
 
         return result;
+    }
+
+    /**
+     * Static function: add a value at the beginning of the given vector.
+     *
+     * @param vector
+     * @param value
+     */
+    static unshift(vector, value) {
+        vector.unshift(value);
+
+        return vector;
     }
 }

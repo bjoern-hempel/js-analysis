@@ -619,19 +619,40 @@ function startVectorTest() {
         }
     );
 
-    /* Vector: start vector length test */
+    /* Vector: start unshift test (correct - keep) */
     new Test(
-        Vector.SUCCESS_LENGTH_VECTOR,
+        {config: Vector.SUCCESS_UNSHIFT, mode: 'keep'},
         function () {
-            var vector = new Vector([1, 2, 3]);
+            var vector = new Vector([2, 3, 4, 5]);
+            vector.unshift(1);
 
             return (
-                vector.length === Math.sqrt(14)
+                Test.equalObjectInstance(vector, Vector) &&
+                Test.equalArray(vector.array, [1, 2, 3, 4, 5]) &&
+                Test.equalInteger(vector.size, 5)
             );
         }
     );
 
-    /* Vector: start calback test (keep) */
+    /* Vector: start unshift test (correct - copy) */
+    new Test(
+        {config: Vector.SUCCESS_UNSHIFT, mode: 'copy'},
+        function () {
+            var vector1 = new Vector([2, 3, 4, 5]);
+            var vector2 = vector1.unshift(true, 1);
+
+            return (
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [2, 3, 4, 5]) &&
+                Test.equalInteger(vector1.size, 4) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [1, 2, 3, 4, 5]) &&
+                Test.equalInteger(vector2.size, 5)
+            );
+        }
+    );
+
+    /* Vector: start callback test (keep) */
     new Test(
         {config: Vector.SUCCESS_CALLBACK, mode: 'keep'},
         function () {
@@ -649,7 +670,7 @@ function startVectorTest() {
         }
     );
 
-    /* Vector: start calback test (copy) */
+    /* Vector: start callback test (copy) */
     new Test(
         {config: Vector.SUCCESS_CALLBACK, mode: 'copy'},
         function () {
@@ -667,6 +688,18 @@ function startVectorTest() {
                 vector2.getCell(1) === 4 &&
                 vector2.getCell(2) === 9 &&
                 vector2.size === 3
+            );
+        }
+    );
+
+    /* Vector: start vector length test */
+    new Test(
+        Vector.SUCCESS_LENGTH_VECTOR,
+        function () {
+            var vector = new Vector([1, 2, 3]);
+
+            return (
+                vector.length === Math.sqrt(14)
             );
         }
     );
