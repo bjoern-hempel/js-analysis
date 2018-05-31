@@ -652,6 +652,39 @@ function startVectorTest() {
         }
     );
 
+    /* Vector: start shift test (correct - keep) */
+    new Test(
+        {config: Vector.SUCCESS_SHIFT, mode: 'keep'},
+        function () {
+            var vector = new Vector([2, 3, 4, 5]);
+            vector.shift();
+
+            return (
+                Test.equalObjectInstance(vector, Vector) &&
+                Test.equalArray(vector.array, [3, 4, 5]) &&
+                Test.equalInteger(vector.size, 3)
+            );
+        }
+    );
+
+    /* Vector: start shift test (correct - copy) */
+    new Test(
+        {config: Vector.SUCCESS_SHIFT, mode: 'copy'},
+        function () {
+            var vector1 = new Vector([2, 3, 4, 5]);
+            var vector2 = vector1.shift(true);
+
+            return (
+                Test.equalObjectInstance(vector1, Vector) &&
+                Test.equalArray(vector1.array, [2, 3, 4, 5]) &&
+                Test.equalInteger(vector1.size, 4) &&
+                Test.equalObjectInstance(vector2, Vector) &&
+                Test.equalArray(vector2.array, [3, 4, 5]) &&
+                Test.equalInteger(vector2.size, 3)
+            );
+        }
+    );
+
     /* Vector: start callback test (keep) */
     new Test(
         {config: Vector.SUCCESS_CALLBACK, mode: 'keep'},

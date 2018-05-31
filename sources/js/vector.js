@@ -34,6 +34,10 @@ class Vector extends Base {
         return [this, 106, 'The number of given vectors is wrong', 'The number of given vectors is wrong.'];
     }
 
+    static get ERROR_SIZE_LIMIT_REACHED() {
+        return [this, 107, 'The vector must contain at least two elements.', 'The vector must contain at least two elements.'];
+    }
+
     static get SUCCESS_INITIALIZE_VECTOR() {
         return [this, 201, 'Init vector'];
     }
@@ -74,8 +78,12 @@ class Vector extends Base {
         return [this, 210, 'Successful unshift test'];
     }
 
+    static get SUCCESS_SHIFT() {
+        return [this, 211, 'Successful shift test'];
+    }
+
     static get SUCCESS_CALLBACK() {
-        return [this, 211, 'Successful callback function test'];
+        return [this, 212, 'Successful callback function test'];
     }
 
     static get CLASS_NAME() {
@@ -310,6 +318,21 @@ class Vector extends Base {
         return this.doCalculate(args.copy, this.constructor.unshift, this.array, args.value);
     }
 
+
+    /**
+     * Remove the first element.
+     *
+     * @param value
+     * @returns {Vector}
+     */
+    shift(value) {
+        var args = this.buildArgumentList(arguments, ['value']);
+
+        this.assert(this.size > 1, 'vector.shift', Vector.ERROR_SIZE_LIMIT_REACHED);
+
+        return this.doCalculate(args.copy, this.constructor.shift, this.array);
+    }
+
     /**
      * Apply the given callback function to this vector.
      *
@@ -330,7 +353,7 @@ class Vector extends Base {
     }
 
     /**
-     * Static function: Change a cell from given matrix.
+     * Static function: Change a cell from given vector.
      *
      * @param vector
      * @param index
@@ -450,10 +473,22 @@ class Vector extends Base {
      *
      * @param vector
      * @param value
+     * @returns {Array}
      */
     static unshift(vector, value) {
         vector.unshift(value);
 
+        return vector;
+    }
+
+    /**
+     * Helper function: remove the first element from this vector.
+     *
+     * @param vector
+     * @returns {Array}
+     */
+    static shift(vector) {
+        vector.shift();
         return vector;
     }
 }
