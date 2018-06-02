@@ -232,6 +232,31 @@ class Test {
     }
 
     /**
+     * Compares two given integers.
+     *
+     * @param {Integer} integer1
+     * @param {Integer} integer2
+     * @returns {boolean}
+     */
+    static equalNumber(number1, number2, digits) {
+        if (!this.isNumber(number1)) {
+            return false;
+        }
+
+        if (!this.isNumber(number2)) {
+            return false;
+        }
+
+        var potency = Math.pow(10, digits);
+
+        if (Math.round(number1 * potency) !== Math.round(number2 * potency)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Compares two given arrays.
      *
      * @param {Array} array1
@@ -263,5 +288,23 @@ class Test {
         }
 
         return true;
+    }
+
+    /**
+     * Check, if given value is a number.
+     *
+     * @param value
+     * @returns {boolean}
+     */
+    static isNumber(value) {
+        if (Number(value) === value && value % 1 === 0) {
+            return true;
+        }
+
+        if (Number(value) === value && value % 1 !== 0) {
+            return true;
+        }
+
+        return false;
     }
 }
