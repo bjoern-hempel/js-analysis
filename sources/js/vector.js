@@ -298,7 +298,6 @@ class Vector extends Base {
         var args = this.buildArgumentList(arguments, ['vector']);
 
         this.assert(args.vector instanceof Vector, 'vector.multiplyDyadic', this.constructor.ERROR_WRONG_VECTOR_TYPE);
-        this.assert(args.vector.size === this.size, 'vector.multiplyDyadic', this.constructor.ERROR_WRONG_VECTOR_DIMENSIONS);
 
         return new Matrix(this.constructor.multiplyDyadic(this.array, args.vector.array));
     }

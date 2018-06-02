@@ -560,21 +560,6 @@ function startVectorTest() {
         }
     );
 
-    /* Vector: start row multiplication test (wrong vector dimension) */
-    new Test(
-        Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
-        function () {
-            var vector1 = new Vector([1, 2, 3]);
-            var vector2 = new Vector([2, 4]);
-            /* this matrix has the wrong dimensions */
-
-            vector1.multiplyDyadic(vector2);
-
-            /* the method add should throw an exception */
-            return false;
-        }
-    );
-
     /* Vector: start dyadic product test (correct - copy) */
     new Test(
         {config: Vector.SUCCESS_DYADIC_MULTIPLICATION, mode: 'keep'},
