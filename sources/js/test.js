@@ -45,19 +45,19 @@ class Test {
             return false;
         }
 
-        return (err instanceof MatrixException || err instanceof VectorException) && (err.code === this.code);
+        return (eval('err instanceof ' + this.originClass.CLASS_NAME + 'Exception')) && (err.code === this.code);
     }
 
     /**
      * The function to start the test.
      */
     start() {
-        this.constructor.increaseSuccessCounter();
+        this.constructor.increaseCounter();
 
         console.log(
             String('%counter) %class: Running %status test "%message" %add(Code: %code).').
                 replace(/%class/, this.originClass.CLASS_NAME).
-                replace(/%counter/, Test.getSuccessCounter()).
+                replace(/%counter/, Test.getCounter()).
                 replace(/%status/, this.code >= 200 ? 'success' : 'error').
                 replace(/%message/, this.message).replace(/%code/, this.code).
                 replace(/%add/, this.mode !== null ? '[mode: ' + this.mode + '] ' : '')
@@ -84,7 +84,20 @@ class Test {
 
         if (!this.testOK) {
             this.constructor.increaseErrorCounter();
+        } else {
+            this.constructor.increaseSuccessCounter();
         }
+    }
+
+    /**
+     * Increases the test counter.
+     */
+    static increaseCounter() {
+        if (typeof this.counter === 'undefined') {
+            this.counter = 0;
+        }
+
+        this.counter++;
     }
 
     /**
@@ -107,6 +120,15 @@ class Test {
         }
 
         this.errorCounter++;
+    }
+
+    /**
+     * Returns the number of tests.
+     *
+     * @returns {number}
+     */
+    static getCounter() {
+        return typeof this.counter === 'undefined' ? 0 : this.counter;
     }
 
     /**
