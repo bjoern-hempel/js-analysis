@@ -54,7 +54,7 @@ class Test {
     start() {
         this.constructor.increaseCounter();
 
-        console.log(
+        this.constructor.log(
             String('%counter) %class: Running %status test "%message" %add(Code: %code).').
                 replace(/%class/, this.originClass.CLASS_NAME).
                 replace(/%counter/, Test.getCounter()).
@@ -80,7 +80,7 @@ class Test {
 
         message = '   ' + message.replace('%time', timeNeeded + ' ms');
 
-        this.testOK ? console.info(message) : console.error(message);
+        this.testOK ? this.constructor.log(message, 'info') : this.constructor.log(message, 'error');
 
         if (!this.testOK) {
             this.constructor.increaseErrorCounter();
@@ -181,8 +181,8 @@ class Test {
 
         var timeNeeded = Math.round((this.timeFinished - this.timeStart) * 100000) / 100000;
 
-        console.log('');
-        console.log('RESULT');
+        this.log('');
+        this.log('RESULT');
 
         var message = Test.getErrorCounter() <= 0 ?
             '-> All test succeeded (%time) [success: %testsSuccess; error: %testsError; all: %testsAll].' :
@@ -194,7 +194,7 @@ class Test {
             replace('%testsError', this.getErrorCounter()).
             replace('%testsAll', this.getAllCounter());
 
-        Test.getErrorCounter() <= 0 ? console.info(message) : console.error(message);
+        Test.getErrorCounter() <= 0 ? this.log(message, 'info') : this.log(message, 'error');
     }
 
     /**
@@ -306,5 +306,30 @@ class Test {
         }
 
         return false;
+    }
+
+    /**
+     * Logs a log value to console.
+     *
+     * @param logValue
+     */
+    static log(logValue, type) {
+        switch (type) {
+            case 'info':
+                setTimeout(console.info.bind(console, logValue));
+                return;
+
+            case 'warn':
+                setTimeout(console.warn.bind(console, logValue));
+                return;
+
+            case 'error':
+                setTimeout(console.error.bind(console, logValue));
+                return;
+
+            default:
+                setTimeout(console.log.bind(console, logValue));
+                return;
+        }
     }
 }
