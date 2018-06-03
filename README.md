@@ -946,21 +946,87 @@ Coming soon..
 Call `tests/vector.html` in your browser. It returns for example something like this:
 
 ```text
-1) Running error test "Vector: given vector format is not an array" (Code: 101).
-   Test succeeded (0.4 ms).
-2) Running error test "Vector: the size of the given vector is wrong" (Code: 102).
-   Test succeeded (0.2 ms).
-3) Running error test "Vector: element from vector is no number" (Code: 103).
-   Test succeeded (0.2 ms).
-4) Running success test "init vector" (Code: 201).
-   Test succeeded (0.2 ms).
-5) Running success test "length of vector" (Code: 202).
+1) Vector: Running error test "Given vector format is not an array" (Code: 101).
+   Test succeeded (0.3 ms).
+2) Vector: Running error test "The size of the given vector is wrong" (Code: 102).
    Test succeeded (0.1 ms).
-6) Running success test "callback function" (Code: 203).
+3) Vector: Running error test "Element from vector is no number" (Code: 103).
+   Test succeeded (0.2 ms).
+4) Vector: Running success test "Init vector" (Code: 201).
+   Test succeeded (0.1 ms).
+5) Vector: Running success test "Successful change value test" [mode: keep] (Code: 203).
+   Test succeeded (0.3 ms).
+6) Vector: Running success test "Successful change value test" [mode: copy] (Code: 203).
+   Test succeeded (0.2 ms).
+7) Vector: Running error test "Wrong given vector type" (Code: 105).
+   Test succeeded (0.2 ms).
+8) Vector: Running error test "Two given vectors with different dimensions" (Code: 106).
+   Test succeeded (0.2 ms).
+9) Vector: Running success test "Successful add test" [mode: keep] (Code: 204).
+   Test succeeded (0 ms).
+10) Vector: Running success test "Successful add test" [mode: copy] (Code: 204).
+   Test succeeded (0.1 ms).
+11) Vector: Running error test "Wrong given vector type" (Code: 105).
+   Test succeeded (0.1 ms).
+12) Vector: Running error test "Two given vectors with different dimensions" (Code: 106).
+   Test succeeded (0.1 ms).
+13) Vector: Running success test "Successful add test" [mode: keep] (Code: 205).
+   Test succeeded (0.2 ms).
+14) Vector: Running success test "Successful add test" [mode: copy] (Code: 205).
+   Test succeeded (0.1 ms).
+15) Vector: Running error test "Wrong given vector type" (Code: 105).
+   Test succeeded (0.1 ms).
+16) Vector: Running error test "Two given vectors with different dimensions" (Code: 106).
+   Test succeeded (0.2 ms).
+17) Vector: Running success test "Successful dot product test" [mode: keep] (Code: 206).
+   Test succeeded (0.3 ms).
+18) Vector: Running success test "Successful dot product test" [mode: keep] (Code: 206).
+   Test succeeded (0.1 ms).
+19) Vector: Running success test "Successful dot product test" [mode: copy] (Code: 206).
+   Test succeeded (0.1 ms).
+20) Vector: Running error test "Two given vectors with different dimensions" (Code: 106).
+   Test succeeded (0.3 ms).
+21) Vector: Running error test "The number of given vectors is wrong" (Code: 106).
+   Test succeeded (0.1 ms).
+22) Vector: Running success test "Successful vector product test" [mode: keep] (Code: 207).
+   Test succeeded (0.5 ms).
+23) Vector: Running success test "Successful vector product test" [mode: copy] (Code: 207).
+   Test succeeded (0.1 ms).
+24) Vector: Running success test "Successful vector product test" [mode: copy] (Code: 207).
+   Test succeeded (0.2 ms).
+25) Vector: Running success test "Successful vector product test" [mode: copy] (Code: 207).
+   Test succeeded (0.5 ms).
+26) Vector: Running error test "Wrong given vector type" (Code: 105).
+   Test succeeded (0.1 ms).
+27) Vector: Running error test "Two given vectors with different dimensions" (Code: 106).
+   Test succeeded (0.2 ms).
+28) Vector: Running success test "Successful row multiplication test" [mode: keep] (Code: 208).
+   Test succeeded (0.2 ms).
+29) Vector: Running success test "Successful row multiplication test" [mode: copy] (Code: 208).
+   Test succeeded (0.1 ms).
+30) Vector: Running error test "Wrong given vector type" (Code: 105).
+   Test succeeded (0.1 ms).
+31) Vector: Running success test "Successful dyadic multiplication test" [mode: keep] (Code: 209).
+   Test succeeded (1 ms).
+32) Vector: Running success test "Successful dyadic multiplication test" [mode: copy] (Code: 209).
+   Test succeeded (0.1 ms).
+33) Vector: Running success test "Successful unshift test" [mode: keep] (Code: 210).
+   Test succeeded (0.1 ms).
+34) Vector: Running success test "Successful unshift test" [mode: copy] (Code: 210).
+   Test succeeded (0.1 ms).
+35) Vector: Running success test "Successful shift test" [mode: keep] (Code: 211).
+   Test succeeded (0.2 ms).
+36) Vector: Running success test "Successful shift test" [mode: copy] (Code: 211).
+   Test succeeded (0.1 ms).
+37) Vector: Running success test "Successful callback function test" [mode: keep] (Code: 212).
+   Test succeeded (0.2 ms).
+38) Vector: Running success test "Successful callback function test" [mode: copy] (Code: 212).
+   Test succeeded (0.2 ms).
+39) Vector: Running success test "Successful length of vector test" (Code: 202).
    Test succeeded (0.1 ms).
 
 RESULT
--> All test succeeded (5.6 ms).
+-> All test succeeded (10.4 ms) [success: 39; error: 0; all: 39].
 ```
 
 ### 3.2 Matrix library
@@ -968,69 +1034,91 @@ RESULT
 Call `tests/matrix.html` in your browser. It returns for example something like this:
 
 ```text
- 1) Running error test "Matrix: rows are not an array" (Code: 101).
-    Test succeeded (0.3 ms).
- 2) Running error test "Matrix: count rows is wrong" (Code: 102).
-    Test succeeded (0.2 ms).
- 3) Running error test "Matrix: cols are not an array" (Code: 103).
-    Test succeeded (0.1 ms).
- 4) Running error test "Matrix: count cols is wrong" (Code: 104).
-    Test succeeded (0.1 ms).
- 5) Running error test "Matrix: wrong col number test" (Code: 105).
-    Test succeeded (0.2 ms).
- 6) Running success test "Matrix: init matrix" (Code: 201).
-    Test succeeded (0.1 ms).
- 7) Running error test "Matrix: wrong given matrix type" (Code: 106).
-    Test succeeded (0.3 ms).
- 8) Running error test "Matrix: two given matrices with different dimensions" (Code: 107).
-    Test succeeded (0.2 ms).
- 9) Running success test "Matrix: successful change value test" [mode: keep] (Code: 202).
-    Test succeeded (0.3 ms).
-10) Running success test "Matrix: successful change value test" [mode: copy] (Code: 202).
-    Test succeeded (0.1 ms).
-11) Running success test "Matrix: successful add test" [mode: keep] (Code: 203).
-    Test succeeded (0.2 ms).
-12) Running success test "Matrix: successful add test" [mode: copy] (Code: 203).
-    Test succeeded (0.2 ms).
-13) Running error test "Matrix: wrong given matrix type" (Code: 106).
-    Test succeeded (0.1 ms).
-14) Running error test "Matrix: two given matrices with different dimensions" (Code: 107).
-    Test succeeded (0.1 ms).
-15) Running success test "Matrix: successful subtract test" [mode: keep] (Code: 204).
-    Test succeeded (0.2 ms).
-16) Running success test "Matrix: successful subtract test" [mode: copy] (Code: 204).
-    Test succeeded (0.2 ms).
-17) Running error test "Matrix: given parameter is not a scalar" (Code: 109).
-    Test succeeded (0.1 ms).
-18) Running success test "Matrix: successful scalar multiplication test" [mode: keep] (Code: 205).
-    Test succeeded (0.2 ms).
-19) Running success test "Matrix: successful scalar multiplication test" [mode: copy] (Code: 205).
-    Test succeeded (0.2 ms).
-20) Running error test "Matrix: two given matrices with different dimensions" (Code: 107).
-    Test succeeded (0 ms).
-21) Running success test "Matrix: successful multiplication test" [mode: keep] (Code: 207).
-    Test succeeded (0.4 ms).
-22) Running success test "Matrix: successful multiplication test" [mode: copy] (Code: 207).
-    Test succeeded (0.2 ms).
-23) Running success test "Matrix: successful multiplication test with a vector" [mode: keep] (Code: 208).
-    Test succeeded (0.5 ms).
-24) Running success test "Matrix: successful multiplication test with a vector" [mode: copy] (Code: 208).
-    Test succeeded (0.2 ms).
-25) Running success test "Matrix: successful transpose test" (Code: 206).
-    Test succeeded (0.2 ms).
-26) Running error test "Matrix: the matrix is not quadratic" (Code: 108).
-    Test succeeded (0.2 ms).
-27) Running success test "Matrix: successful determinant test" (Code: 209).
-    Test succeeded (0.1 ms).
-28) Running success test "Matrix: successful determinant test" (Code: 209).
-    Test succeeded (0.2 ms).
-29) Running success test "Matrix: successful determinant test" (Code: 209).
-    Test succeeded (0.5 ms).
-30) Running success test "Matrix: successful inverse test" (Code: 210).
-    Test succeeded (0.5 ms).
+1) Matrix: Running error test "Rows are not an array" (Code: 101).
+   Test succeeded (0.6 ms).
+2) Matrix: Running error test "Count rows is wrong" (Code: 102).
+   Test succeeded (0.1 ms).
+3) Matrix: Running error test "Cols are not an array" (Code: 103).
+   Test succeeded (0.4 ms).
+4) Matrix: Running error test "Count cols is wrong" (Code: 104).
+   Test succeeded (0.3 ms).
+5) Matrix: Running error test "Wrong col number test" (Code: 105).
+   Test succeeded (0.4 ms).
+6) Matrix: Running success test "Init matrix" (Code: 201).
+   Test succeeded (0.2 ms).
+7) Matrix: Running success test "Init matrix from vector" (Code: 202).
+   Test succeeded (0.5 ms).
+8) Matrix: Running success test "Init matrix from vectors" (Code: 203).
+   Test succeeded (0.2 ms).
+9) Matrix: Running success test "Successful change value test" [mode: keep] (Code: 204).
+   Test succeeded (0.6 ms).
+10) Matrix: Running success test "Successful change value test" [mode: copy] (Code: 204).
+   Test succeeded (0.3 ms).
+11) Matrix: Running error test "Row access is wrong" (Code: 112).
+   Test succeeded (0.2 ms).
+12) Matrix: Running success test "Successful delete row test" [mode: keep] (Code: 205).
+   Test succeeded (0.1 ms).
+13) Matrix: Running success test "Successful delete row test" [mode: copy] (Code: 205).
+   Test succeeded (0.2 ms).
+14) Matrix: Running error test "Wrong given matrix type" (Code: 106).
+   Test succeeded (0.2 ms).
+15) Matrix: Running error test "Two given matrices with different dimensions" (Code: 107).
+   Test succeeded (0.2 ms).
+16) Matrix: Running success test "Successful add test" [mode: keep] (Code: 206).
+   Test succeeded (0.2 ms).
+17) Matrix: Running success test "Successful add test" [mode: copy] (Code: 206).
+   Test succeeded (0.2 ms).
+18) Matrix: Running error test "Wrong given matrix type" (Code: 106).
+   Test succeeded (0.1 ms).
+19) Matrix: Running error test "Two given matrices with different dimensions" (Code: 107).
+   Test succeeded (0.1 ms).
+20) Matrix: Running success test "Successful subtract test" [mode: keep] (Code: 207).
+   Test succeeded (0.2 ms).
+21) Matrix: Running success test "Successful subtract test" [mode: copy] (Code: 207).
+   Test succeeded (0.4 ms).
+22) Matrix: Running error test "Given parameter is not a scalar" (Code: 109).
+   Test succeeded (0.4 ms).
+23) Matrix: Running success test "Successful scalar multiplication test" [mode: keep] (Code: 208).
+   Test succeeded (0.3 ms).
+24) Matrix: Running success test "Successful scalar multiplication test" [mode: copy] (Code: 208).
+   Test succeeded (0.3 ms).
+25) Matrix: Running error test "Two given matrices with different dimensions" (Code: 107).
+   Test succeeded (0.1 ms).
+26) Matrix: Running success test "Successful multiplication test" [mode: keep] (Code: 210).
+   Test succeeded (0.3 ms).
+27) Matrix: Running success test "Successful multiplication test" [mode: copy] (Code: 210).
+   Test succeeded (0.1 ms).
+28) Matrix: Running success test "Successful multiplication test with a vector" [mode: keep] (Code: 211).
+   Test succeeded (0.1 ms).
+29) Matrix: Running success test "Successful multiplication test with a vector" [mode: copy] (Code: 211).
+   Test succeeded (0.2 ms).
+30) Matrix: Running success test "Successful transpose test" [mode: keep] (Code: 209).
+   Test succeeded (0.1 ms).
+31) Matrix: Running success test "Successful transpose test" [mode: copy] (Code: 209).
+   Test succeeded (0.2 ms).
+32) Matrix: Running error test "The matrix is not quadratic" (Code: 108).
+   Test succeeded (0.3 ms).
+33) Matrix: Running success test "Successful determinant test" (Code: 212).
+   Test succeeded (0.1 ms).
+34) Matrix: Running success test "Successful determinant test" (Code: 212).
+   Test succeeded (0.1 ms).
+35) Matrix: Running success test "Successful determinant test" (Code: 212).
+   Test succeeded (0.4 ms).
+36) Matrix: Running success test "Successful inverse test" [mode: keep] (Code: 213).
+   Test succeeded (0.5 ms).
+37) Matrix: Running success test "Successful inverse test" [mode: copy] (Code: 213).
+   Test succeeded (0.3 ms).
+38) Matrix: Running success test "Successful manipulate test: shift col" [mode: keep] (Code: 214).
+   Test succeeded (0.4 ms).
+39) Matrix: Running success test "Successful manipulate test: shift col" [mode: copy] (Code: 214).
+   Test succeeded (0.3 ms).
+40) Matrix: Running success test "Successful manipulate test: shift row" [mode: keep] (Code: 215).
+   Test succeeded (0.4 ms).
+41) Matrix: Running success test "Successful manipulate test: shift row" [mode: copy] (Code: 215).
+   Test succeeded (0.1 ms).
 
 RESULT
--> All test succeeded (18.7 ms).
+-> All test succeeded (14.3 ms) [success: 41; error: 0; all: 41].
 ```
 
 ## A. Authors
