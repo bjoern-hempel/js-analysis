@@ -54,10 +54,10 @@ class Test {
     start() {
         this.constructor.increaseCounter();
 
-        this.constructor.log(
+        this.log(
             String('%counter) %class: Running %status test "%message" %add(Code: %code).').
                 replace(/%class/, this.originClass.CLASS_NAME).
-                replace(/%counter/, Test.getCounter()).
+                replace(/%counter/, String(Test.getCounter()).padStart(3)).
                 replace(/%status/, this.code >= 200 ? 'success' : 'error').
                 replace(/%message/, this.message).replace(/%code/, this.code).
                 replace(/%add/, this.mode !== null ? '[mode: ' + this.mode + '] ' : '')
@@ -78,15 +78,25 @@ class Test {
 
         var message = this.testOK ? 'Test succeeded (%time).' : 'Test failed (%time).';
 
-        message = '   ' + message.replace('%time', timeNeeded + ' ms');
+        message = '     ' + message.replace('%time', timeNeeded + ' ms');
 
-        this.testOK ? this.constructor.log(message, 'info') : this.constructor.log(message, 'error');
+        this.testOK ? this.log(message, 'info') : this.log(message, 'error');
 
         if (!this.testOK) {
             this.constructor.increaseErrorCounter();
         } else {
             this.constructor.increaseSuccessCounter();
         }
+    }
+
+    /**
+     * Logs a log value to console.
+     *
+     * @param logValue
+     * @param type
+     */
+    log(logValue, type) {
+        this.constructor.log(logValue, type);
     }
 
     /**
@@ -162,6 +172,19 @@ class Test {
      * Start the tests and measure the time.
      */
     static startTests() {
+        var title = 'Tests';
+
+        if (typeof arguments[0] === 'string') {
+            var title = Array.prototype.shift.apply(arguments);
+        }
+
+        var message = String('Start test "%title"').replace(/%title/, title);
+
+        this.log('-'.repeat(message.length));
+        this.log(message);
+        this.log('-'.repeat(message.length));
+        this.log('');
+
         this.timeStart = performance.now();
 
         [].slice.call(arguments).map(function (argument) {
@@ -169,6 +192,8 @@ class Test {
                 argument();
             }
         });
+
+        this.resultTests();
     }
 
     /**
@@ -181,12 +206,9 @@ class Test {
 
         var timeNeeded = Math.round((this.timeFinished - this.timeStart) * 100000) / 100000;
 
-        this.log('');
-        this.log('RESULT');
-
         var message = Test.getErrorCounter() <= 0 ?
             '-> All test succeeded (%time) [success: %testsSuccess; error: %testsError; all: %testsAll].' :
-            '-> At least on test failed (%time) [%testsSuccess/%testsAll]';
+            '-> At least on test failed (%time) [%testsError/%testsAll]';
 
         message = message.
             replace('%time', timeNeeded + ' ms').
@@ -194,7 +216,11 @@ class Test {
             replace('%testsError', this.getErrorCounter()).
             replace('%testsAll', this.getAllCounter());
 
+        this.log('');
+        this.log('-'.repeat(message.length));
+        this.log('RESULT');
         Test.getErrorCounter() <= 0 ? this.log(message, 'info') : this.log(message, 'error');
+        this.log('-'.repeat(message.length));
     }
 
     /**
@@ -316,20 +342,47 @@ class Test {
     static log(logValue, type) {
         switch (type) {
             case 'info':
-                setTimeout(console.info.bind(console, logValue));
+                this.doLog(console.info, logValue, '');
                 return;
 
             case 'warn':
-                setTimeout(console.warn.bind(console, logValue));
+                this.doLog(console.warn, logValue, '');
                 return;
 
             case 'error':
-                setTimeout(console.error.bind(console, logValue));
+                this.doLog(console.error, logValue, 'color: red; ');
                 return;
 
             default:
-                setTimeout(console.log.bind(console, logValue));
+                this.doLog(console.log, logValue, '');
                 return;
         }
+    }
+
+    /**
+     * Logs a log value to console.
+     *
+     * @param consoleType
+     * @param logValue
+     * @param style
+     */
+    static doLog(consoleType, logValue, style) {
+        style = style + 'font-size: 10px; font-style: italic; margin: 0;';
+
+        setTimeout(consoleType.bind(console, '%c' + logValue, style));
+
+        if (document.getElementById('testResult') === null) {
+            var div = document.createElement('div');
+            div.setAttribute('id', 'testResult');
+
+            document.body.appendChild(div);
+        }
+
+        var pre = document.createElement('pre');
+
+        pre.setAttribute('style', style);
+        pre.innerHTML = logValue ? logValue : ' ';
+
+        document.getElementById('testResult').appendChild(pre);
     }
 }
