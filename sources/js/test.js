@@ -289,7 +289,7 @@ class Test {
      * @param {Array} array2
      * @returns {boolean}
      */
-    static equalArray(array1, array2) {
+    static equalArrayValues(array1, array2) {
 
         if (!(array1 instanceof Array)) {
             return false;
@@ -305,7 +305,7 @@ class Test {
 
         for (var i = 0; i < array1.length; i++) {
             if (array1[i] instanceof Array && array2[i] instanceof Array) {
-                if (!this.equalArray(array1[i], array2[i])) {
+                if (!this.equalArrayValues(array1[i], array2[i])) {
                     return false;
                 }
             } else if (array1[i] != array2[i]) {
@@ -332,6 +332,29 @@ class Test {
         }
 
         return false;
+    }
+
+    /**
+     * Check the array length.
+     *
+     * @param {Array} array
+     * @param {Integer} size
+     * @returns {boolean}
+     */
+    static equalArrayLength(array, size) {
+        if (!this.equalObjectInstance(array, Array)) {
+            return false;
+        }
+
+        if (!Number.isInteger(size)) {
+            return false;
+        }
+
+        if (array.length !== size) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

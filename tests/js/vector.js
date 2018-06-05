@@ -281,9 +281,9 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [1, 2, 3]) &&
+                Test.equalArrayValues(vector1.array, [1, 2, 3]) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [2, 4, 6]) &&
+                Test.equalArrayValues(vector2.array, [2, 4, 6]) &&
                 product === 28
             );
         }
@@ -300,9 +300,9 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalArrayValues(vector1.array, [1, 2, 3, 4]) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalArrayValues(vector2.array, [2, 4, 6, 8]) &&
                 product === 60
             );
         }
@@ -319,9 +319,9 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [1, 2, 3]) &&
+                Test.equalArrayValues(vector1.array, [1, 2, 3]) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [2, 4, 6]) &&
+                Test.equalArrayValues(vector2.array, [2, 4, 6]) &&
                 product === 28
             );
         }
@@ -459,19 +459,19 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [1, 2, 3, 4, 5]) &&
+                Test.equalArrayValues(vector1.array, [1, 2, 3, 4, 5]) &&
                 vector1.size === 5 &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [-1, 5, -2, 1, 0]) &&
+                Test.equalArrayValues(vector2.array, [-1, 5, -2, 1, 0]) &&
                 vector2.size === 5 &&
                 Test.equalObjectInstance(vector3, Vector) &&
-                Test.equalArray(vector3.array, [0, 4, 2, 10, -9]) &&
+                Test.equalArrayValues(vector3.array, [0, 4, 2, 10, -9]) &&
                 vector3.size === 5 &&
                 Test.equalObjectInstance(vector4, Vector) &&
-                Test.equalArray(vector4.array, [7, 3, -5, 20, -3]) &&
+                Test.equalArrayValues(vector4.array, [7, 3, -5, 20, -3]) &&
                 vector4.size === 5 &&
                 Test.equalObjectInstance(vector5, Vector) &&
-                Test.equalArray(vector5.array, [-6223, -2318, -1519, 2329, 1220]) &&
+                Test.equalArrayValues(vector5.array, [-6223, -2318, -1519, 2329, 1220]) &&
                 vector5.size === 5
             );
         }
@@ -518,9 +518,9 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [2, 8, 18, 32]) &&
+                Test.equalArrayValues(vector1.array, [2, 8, 18, 32]) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [2, 4, 6, 8])
+                Test.equalArrayValues(vector2.array, [2, 4, 6, 8])
             );
         }
     );
@@ -536,11 +536,11 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalArrayValues(vector1.array, [1, 2, 3, 4]) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalArrayValues(vector2.array, [2, 4, 6, 8]) &&
                 Test.equalObjectInstance(vector3, Vector) &&
-                Test.equalArray(vector3.array, [2, 8, 18, 32])
+                Test.equalArrayValues(vector3.array, [2, 8, 18, 32])
             );
         }
     );
@@ -570,14 +570,14 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalArrayValues(vector1.array, [1, 2, 3, 4]) &&
                 Test.equalInteger(vector1.size, 4) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalArrayValues(vector2.array, [2, 4, 6, 8]) &&
                 Test.equalInteger(vector2.size, 4) &&
                 Test.equalObjectInstance(matrix, Matrix) &&
-                Test.equalArray(matrix.array, [[2, 4, 6, 8], [4, 8, 12, 16], [6, 12, 18, 24], [8, 16, 24, 32]]) &&
-                Test.equalArray(matrix.size, [4, 4])
+                Test.equalArrayValues(matrix.array, [[2, 4, 6, 8], [4, 8, 12, 16], [6, 12, 18, 24], [8, 16, 24, 32]]) &&
+                Test.equalArrayValues(matrix.size, [4, 4])
             );
         }
     );
@@ -592,14 +592,14 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [1, 2, 3, 4]) &&
+                Test.equalArrayValues(vector1.array, [1, 2, 3, 4]) &&
                 Test.equalInteger(vector1.size, 4) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [2, 4, 6, 8]) &&
+                Test.equalArrayValues(vector2.array, [2, 4, 6, 8]) &&
                 Test.equalInteger(vector2.size, 4) &&
                 Test.equalObjectInstance(matrix, Matrix) &&
-                Test.equalArray(matrix.array, [[2, 4, 6, 8], [4, 8, 12, 16], [6, 12, 18, 24], [8, 16, 24, 32]]) &&
-                Test.equalArray(matrix.size, [4, 4])
+                Test.equalArrayValues(matrix.array, [[2, 4, 6, 8], [4, 8, 12, 16], [6, 12, 18, 24], [8, 16, 24, 32]]) &&
+                Test.equalArrayValues(matrix.size, [4, 4])
             );
         }
     );
@@ -613,7 +613,7 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector, Vector) &&
-                Test.equalArray(vector.array, [1, 2, 3, 4, 5]) &&
+                Test.equalArrayValues(vector.array, [1, 2, 3, 4, 5]) &&
                 Test.equalInteger(vector.size, 5)
             );
         }
@@ -628,10 +628,10 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [2, 3, 4, 5]) &&
+                Test.equalArrayValues(vector1.array, [2, 3, 4, 5]) &&
                 Test.equalInteger(vector1.size, 4) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [1, 2, 3, 4, 5]) &&
+                Test.equalArrayValues(vector2.array, [1, 2, 3, 4, 5]) &&
                 Test.equalInteger(vector2.size, 5)
             );
         }
@@ -646,7 +646,7 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector, Vector) &&
-                Test.equalArray(vector.array, [3, 4, 5]) &&
+                Test.equalArrayValues(vector.array, [3, 4, 5]) &&
                 Test.equalInteger(vector.size, 3)
             );
         }
@@ -661,10 +661,10 @@ function startVectorTest() {
 
             return (
                 Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArray(vector1.array, [2, 3, 4, 5]) &&
+                Test.equalArrayValues(vector1.array, [2, 3, 4, 5]) &&
                 Test.equalInteger(vector1.size, 4) &&
                 Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArray(vector2.array, [3, 4, 5]) &&
+                Test.equalArrayValues(vector2.array, [3, 4, 5]) &&
                 Test.equalInteger(vector2.size, 3)
             );
         }
