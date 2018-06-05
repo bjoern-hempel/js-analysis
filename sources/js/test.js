@@ -63,6 +63,13 @@ class Test {
                 replace(/%add/, this.mode !== null ? '[mode: ' + this.mode + '] ' : '')
         );
 
+        /* reset counters */
+        this.constructor.equalObjectInstanceCounter = 0;
+        this.constructor.equalIntegerCounter = 0;
+        this.constructor.equalNumberCounter = 0;
+        this.constructor.equalArrayValuesCounter = 0;
+        this.constructor.equalArrayLengthCounter = 0;
+
         var timeStart = performance.now();
         try {
             this.testOK = this.testFunction.call(this);
@@ -201,7 +208,6 @@ class Test {
      *
      */
     static resultTests() {
-
         this.timeFinished = performance.now();
 
         var timeNeeded = Math.round((this.timeFinished - this.timeStart) * 100000) / 100000;
@@ -226,31 +232,17 @@ class Test {
     /**
      * Checks if the given object is an instance of given instance.
      *
-     * @param {Object} obj
-     * @param {Object} instance
+     * @param obj
+     * @param instance
+     * @param {String=} message (optional)
      * @returns {boolean}
      */
-    static equalObjectInstance(obj, instance) {
-        return obj instanceof instance;
-    }
+    static equalObjectInstance(obj, instance, message) {
+        var counter = message ? 0 : ++this.equalObjectInstanceCounter;
+        var message = message ? message : String('     The %counter. equalObjectInstance test failed.').replace(/%counter/, counter)
 
-    /**
-     * Compares two given integers.
-     *
-     * @param {Integer} integer1
-     * @param {Integer} integer2
-     * @returns {boolean}
-     */
-    static equalInteger(integer1, integer2) {
-        if (!Number.isInteger(integer1)) {
-            return false;
-        }
-
-        if (!Number.isInteger(integer2)) {
-            return false;
-        }
-
-        if (integer1 !== integer2) {
+        if (!(obj instanceof instance)) {
+            this.log(message, 'error');
             return false;
         }
 
@@ -262,20 +254,57 @@ class Test {
      *
      * @param {Integer} integer1
      * @param {Integer} integer2
+     * @param {String=} message (optional)
      * @returns {boolean}
      */
-    static equalNumber(number1, number2, digits) {
+    static equalInteger(integer1, integer2, message) {
+        var counter = message ? 0 : ++this.equalIntegerCounter;
+        var message = message ? message : String('     The %counter. equalInteger test failed.').replace(/%counter/, counter);
+
+        if (!Number.isInteger(integer1)) {
+            this.log(message, 'error');
+            return false;
+        }
+
+        if (!Number.isInteger(integer2)) {
+            this.log(message, 'error');
+            return false;
+        }
+
+        if (integer1 !== integer2) {
+            this.log(message, 'error');
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Compares two given integers.
+     *
+     * @param {Integer} integer1
+     * @param {Integer} integer2
+     * @param {String=} message (optional)
+     * @returns {boolean}
+     */
+    static equalNumber(number1, number2, digits, message) {
+        var counter = message ? 0 : ++this.equalNumberCounter;
+        var message = message ? message : String('     The %counter. equalNumber test failed.').replace(/%counter/, counter);
+
         if (!this.isNumber(number1)) {
+            this.log(message, 'error');
             return false;
         }
 
         if (!this.isNumber(number2)) {
+            this.log(message, 'error');
             return false;
         }
 
         var potency = Math.pow(10, digits);
 
         if (Math.round(number1 * potency) !== Math.round(number2 * potency)) {
+            this.log(message, 'error');
             return false;
         }
 
@@ -287,30 +316,68 @@ class Test {
      *
      * @param {Array} array1
      * @param {Array} array2
+     * @param {String=} message (optional)
      * @returns {boolean}
      */
-    static equalArrayValues(array1, array2) {
+    static equalArrayValues(array1, array2, message) {
+        var counter = message ? 0 : ++this.equalArrayValuesCounter;
+        var message = message ? message : String('     The %counter. equalArrayValues test failed.').replace(/%counter/, counter);
 
         if (!(array1 instanceof Array)) {
+            this.log(message, 'error');
             return false;
         }
 
         if (!(array2 instanceof Array)) {
+            this.log(message, 'error');
             return false;
         }
 
         if (array1.length != array2.length) {
+            this.log(message, 'error');
             return false;
         }
 
         for (var i = 0; i < array1.length; i++) {
             if (array1[i] instanceof Array && array2[i] instanceof Array) {
-                if (!this.equalArrayValues(array1[i], array2[i])) {
+                if (!this.equalArrayValues(array1[i], array2[i], message)) {
+                    this.log(message, 'error');
                     return false;
                 }
             } else if (array1[i] != array2[i]) {
+                this.log(message, 'error');
                 return false;
             }
+        }
+
+        return true;
+    }
+
+    /**
+     * Check the array length.
+     *
+     * @param {Array} array
+     * @param {Integer} size
+     * @param {String=} message (optional)
+     * @returns {boolean}
+     */
+    static equalArrayLength(array, size, message) {
+        var counter = message ? 0 : ++this.equalArrayLengthCounter;
+        var message = message ? message : String('     The %counter. equalArrayLength test failed.').replace(/%counter/, counter);
+
+        if (!this.equalObjectInstance(array, Array, message)) {
+            this.log(message, 'error');
+            return false;
+        }
+
+        if (!Number.isInteger(size)) {
+            this.log(message, 'error');
+            return false;
+        }
+
+        if (array.length !== size) {
+            this.log(message, 'error');
+            return false;
         }
 
         return true;
@@ -332,29 +399,6 @@ class Test {
         }
 
         return false;
-    }
-
-    /**
-     * Check the array length.
-     *
-     * @param {Array} array
-     * @param {Integer} size
-     * @returns {boolean}
-     */
-    static equalArrayLength(array, size) {
-        if (!this.equalObjectInstance(array, Array)) {
-            return false;
-        }
-
-        if (!Number.isInteger(size)) {
-            return false;
-        }
-
-        if (array.length !== size) {
-            return false;
-        }
-
-        return true;
     }
 
     /**
