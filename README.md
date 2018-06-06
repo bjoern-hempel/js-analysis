@@ -2,6 +2,20 @@
 
 This javascript library provides some numerical analysis calculation functions.
 
+## 0. Introduction
+
+This library needs an external git repository:
+
+* [js-testing-framework](https://github.com/bjoern-hempel/js-testing-framework)
+
+### 0.1 Checkout this project with submodules
+
+```bash
+user$ git clone git@github.com:bjoern-hempel/js-analysis.git && cd js-analysis
+user$ git submodule init
+user$ git submodule update
+```
+
 ## 1. Vectors
 
 Create vectors and do some calculations with them. It uses the library `sources/js/vector.js`.
