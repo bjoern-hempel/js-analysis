@@ -2,7 +2,7 @@
 
 This javascript library provides some numerical analysis calculation functions.
 
-## 0. Introduction
+## 0. Preparations
 
 This library needs an external git repository:
 
