@@ -1,7 +1,7 @@
 function startMatrixTest() {
 
     /* Matrix: start given rows are not an array */
-    new Test(
+    new JsTest(
         Matrix.ERROR_ROWS_IS_NO_ARRAY,
         function () {
             var matrix = new Matrix('test');
@@ -11,7 +11,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start given rows are not higher than 0 */
-    new Test(
+    new JsTest(
         Matrix.ERROR_ROWS_COUNT_ARRAY_WRONG,
         function () {
             var matrix = new Matrix([]);
@@ -21,7 +21,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: given cols are not an array */
-    new Test(
+    new JsTest(
         Matrix.ERROR_COLS_IS_NO_ARRAY,
         function () {
             var matrix = new Matrix(['string']);
@@ -31,7 +31,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: given cols are not an array */
-    new Test(
+    new JsTest(
         Matrix.ERROR_COLS_COUNT_ARRAY_WRONG,
         function () {
             var matrix = new Matrix([[], []]);
@@ -41,7 +41,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start wrong col number test */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_COL_NUMBER,
         function () {
             var matrix = new Matrix([[1, 2], [2]]);
@@ -51,33 +51,33 @@ function startMatrixTest() {
     );
 
     /* Matrix: start initial test */
-    new Test(
+    new JsTest(
         Matrix.SUCCESS_INITIALISE_MATRIX,
         function () {
             var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
             return (
-                Test.equalArrayValues(matrix.array, [[1, 2, 3], [4, 5, 6]]) &&
-                Test.equalArrayValues(matrix.size, [2, 3])
+                JsTest.equalArrayValues(matrix.array, [[1, 2, 3], [4, 5, 6]]) &&
+                JsTest.equalArrayValues(matrix.size, [2, 3])
             );
         }
     );
 
     /* Matrix: start initial test with vector */
-    new Test(
+    new JsTest(
         Matrix.SUCCESS_INITIALISE_MATRIX_FROM_VECTOR,
         function () {
             var vector = new Vector([1, 2, 3]);
             var matrix = new Matrix(vector);
 
             return (
-                Test.equalArrayValues(matrix.array, [[1], [2], [3]]) &&
-                Test.equalArrayValues(matrix.size, [3, 1])
+                JsTest.equalArrayValues(matrix.array, [[1], [2], [3]]) &&
+                JsTest.equalArrayValues(matrix.size, [3, 1])
             );
         }
     );
 
     /* Matrix: start initial test with vectors */
-    new Test(
+    new JsTest(
         Matrix.SUCCESS_INITIALISE_MATRIX_FROM_VECTORS,
         function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -86,14 +86,14 @@ function startMatrixTest() {
             var matrix = new Matrix(vector1, vector2, vector3);
 
             return (
-                Test.equalArrayValues(matrix.array, [[1, 4, 7], [2, 5, 8], [3, 6, 9]]) &&
-                Test.equalArrayValues(matrix.size, [3, 3])
+                JsTest.equalArrayValues(matrix.array, [[1, 4, 7], [2, 5, 8], [3, 6, 9]]) &&
+                JsTest.equalArrayValues(matrix.size, [3, 3])
             );
         }
     );
 
     /* Matrix: start change getCell test (correct - keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'keep'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -101,15 +101,15 @@ function startMatrixTest() {
             matrix1.changeCell(0, 0, -1);
 
             return (
-                Test.equalObjectInstance(matrix1, Matrix) &&
-                Test.equalArrayValues(matrix1.array, [[-1, 2, 3], [4, 5, 6]]) &&
-                Test.equalArrayValues(matrix1.size, [2, 3])
+                JsTest.equalObjectInstance(matrix1, Matrix) &&
+                JsTest.equalArrayValues(matrix1.array, [[-1, 2, 3], [4, 5, 6]]) &&
+                JsTest.equalArrayValues(matrix1.size, [2, 3])
             );
         }
     );
 
     /* Matrix: start change getCell test (correct - keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_CHANGE_CELL_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -117,18 +117,18 @@ function startMatrixTest() {
             var matrix2 = matrix1.changeCell(true, 0, 0, -1);
 
             return (
-                Test.equalObjectInstance(matrix1, Matrix) &&
-                Test.equalArrayValues(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
-                Test.equalArrayValues(matrix1.size, [2, 3]) &&
-                Test.equalObjectInstance(matrix2, Matrix) &&
-                Test.equalArrayValues(matrix2.array, [[-1, 2, 3], [4, 5, 6]]) &&
-                Test.equalArrayValues(matrix2.size, [2, 3])
+                JsTest.equalObjectInstance(matrix1, Matrix) &&
+                JsTest.equalArrayValues(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
+                JsTest.equalArrayValues(matrix1.size, [2, 3]) &&
+                JsTest.equalObjectInstance(matrix2, Matrix) &&
+                JsTest.equalArrayValues(matrix2.array, [[-1, 2, 3], [4, 5, 6]]) &&
+                JsTest.equalArrayValues(matrix2.size, [2, 3])
             );
         }
     );
 
     /* Matrix: start delete row test */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_ROW_ACCESS,
         function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -142,7 +142,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start delete row test (correct - keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_DELETE_ROW_TEST, mode: 'keep'},
         function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -164,7 +164,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start delete row test (correct - keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_DELETE_ROW_TEST, mode: 'copy'},
         function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -205,7 +205,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start add test (wrong matrix type) */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_MATRIX_TYPE,
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -220,7 +220,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start add test (wrong matrix dimension) */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -235,7 +235,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start add test (correct - keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_ADDITION_TEST, mode: 'keep'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -267,7 +267,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start add test (correct - copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_ADDITION_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -304,7 +304,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start subtraction test (wrong matrix type) */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_MATRIX_TYPE,
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -319,7 +319,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start subtraction test (wrong matrix dimension) */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -334,7 +334,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start subtraction test (correct - keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_SUBTRACTION_TEST, mode: 'keep'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -365,7 +365,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start subtraction test (correct - copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_SUBTRACTION_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -402,7 +402,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start scalar multiplication test (no scalar) */
-    new Test(
+    new JsTest(
         Matrix.ERROR_NO_SCALAR,
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -425,7 +425,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start scalar multiplication test (keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST, mode: 'keep'},
         function () {
             var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -449,7 +449,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start scalar multiplication test (copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_SCALAR_MULTIPLICATION_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -481,7 +481,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix multiplication test (wrong matrix dimension) */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_MATRIX_DIMENSIONS,
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -495,7 +495,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix multiplication test (keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MULTIPLICATION_MATRIX_TEST, mode: 'keep'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -520,7 +520,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix multiplication test (copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MULTIPLICATION_MATRIX_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -553,7 +553,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start vector multiplication test (keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST, mode: 'keep'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -572,7 +572,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start vector multiplication test (copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -580,21 +580,21 @@ function startMatrixTest() {
             var vector2 = matrix1.multiply(true, vector1);
 
             return (
-                Test.equalObjectInstance(matrix1, Matrix) &&
-                Test.equalArrayValues(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
-                Test.equalArrayValues(matrix1.size, [2, 3]) &&
-                Test.equalObjectInstance(vector1, Vector) &&
-                Test.equalArrayValues(vector1.array, [1, 2, 3]) &&
+                JsTest.equalObjectInstance(matrix1, Matrix) &&
+                JsTest.equalArrayValues(matrix1.array, [[1, 2, 3], [4, 5, 6]]) &&
+                JsTest.equalArrayValues(matrix1.size, [2, 3]) &&
+                JsTest.equalObjectInstance(vector1, Vector) &&
+                JsTest.equalArrayValues(vector1.array, [1, 2, 3]) &&
                 vector1.size === 3 &&
-                Test.equalObjectInstance(vector2, Vector) &&
-                Test.equalArrayValues(vector2.array, [14, 32]) &&
+                JsTest.equalObjectInstance(vector2, Vector) &&
+                JsTest.equalArrayValues(vector2.array, [14, 32]) &&
                 vector2.size === 2
             );
         }
     );
 
     /* Matrix: start transpose test (keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_TRANSPOSE_TEST, mode: 'keep'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -615,7 +615,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start transpose test (copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_TRANSPOSE_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -636,7 +636,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix determinant calculation test (wrong matrix dimension) */
-    new Test(
+    new JsTest(
         Matrix.ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC,
         function () {
             var matrix = new Matrix([[1, 2, 3], [4, 5, 6]]);
@@ -649,7 +649,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix determinant calculation test */
-    new Test(
+    new JsTest(
         Matrix.SUCCESS_DETERMINANT_TEST,
         function () {
             var matrix = new Matrix([[1]]);
@@ -661,7 +661,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix determinant calculation test */
-    new Test(
+    new JsTest(
         Matrix.SUCCESS_DETERMINANT_TEST,
         function () {
             var matrix = new Matrix([[1, 1], [2, 3]]);
@@ -673,7 +673,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix determinant calculation test */
-    new Test(
+    new JsTest(
         Matrix.SUCCESS_DETERMINANT_TEST,
         function () {
             var matrix = new Matrix([[1, 2, 3, 4, 0], [5, 6, 7, 8, 7], [9, 1, 2, 3, 8], [4, 5, 9, 7, -1], [7, 8, -2, -5, -3]]);
@@ -685,7 +685,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix inverse calculation test (keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_INVERSE_TEST, mode: 'keep'},
         function () {
             var matrix = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
@@ -710,7 +710,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix inverse calculation test (copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_INVERSE_TEST, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
@@ -719,8 +719,8 @@ function startMatrixTest() {
 
             return (
                 matrix1 instanceof Matrix &&
-                Test.equalArrayValues(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
-                Test.equalArrayValues(matrix1.size, [3, 3]) &&
+                JsTest.equalArrayValues(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
+                JsTest.equalArrayValues(matrix1.size, [3, 3]) &&
                 matrix2 instanceof Matrix &&
                 Math.round(precision * matrix2.getCell(0, 0)) === Math.round(precision * 5 / 22) &&
                 Math.round(precision * matrix2.getCell(0, 1)) === Math.round(precision * -1 / 11) &&
@@ -738,7 +738,7 @@ function startMatrixTest() {
     );
 
     /* Matrix: start matrix manipulate shift test (keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MANIPULATE_SHIFT_COL, mode: 'keep'},
         function () {
             var matrix = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
@@ -746,14 +746,14 @@ function startMatrixTest() {
 
             return (
                 matrix instanceof Matrix &&
-                Test.equalArrayValues(matrix.array, [[2, 3], [5, -6], [0, 3]]) &&
-                Test.equalArrayValues(matrix.size, [3, 2])
+                JsTest.equalArrayValues(matrix.array, [[2, 3], [5, -6], [0, 3]]) &&
+                JsTest.equalArrayValues(matrix.size, [3, 2])
             );
         }
     );
 
     /* Matrix: start matrix manipulate shift test (copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MANIPULATE_SHIFT_COL, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
@@ -761,17 +761,17 @@ function startMatrixTest() {
 
             return (
                 matrix1 instanceof Matrix &&
-                Test.equalArrayValues(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
-                Test.equalArrayValues(matrix1.size, [3, 3]) &&
+                JsTest.equalArrayValues(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
+                JsTest.equalArrayValues(matrix1.size, [3, 3]) &&
                 matrix2 instanceof Matrix &&
-                Test.equalArrayValues(matrix2.array, [[2, 3], [5, -6], [0, 3]]) &&
-                Test.equalArrayValues(matrix2.size, [3, 2])
+                JsTest.equalArrayValues(matrix2.array, [[2, 3], [5, -6], [0, 3]]) &&
+                JsTest.equalArrayValues(matrix2.size, [3, 2])
             );
         }
     );
 
     /* Matrix: start matrix manipulate shift test (keep) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MANIPULATE_SHIFT_ROW, mode: 'keep'},
         function () {
             var matrix = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
@@ -779,14 +779,14 @@ function startMatrixTest() {
 
             return (
                 matrix instanceof Matrix &&
-                Test.equalArrayValues(matrix.array, [[-4, 5, -6], [-1, 0, 3]]) &&
-                Test.equalArrayValues(matrix.size, [2, 3])
+                JsTest.equalArrayValues(matrix.array, [[-4, 5, -6], [-1, 0, 3]]) &&
+                JsTest.equalArrayValues(matrix.size, [2, 3])
             );
         }
     );
 
     /* Matrix: start matrix manipulate shift test (copy) */
-    new Test(
+    new JsTest(
         {config: Matrix.SUCCESS_MANIPULATE_SHIFT_ROW, mode: 'copy'},
         function () {
             var matrix1 = new Matrix([[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]);
@@ -794,11 +794,11 @@ function startMatrixTest() {
 
             return (
                 matrix1 instanceof Matrix &&
-                Test.equalArrayValues(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
-                Test.equalArrayValues(matrix1.size, [3, 3]) &&
+                JsTest.equalArrayValues(matrix1.array, [[1, 2, 3], [-4, 5, -6], [-1, 0, 3]]) &&
+                JsTest.equalArrayValues(matrix1.size, [3, 3]) &&
                 matrix2 instanceof Matrix &&
-                Test.equalArrayValues(matrix2.array, [[-4, 5, -6], [-1, 0, 3]]) &&
-                Test.equalArrayValues(matrix2.size, [2, 3])
+                JsTest.equalArrayValues(matrix2.array, [[-4, 5, -6], [-1, 0, 3]]) &&
+                JsTest.equalArrayValues(matrix2.size, [2, 3])
             );
         }
     );

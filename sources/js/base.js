@@ -32,14 +32,8 @@ class Base {
 
             switch (this.name) {
                 case 'Vector':
-                    throw new VectorException(
-                        errorType[1],
-                        String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
-                    );
-                    break;
-
                 case 'Matrix':
-                    throw new MatrixException(
+                    throw new JsTestException(
                         errorType[1],
                         String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
                     );
