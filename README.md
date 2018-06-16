@@ -114,7 +114,7 @@ console.log(JSON.stringify(vector.array)); // prints [1,2,3]
 
 #### 1.3.1 **Calculation mode:** Change or copy the used vector
 
-Normally all calculations refer to the used vector. That means that all calculations will change this vector.
+Normally all calculations refer to the used vector. That means that all calculations will change the vector to which the calculations are performed. 
 
 ##### 1.3.1.1 "Change" example:
 
