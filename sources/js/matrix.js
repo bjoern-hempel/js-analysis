@@ -7,119 +7,119 @@
 class Matrix extends Base {
 
     static get ERROR_ROWS_IS_NO_ARRAY() {
-        return [this, 101, 'Rows are not an array', 'The given parameter matrix must be an instance of Array.'];
+        return [new JsTestException(101, 'Rows are not an array', 'The given parameter matrix must be an instance of Array.'), this];
     }
 
     static get ERROR_ROWS_COUNT_ARRAY_WRONG() {
-        return [this, 102, 'Count rows is wrong', 'The number of rows from given parameter matrix must greater than 0.'];
+        return [new JsTestException(102, 'Count rows is wrong', 'The number of rows from given parameter matrix must greater than 0.'), this];
     }
 
     static get ERROR_COLS_IS_NO_ARRAY() {
-        return [this, 103, 'Cols are not an array', 'Row %row of given parameter elements must be an instance of Array.'];
+        return [new JsTestException(103, 'Cols are not an array', 'Row %row of given parameter elements must be an instance of Array.'), this];
     }
 
     static get ERROR_COLS_COUNT_ARRAY_WRONG() {
-        return [this, 104, 'Count cols is wrong', 'The number of cols in row %row from given parameter matrix must greater than 0.'];
+        return [new JsTestException(104, 'Count cols is wrong', 'The number of cols in row %row from given parameter matrix must greater than 0.'), this];
     }
 
     static get ERROR_WRONG_COL_NUMBER() {
-        return [this, 105, 'Wrong col number test', 'The number of cols in row %row from given parameter matrix must equal to %col.'];
+        return [new JsTestException(105, 'Wrong col number test', 'The number of cols in row %row from given parameter matrix must equal to %col.'), this];
     }
 
     static get ERROR_WRONG_MATRIX_TYPE() {
-        return [this, 106, 'Wrong given matrix type', 'The given parameter matrix must be an instance of Matrix.'];
+        return [new JsTestException(106, 'Wrong given matrix type', 'The given parameter matrix must be an instance of Matrix.'), this];
     }
 
     static get ERROR_WRONG_MATRIX_DIMENSIONS() {
-        return [this, 107, 'Two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'];
+        return [new JsTestException(107, 'Two given matrices with different dimensions', 'The given matrix does not fit to this matrix.'), this];
     }
 
     static get ERROR_WRONG_MATRIX_DIMENSIONS_QUADRATIC() {
-        return [this, 108, 'The matrix is not quadratic', 'The matrix is not quadratic.'];
+        return [new JsTestException(108, 'The matrix is not quadratic', 'The matrix is not quadratic.'), this];
     }
 
     static get ERROR_NO_SCALAR() {
-        return [this, 109, 'Given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'];
+        return [new JsTestException(109, 'Given parameter is not a scalar', 'The given parameter scalar must be a number (real, float, integer, ..).'), this];
     }
 
     static get ERROR_CELL_IS_NO_NUMBER() {
-        return [this, 110, 'The value of getCell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'];
+        return [new JsTestException(110, 'The value of getCell from matrix is no number', 'Cell %col in row %row of given parameter elements must be a number.'), this];
     }
 
     static get ERROR_WRONG_CELL_ACCESS() {
-        return [this, 111, 'The access of getCell is wrong', 'Cell %col in row %row of given parameter elements must the right access.'];
+        return [new JsTestException(111, 'The access of getCell is wrong', 'Cell %col in row %row of given parameter elements must the right access.'), this];
     }
 
     static get ERROR_WRONG_ROW_ACCESS() {
-        return [this, 112, 'Row access is wrong', 'Row %row does not fit to this matrix.'];
+        return [new JsTestException(112, 'Row access is wrong', 'Row %row does not fit to this matrix.'), this];
     }
 
     static get ERROR_WRONG_MATRIX_COL_LIMIT_REACHED() {
-        return [this, 113, 'The matrix must contain at least two columns.', 'The matrix must contain at least two columns.'];
+        return [new JsTestException(113, 'The matrix must contain at least two columns.', 'The matrix must contain at least two columns.'), this];
     }
 
     static get ERROR_WRONG_MATRIX_ROW_LIMIT_REACHED() {
-        return [this, 113, 'The matrix must contain at least two rows.', 'The matrix must contain at least two rows.'];
+        return [new JsTestException(113, 'The matrix must contain at least two rows.', 'The matrix must contain at least two rows.'), this];
     }
 
     static get SUCCESS_INITIALISE_MATRIX() {
-        return [this, 201, 'Init matrix'];
+        return [new JsTestException(201, 'Init matrix'), this];
     }
 
     static get SUCCESS_INITIALISE_MATRIX_FROM_VECTOR() {
-        return [this, 202, 'Init matrix from vector'];
+        return [new JsTestException(202, 'Init matrix from vector'), this];
     }
 
     static get SUCCESS_INITIALISE_MATRIX_FROM_VECTORS() {
-        return [this, 203, 'Init matrix from vectors'];
+        return [new JsTestException(203, 'Init matrix from vectors'), this];
     }
 
     static get SUCCESS_CHANGE_CELL_TEST() {
-        return [this, 204, 'Successful change value test'];
+        return [new JsTestException(204, 'Successful change value test'), this];
     }
 
     static get SUCCESS_DELETE_ROW_TEST() {
-        return [this, 205, 'Successful delete row test'];
+        return [new JsTestException(205, 'Successful delete row test'), this];
     }
 
     static get SUCCESS_ADDITION_TEST() {
-        return [this, 206, 'Successful add test'];
+        return [new JsTestException(206, 'Successful add test'), this];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [this, 207, 'Successful subtract test'];
+        return [new JsTestException(207, 'Successful subtract test'), this];
     }
 
     static get SUCCESS_SCALAR_MULTIPLICATION_TEST() {
-        return [this, 208, 'Successful scalar multiplication test'];
+        return [new JsTestException(208, 'Successful scalar multiplication test'), this];
     }
 
     static get SUCCESS_TRANSPOSE_TEST() {
-        return [this, 209, 'Successful transpose test'];
+        return [new JsTestException(209, 'Successful transpose test'), this];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_TEST() {
-        return [this, 210, 'Successful multiplication test'];
+        return [new JsTestException(210, 'Successful multiplication test'), this];
     }
 
     static get SUCCESS_MULTIPLICATION_MATRIX_VECTOR_TEST() {
-        return [this, 211, 'Successful multiplication test with a vector'];
+        return [new JsTestException(211, 'Successful multiplication test with a vector'), this];
     }
 
     static get SUCCESS_DETERMINANT_TEST() {
-        return [this, 212, 'Successful determinant test'];
+        return [new JsTestException(212, 'Successful determinant test'), this];
     }
 
     static get SUCCESS_INVERSE_TEST() {
-        return [this, 213, 'Successful inverse test'];
+        return [new JsTestException(213, 'Successful inverse test'), this];
     }
 
     static get SUCCESS_MANIPULATE_SHIFT_COL() {
-        return [this, 214, 'Successful manipulate test: shift col'];
+        return [new JsTestException(214, 'Successful manipulate test: shift col'), this];
     }
 
     static get SUCCESS_MANIPULATE_SHIFT_ROW() {
-        return [this, 215, 'Successful manipulate test: shift row'];
+        return [new JsTestException(215, 'Successful manipulate test: shift row'), this];
     }
 
     static get CLASS_NAME() {

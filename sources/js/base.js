@@ -24,7 +24,7 @@ class Base {
      */
     assert(assertion, functionName, errorType, replace) {
         if (!assertion) {
-            var errorText = errorType[3];
+            var errorText = errorType[0].message;
 
             if (typeof replace === "object") {
                 Object.keys(replace).map(function(key) { errorText = errorText.replace('%' + key, replace[key]); });
@@ -33,10 +33,15 @@ class Base {
             switch (this.name) {
                 case 'Vector':
                 case 'Matrix':
-                    throw new JsTestException(
-                        errorType[1],
-                        String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
-                    );
+                    errorType[0].message = 'yxyz';
+
+                    console.log(errorType[0].message);
+
+                    throw errorType[0];
+                    // throw new JsTestException(
+                    //     errorType[0].code,
+                    //     String('%functionName: %errorText').replace(/%functionName/, functionName).replace(/%errorText/, errorText)
+                    // );
                     break;
 
                 default:
