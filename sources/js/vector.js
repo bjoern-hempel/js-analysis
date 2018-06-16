@@ -7,83 +7,83 @@
 class Vector extends Base {
 
     static get ERROR_VECTOR_IS_NO_ARRAY() {
-        return [this, 101, 'Given vector format is not an array', 'The given parameter vector must be an instance of Array.'];
+        return [new JsTestException(101, 'Given vector format is not an array', 'The given parameter vector must be an instance of Array.'), this];
     }
 
     static get ERROR_VECTOR_SIZE_WRONG() {
-        return [this, 102, 'The size of the given vector is wrong', 'The given parameter vector must be greater then 0.'];
+        return [new JsTestException(102, 'The size of the given vector is wrong', 'The given parameter vector must be greater then 0.'), this];
     }
 
     static get ERROR_ELEMENT_IS_NO_NUMBER() {
-        return [this, 103, 'Element from vector is no number', 'Element %element of given parameter vector must be a number.'];
+        return [new JsTestException(103, 'Element from vector is no number', 'Element %element of given parameter vector must be a number.'), this];
     }
 
     static get ERROR_WRONG_CELL_ACCESS() {
-        return [this, 104, 'Execution of getCell access is wrong', 'Cell %index does not exist.'];
+        return [new JsTestException(104, 'Execution of getCell access is wrong', 'Cell %index does not exist.'), this];
     }
 
     static get ERROR_WRONG_VECTOR_TYPE() {
-        return [this, 105, 'Wrong given vector type', 'The given parameter vector must be an instance of Vector.'];
+        return [new JsTestException(105, 'Wrong given vector type', 'The given parameter vector must be an instance of Vector.'), this];
     }
 
     static get ERROR_WRONG_VECTOR_DIMENSIONS() {
-        return [this, 106, 'Two given vectors with different dimensions', 'The given vector does not fit to this vector.'];
+        return [new JsTestException(106, 'Two given vectors with different dimensions', 'The given vector does not fit to this vector.'), this];
     }
 
     static get ERROR_WRONG_VECTOR_COUNT() {
-        return [this, 106, 'The number of given vectors is wrong', 'The number of given vectors is wrong.'];
+        return [new JsTestException(106, 'The number of given vectors is wrong', 'The number of given vectors is wrong.'), this];
     }
 
     static get ERROR_SIZE_LIMIT_REACHED() {
-        return [this, 107, 'The vector must contain at least two elements.', 'The vector must contain at least two elements.'];
+        return [new JsTestException(107, 'The vector must contain at least two elements.', 'The vector must contain at least two elements.'), this];
     }
 
     static get SUCCESS_INITIALIZE_VECTOR() {
-        return [this, 201, 'Init vector'];
+        return [new JsTestException(201, 'Init vector'), this];
     }
 
     static get SUCCESS_LENGTH_VECTOR() {
-        return [this, 202, 'Successful length of vector test'];
+        return [new JsTestException(202, 'Successful length of vector test'), this];
     }
 
     static get SUCCESS_CHANGE_CELL_TEST() {
-        return [this, 203, 'Successful change value test'];
+        return [new JsTestException(203, 'Successful change value test'), this];
     }
 
     static get SUCCESS_ADDITION_TEST() {
-        return [this, 204, 'Successful add test'];
+        return [new JsTestException(204, 'Successful add test'), this];
     }
 
     static get SUCCESS_SUBTRACTION_TEST() {
-        return [this, 205, 'Successful add test'];
+        return [new JsTestException(205, 'Successful add test'), this];
     }
 
     static get SUCCESS_DOT_PRODUCT() {
-        return [this, 206, 'Successful dot product test'];
+        return [new JsTestException(206, 'Successful dot product test'), this];
     }
 
     static get SUCCESS_VECTOR_PRODUCT() {
-        return [this, 207, 'Successful vector product test'];
+        return [new JsTestException(207, 'Successful vector product test'), this];
     }
 
     static get SUCCESS_ROW_MULTIPLICATION() {
-        return [this, 208, 'Successful row multiplication test'];
+        return [new JsTestException(208, 'Successful row multiplication test'), this];
     }
 
     static get SUCCESS_DYADIC_MULTIPLICATION() {
-        return [this, 209, 'Successful dyadic multiplication test'];
+        return [new JsTestException(209, 'Successful dyadic multiplication test'), this];
     }
 
     static get SUCCESS_UNSHIFT() {
-        return [this, 210, 'Successful unshift test'];
+        return [new JsTestException(210, 'Successful unshift test'), this];
     }
 
     static get SUCCESS_SHIFT() {
-        return [this, 211, 'Successful shift test'];
+        return [new JsTestException(211, 'Successful shift test'), this];
     }
 
     static get SUCCESS_CALLBACK() {
-        return [this, 212, 'Successful callback function test'];
+        return [new JsTestException(212, 'Successful callback function test'), this];
     }
 
     static get CLASS_NAME() {
