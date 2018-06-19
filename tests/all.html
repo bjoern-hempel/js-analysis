@@ -19,6 +19,36 @@
 
         JsTest.startTests(document.title, startVectorTest, startMatrixTest);
 
+        // /**
+        //  * Own js test exception class.
+        //  */
+        // class MyOwnException {
+        //     constructor(code, message) {
+        //         this.code = code;
+        //         this.message = message;
+        //     }
+        // }
+        //
+        // /**
+        //  * Test function
+        //  */
+        // var test = new JsErrorTest(
+        //     new MyOwnException(100, 'check 10 - 11'),
+        //     new JsTestTestFunction(function () {
+        //         var minuend = 10;
+        //         var subtrahend = 11;
+        //
+        //         if (subtrahend > minuend) {
+        //             throw new MyOwnException(100, 'The subtrahend is bigger than the minuend.');
+        //         }
+        //
+        //         var difference = minuend - subtrahend;
+        //         return JsTest.equalInteger(difference, 8);
+        //     })
+        // );
+        //
+        // JsTest.startTests('Simple tests.', test);
+
     </script>
 </body>
 </html>

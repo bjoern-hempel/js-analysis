@@ -1,7 +1,7 @@
 function startVectorTest() {
 
     /* Vector: init vector wrong given values */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_VECTOR_IS_NO_ARRAY,
         new JsTestTestFunction(function () {
             var vector = new Vector(1);
@@ -11,7 +11,7 @@ function startVectorTest() {
     );
 
     /* Vector: init vector wrong given values */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_VECTOR_SIZE_WRONG,
         new JsTestTestFunction(function () {
             var vector = new Vector([]);
@@ -21,7 +21,7 @@ function startVectorTest() {
     );
 
     /* Vector: init vector wrong given values */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_ELEMENT_IS_NO_NUMBER,
         new JsTestTestFunction(function () {
             var vector = new Vector([1, [1, 2]]);
@@ -31,7 +31,7 @@ function startVectorTest() {
     );
 
     /* Vector: start initial test */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_INITIALIZE_VECTOR,
         new JsTestTestFunction(function () {
             var vector = new Vector([1, 2, 3]);
@@ -45,7 +45,7 @@ function startVectorTest() {
     );
 
     /* Vector: start change getCell test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_CHANGE_CELL_TEST,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -64,7 +64,7 @@ function startVectorTest() {
     );
 
     /* Vector: start change getCell test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_CHANGE_CELL_TEST,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -87,7 +87,7 @@ function startVectorTest() {
     );
 
     /* Vector: start add test (wrong vector type) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_TYPE,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -102,7 +102,7 @@ function startVectorTest() {
     );
 
     /* Vector: start add test (wrong vector dimension) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -117,7 +117,7 @@ function startVectorTest() {
     );
 
     /* Vector: start add test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_ADDITION_TEST,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -137,7 +137,7 @@ function startVectorTest() {
     );
 
     /* Vector: start add test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_ADDITION_TEST,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -167,7 +167,7 @@ function startVectorTest() {
     );
 
     /* Vector: start subtraction test (wrong vector type) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_TYPE,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -182,7 +182,7 @@ function startVectorTest() {
     );
 
     /* Vector: start subtraction test (wrong vector dimension) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -197,7 +197,7 @@ function startVectorTest() {
     );
 
     /* Vector: start subtraction test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_SUBTRACTION_TEST,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -217,7 +217,7 @@ function startVectorTest() {
     );
 
     /* Vector: start subtraction test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_SUBTRACTION_TEST,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -247,7 +247,7 @@ function startVectorTest() {
     );
 
     /* Vector: start dot product test (wrong vector type) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_TYPE,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -262,7 +262,7 @@ function startVectorTest() {
     );
 
     /* Vector: start dot product test (wrong vector dimension) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -277,7 +277,7 @@ function startVectorTest() {
     );
 
     /* Vector: start dot product test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_DOT_PRODUCT,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -297,7 +297,7 @@ function startVectorTest() {
     );
 
     /* Vector: start dot product test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_DOT_PRODUCT,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -317,7 +317,7 @@ function startVectorTest() {
     );
 
     /* Vector: start dot product test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_DOT_PRODUCT,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -337,7 +337,7 @@ function startVectorTest() {
     );
 
     /* Vector: start vector product (cross product) test */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -350,7 +350,7 @@ function startVectorTest() {
     );
 
     /* Vector: start vector product (cross product) test */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_COUNT,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3, 4]);
@@ -364,7 +364,7 @@ function startVectorTest() {
     );
 
     /* Vector: start vector product (cross product) test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_VECTOR_PRODUCT,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -389,7 +389,7 @@ function startVectorTest() {
     );
 
     /* Vector: start vector product (cross product) test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_VECTOR_PRODUCT,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -419,7 +419,7 @@ function startVectorTest() {
     );
 
     /* Vector: start vector product (cross product) test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_VECTOR_PRODUCT,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -459,7 +459,7 @@ function startVectorTest() {
     );
 
     /* Vector: start vector product (cross product) test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_VECTOR_PRODUCT,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -491,7 +491,7 @@ function startVectorTest() {
     );
 
     /* Vector: start row multiplication test (wrong vector type) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_TYPE,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -506,7 +506,7 @@ function startVectorTest() {
     );
 
     /* Vector: start row multiplication test (wrong vector dimension) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_DIMENSIONS,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -521,7 +521,7 @@ function startVectorTest() {
     );
 
     /* Vector: start row multiplication test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_ROW_MULTIPLICATION,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -540,7 +540,7 @@ function startVectorTest() {
     );
 
     /* Vector: start row multiplication test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_ROW_MULTIPLICATION,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -561,7 +561,7 @@ function startVectorTest() {
     );
 
     /* Vector: start row multiplication test (wrong vector type) */
-    new JsTest(
+    new JsErrorTest(
         Vector.ERROR_WRONG_VECTOR_TYPE,
         new JsTestTestFunction(function () {
             var vector1 = new Vector([1, 2, 3]);
@@ -576,7 +576,7 @@ function startVectorTest() {
     );
 
     /* Vector: start dyadic product test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_DYADIC_MULTIPLICATION,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -599,7 +599,7 @@ function startVectorTest() {
     );
 
     /* Vector: start dyadic product test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_DYADIC_MULTIPLICATION,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -622,7 +622,7 @@ function startVectorTest() {
     );
 
     /* Vector: start unshift test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_UNSHIFT,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -638,7 +638,7 @@ function startVectorTest() {
     );
 
     /* Vector: start unshift test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_UNSHIFT,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -657,7 +657,7 @@ function startVectorTest() {
     );
 
     /* Vector: start shift test (correct - keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_SHIFT,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -673,7 +673,7 @@ function startVectorTest() {
     );
 
     /* Vector: start shift test (correct - copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_SHIFT,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -692,7 +692,7 @@ function startVectorTest() {
     );
 
     /* Vector: start callback test (keep) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_CALLBACK,
         new JsTestMode('keep'),
         new JsTestTestFunction(function () {
@@ -711,7 +711,7 @@ function startVectorTest() {
     );
 
     /* Vector: start callback test (copy) */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_CALLBACK,
         new JsTestMode('copy'),
         new JsTestTestFunction(function () {
@@ -734,7 +734,7 @@ function startVectorTest() {
     );
 
     /* Vector: start vector length test */
-    new JsTest(
+    new JsSuccessTest(
         Vector.SUCCESS_LENGTH_VECTOR,
         new JsTestTestFunction(function () {
             var vector = new Vector([1, 2, 3]);

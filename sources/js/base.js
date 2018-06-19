@@ -33,10 +33,6 @@ class Base {
             switch (this.name) {
                 case 'Vector':
                 case 'Matrix':
-                    errorType[0].message = 'yxyz';
-
-                    console.log(errorType[0].message);
-
                     throw errorType[0];
                     // throw new JsTestException(
                     //     errorType[0].code,
